@@ -1,0 +1,46 @@
+.MultiColBox {
+  background: #fff;
+  border: 1px solid hsla(0, 0%, 0%, 0.075);
+  padding: 1.5em;
+}
+
+.MultiColBox-title {
+  border-bottom: 1px solid hsla(0, 0%, 0%, .1);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin-bottom: 1em;
+  padding-bottom: .5em;
+  text-transform: uppercase;
+}
+
+.MultiColBox-content {
+  column-count: 1;
+}
+
+.MultiColBox-content > aside {
+  color: #aaa;
+}
+
+/* -------------- */
+/* Breakpoint: C2 */
+/* -------------- */
+
+.C2 > .MultiColBox .MultiColBox-content {
+  column-count: 2;
+}
+
+/* -------------- */
+/* Breakpoint: C3 */
+/* -------------- */
+
+.C3 > .MultiColBox .MultiColBox-content {
+  column-count: 3;
+}
+
+/* -------------- */
+/* Breakpoint: C4 */
+/* -------------- */
+
+.C4 > .MultiColBox .MultiColBox-content {
+  column-count: 4;
+}

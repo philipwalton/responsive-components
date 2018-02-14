@@ -1,0 +1,13 @@
+.Image {
+  border: 1px solid hsl(0, 0%, 90%);
+  padding: .25em;
+}
+
+.Image::after {
+  background: hsl(0, 0%, 90%);
+  content: '';
+  display: block;
+  height: 0;
+  padding-top: calc(100% * 9 / 16);
+  width: 100%;
+}

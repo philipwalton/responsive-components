@@ -1,0 +1,13 @@
+.ButtonGroup {
+  margin: 0 0 .5em;
+  display: flex;
+  flex-flow: wrap;
+}
+
+.ButtonGroup > * {
+  margin: 0 0.75em 0.5em 0;
+}
+
+.ButtonGroup > *:last-child {
+  margin-right: 0;
+}

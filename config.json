@@ -1,0 +1,5 @@
+{
+  "publicDir": "build",
+  "publicStaticDir": "build/static",
+  "manifestFileName": "revisioned-asset-manifest.json"
+}

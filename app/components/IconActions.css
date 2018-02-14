@@ -1,0 +1,14 @@
+.IconActions {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 0.8em;
+}
+
+.IconActions > .Icon {
+  color: #aaa;
+  transition: color 0.2s var(--material-easing);
+}
+
+.IconActions > .Icon:hover {
+  color: #444;
+}

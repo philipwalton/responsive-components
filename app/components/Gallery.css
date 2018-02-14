@@ -1,0 +1,34 @@
+/*
+TODO(philipwalton): feature-detect grid and add a fallback.
+@supports (display: grid) {}
+*/
+
+.Gallery {
+  background: #fff;
+  border: 1px solid hsla(0, 0%, 0%, 0.075);
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: 1fr;
+  margin: 0;
+  padding: 1em;
+}
+
+.Gallery > li {
+  list-style: none;
+}
+
+/* -------------- */
+/* Breakpoint: MD */
+/* -------------- */
+
+.MD > .Gallery {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* -------------- */
+/* Breakpoint: XL */
+/* -------------- */
+
+.XL > .Gallery {
+  grid-template-columns: 1fr 1fr 1fr;
+}

@@ -1,0 +1,6 @@
+:root {
+  /* TODO(philipwalton): add fallbacks for custom properties */
+  --accentColor: hsl(300, 50%, 50%);
+  --accendColorMuted: hsl(300, 40%, 40%);
+  --material-easing: cubic-bezier(.4,0,.2,1);
+}

@@ -1,0 +1,47 @@
+.Button {
+  background: hsla(0, 0%, 0%, 0.1);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  max-width: 100%;
+  padding: .4em 1em;
+  text-decoration: none!important;
+  transition: background 0.2s var(--material-easing);
+  white-space: nowrap;
+}
+
+.Button-wrapper {
+  display: flex;
+}
+
+.Button-text {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Button:hover,
+.Button:focus {
+  background: hsla(0, 0%, 0%, 0.2);
+}
+
+.Button--action {
+  background: hsl(300, 0%, 40%);
+  color: #fff;
+}
+
+.Button--action:hover,
+.Button--action:focus {
+  background: var(--accentColor);
+}
+
+.Button--small {
+  font-size: 0.85em;
+}
+
+.Button--cozy {
+  padding: .333em .666em;
+}

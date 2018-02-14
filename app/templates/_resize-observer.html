@@ -1,0 +1,80 @@
+<script>
+(function() {
+  function observeResizes() {
+    // Create a single ResizeObserver instance to handle all elements.
+    var ro = new ResizeObserver(function(entries) {
+      // Default breakpoints that should apply to all elements
+      // that don't define their own custom breakpoints.
+      var defaultBreakpoints = {XS: 0, SM: 384, MD: 576, LG: 768, XL: 960};
+
+      entries.forEach(function(entry) {
+        // If breakpoints are defined on the target element, use them.
+        // Otherwise use the defaults.
+        var breakpoints = entry.target.dataset.breakpoints ?
+            JSON.parse(entry.target.dataset.breakpoints) : defaultBreakpoints;
+
+        // Update the matching breakpoints on the target element.
+        Object.keys(breakpoints).forEach(function(breakpoint) {
+          var minWidth = breakpoints[breakpoint];
+          if (entry.contentRect.width >= minWidth) {
+            entry.target.classList.add(breakpoint);
+          } else {
+            entry.target.classList.remove(breakpoint);
+          }
+        });
+      });
+    });
+
+    // Start observing all elements with the `data-observe-resizes` attribute.
+    var elements = document.querySelectorAll('[data-observe-resizes]');
+    for (var element, i = 0; element = elements[i]; i++) {
+      ro.observe(element);
+      element.dataset.observing = true;
+    }
+
+    // Monitor the DOM for changes
+    var mo = new MutationObserver(function(entries) {
+      entries.forEach(function(entry) {
+        eachObserveableElement(entry.addedNodes, ro.observe.bind(ro));
+        eachObserveableElement(entry.removedNodes, ro.unobserve.bind(ro));
+      });
+    });
+    mo.observe(document.body, {childList: true, subtree: true});
+
+    // Iterates through the subtree
+    function eachObserveableElement(nodes, fn) {
+      if (nodes) {
+        [].slice.call(nodes).forEach(function(node) {
+          if (node.nodeType === 1) {
+            var containers = [].slice.call(
+                node.querySelectorAll('[data-observe-resizes]'));
+            if (node.hasAttribute('data-observe-resizes')) {
+              containers.push(node);
+            }
+            for (var container, i = 0; container = containers[i]; i++) {
+              fn(container);
+            }
+          }
+        });
+      }
+    }
+  }
+
+  // A technique for loading polyfills only when needed. Details here:
+  // https://philipwalton.com/articles/loading-polyfills-only-when-needed/
+  if (window.ResizeObserver) {
+    // Browsers that support ResizeObserver run `observeResizes()` immediately.
+    observeResizes();
+  } else if (window.matchMedia('(min-width: 48em)').matches) {
+    // Other browsers at MD+ breakpoints load the polyfill first.
+    loadScript('{{ "resize-observer.js" | revision }}', observeResizes);
+  }
+
+  function loadScript(src, done) {
+    var js = document.createElement('script');
+    js.src = src;
+    js.onload = done;
+    document.head.appendChild(js);
+  }
+})();
+</script>

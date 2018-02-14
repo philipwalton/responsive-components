@@ -1,0 +1,12 @@
+.Input {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  max-width: 36em;
+  padding: .5em;
+  width: 100%;
+}
+
+.Input--checkBox,
+.Input--radioButton {
+  width: auto;
+}

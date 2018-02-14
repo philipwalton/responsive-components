@@ -1,0 +1,29 @@
+.Content {
+  padding: 2em;
+}
+
+.Content[data-visible-section] section {
+  display: none;
+}
+
+/* Show the overview unless one of the other demos is explicitly set */
+.Content[data-visible-section] [id="overview"] {
+  display: block;
+}
+.Content[data-visible-section="calendar"] [id="overview"],
+.Content[data-visible-section="card"] [id="overview"],
+.Content[data-visible-section="form"] [id="overview"],
+.Content[data-visible-section="gallery"] [id="overview"],
+.Content[data-visible-section="nested-components"] [id="overview"],
+.Content[data-visible-section="custom-breakpoints"] [id="overview"] {
+  display: none;
+}
+
+.Content[data-visible-section="calendar"] [id="calendar"],
+.Content[data-visible-section="card"] [id="card"],
+.Content[data-visible-section="form"] [id="form"],
+.Content[data-visible-section="gallery"] [id="gallery"],
+.Content[data-visible-section="nested-components"] [id="nested-components"],
+.Content[data-visible-section="custom-breakpoints"] [id="custom-breakpoints"] {
+  display: block;
+}
