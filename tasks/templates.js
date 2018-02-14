@@ -3,6 +3,8 @@ const gulp = require('gulp');
 const hljs = require('highlight.js');
 const htmlMinifier = require('html-minifier');
 const nunjucks = require('nunjucks');
+const path = require('path');
+const config = require('../config')
 
 const {getRevisionedAssetUrl} = require('./utils/assets');
 
@@ -19,7 +21,8 @@ env.addFilter('revision', (filename) => {
 const inlineCache = {};
 env.addFilter('inline', (filepath) => {
   if (!inlineCache[filepath]) {
-    inlineCache[filepath] = fs.readFileSync(`build/${filepath}`, 'utf-8');
+    inlineCache[filepath] =
+        fs.readFileSync(`${config.publicDir}/${filepath}`, 'utf-8');
   }
 
   return inlineCache[filepath];
@@ -92,7 +95,8 @@ gulp.task('templates', async () => {
     const html = nunjucks.render('index.html', {
       NODE_ENV: process.env.NODE_ENV,
     });
-    await fs.outputFile('./build/index.html', processHtml(html));
+    await fs.outputFile(
+        path.join(config.publicDir, 'index.html'), processHtml(html));
   } catch (err) {
     console.error(err);
   }

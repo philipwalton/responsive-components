@@ -84,7 +84,7 @@ const configureBabelLoader = (browserlist) => {
 const baseConfig = {
   output: {
     path: path.resolve(__dirname, '..', config.publicStaticDir),
-    publicPath: '/',
+    publicPath: config.publicPath,
     filename: '[name]-[chunkhash:10].js',
   },
   cache: {},

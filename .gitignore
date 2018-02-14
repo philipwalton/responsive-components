@@ -5,7 +5,7 @@
 node_modules
 
 # Static site output
-build
+responsive-components
 
 # Log files
 *.log

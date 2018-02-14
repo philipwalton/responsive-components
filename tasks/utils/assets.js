@@ -49,7 +49,7 @@ const addAsset = async (filename, revisionedFilename) => {
 
 
 const getRevisionedAssetUrl = (filename) => {
-  return `/static/${getAsset(filename)}`;
+  return path.join(config.publicStaticPath, getAsset(filename));
 };
 
 
@@ -60,7 +60,8 @@ const generateRevisionedAsset = async (filename, content) => {
   // Updates the internal revision map so it can be referenced later.
   addAsset(filename, revisionedFilename);
 
-  await fs.outputFile(`build/static/${revisionedFilename}`, content);
+  await fs.outputFile(
+      path.join(config.publicStaticDir, revisionedFilename), content);
 };
 
 module.exports = {
