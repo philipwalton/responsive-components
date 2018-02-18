@@ -76,6 +76,7 @@ const configureBabelLoader = (browserlist) => {
             },
           }],
         ],
+        plugins: ['dynamic-import-system-import'],
       },
     },
   };
@@ -84,7 +85,7 @@ const configureBabelLoader = (browserlist) => {
 const baseConfig = {
   output: {
     path: path.resolve(__dirname, '..', config.publicStaticDir),
-    publicPath: config.publicPath,
+    publicPath: config.publicStaticPath,
     filename: '[name]-[chunkhash:10].js',
   },
   cache: {},
