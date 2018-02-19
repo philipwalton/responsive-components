@@ -4,10 +4,9 @@ pre {
   border: 1px solid hsla(0, 0%, 0%, 0.075);
   border-radius: .25em;
   background: #fff;
-  font: 0.85em/1.5 Monaco, Menlo, monospace;
   margin: 1em 0;
   overflow: auto;
-  padding: 1.5em;
+  padding: 1em 1.5em;
   -webkit-text-size-adjust: none;
   white-space: pre;
 }

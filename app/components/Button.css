@@ -29,13 +29,13 @@
 }
 
 .Button--action {
-  background: hsl(300, 0%, 40%);
+  background: var(--accentColor);
   color: #fff;
 }
 
 .Button--action:hover,
 .Button--action:focus {
-  background: var(--accentColor);
+  background: var(--accentColorMuted);
 }
 
 .Button--small {

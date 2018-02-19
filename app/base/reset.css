@@ -31,10 +31,12 @@ a {
 
 p {
   margin: 0 0 1em;
+  max-width: 48em;
 }
 
 ul {
   margin: 0 0 1em;
+  max-width: 48em;
   padding-left: 1em;
 }
 
@@ -47,12 +49,13 @@ strong {
 }
 
 code {
-  background: hsla(0, 0%, 0%, 0.075);
+  background: hsla(0, 0%, 0%, 0.05);
   border-radius: 2px;
+  color: #000;
   display: inline-block;
   font-family: Monaco, monospace;
-  font-size: 0.875em;
-  padding: 2px 3px 1px;
+  font-size: 0.8em;
+  padding: 2px 5px 1px;
   text-decoration: inherit;
 }
 
@@ -65,24 +68,26 @@ pre code {
 }
 
 table {
-  background: #fff;
   border-collapse: collapse;
   margin: 0 0 1.5em;
   max-width: 100%;
   width: 100%;
 }
 
-table th {
-  background-color: hsla(0, 0%, 0%, .1);
+th {
+  font-weight: 700;
   vertical-align: bottom;
 }
 
-table th,
-table td {
-  border: 1px solid #eee;
-  padding: .75em;
-  text-align: left;
+td {
   vertical-align: top;
+}
+
+th, td {
+  background-color: #fff;
+  border: 1px solid hsl(0, 0%, 92.5%);
+  padding: .5em 1em;
+  text-align: left;
 }
 
 [tabindex="-1"] {

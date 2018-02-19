@@ -9,19 +9,23 @@ const {generateRevisionedAsset} = require('./utils/assets');
 
 const compileCss = async (srcPath) => {
   const css = await fs.readFile(srcPath, 'utf-8');
-  const result = await postcss([
+
+  const plugins = [
     atImport(),
     cssnext({
-      browsers: '> 1%, last 1 versions, not ie <= 11',
+      browsers: process.env.NODE_ENV === 'production' ?
+          'defaults' : 'last 2 Chrome versions',
       features: {customProperties: false},
     }),
-    cssnano({preset: [
+  ];
+  if (process.env.NODE_ENV === 'production') {
+    plugins.push(cssnano({preset: [
       'default',
       {discardComments: {removeAll: true}},
-    ]}),
-  ]).process(css, {
-    from: srcPath,
-  });
+    ]}));
+  }
+
+  const result = await postcss(plugins).process(css, {from: srcPath});
 
   return result.css;
 };

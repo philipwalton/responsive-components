@@ -5,7 +5,7 @@
     var ro = new ResizeObserver(function(entries) {
       // Default breakpoints that should apply to all elements
       // that don't define their own custom breakpoints.
-      var defaultBreakpoints = {XS: 0, SM: 384, MD: 576, LG: 768, XL: 960};
+      var defaultBreakpoints = {SM: 384, MD: 576, LG: 768, XL: 960};
 
       entries.forEach(function(entry) {
         // If breakpoints are defined on the target element, use them.

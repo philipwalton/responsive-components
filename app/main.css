@@ -17,8 +17,10 @@
 @import "./components/Image.css";
 @import "./components/InfoBox.css";
 @import "./components/Input.css";
+@import "./components/LiveCodeDemo.css";
 @import "./components/MultiColBox.css";
 @import "./components/Nav.css";
+@import "./components/Note.css";
 @import "./components/PinAction.css";
 @import "./components/Sidebar.css";
 

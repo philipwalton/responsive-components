@@ -10,7 +10,7 @@
 }
 
 .App-navShow {
-  display: inline-flex;
+  display: flex;
   width: 2.6em;
 }
 
@@ -51,7 +51,6 @@
   background: hsl(0, 0%, 100%);
   border-top: 1px solid var(--accentColor);
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.075);
-  color: hsl(0,0%,70%);
   display: flex;
   height: 5em;
   padding: 0 2em;
@@ -75,7 +74,12 @@
   color: var(--accentColor);
 }
 
+.App-sidebar {
+  display: none;
+}
+
 .App-footer {
+  border-top: 1px solid hsla(0, 0%, 0%, 0.075);
   font-size: 0.8em;
   padding: 1.5rem 2rem;
 }
@@ -124,37 +128,52 @@
     position: static;
   }
 
-  .App-nav {
-    background: hsl(0, 0%, 23%)
-        linear-gradient(to left, hsla(0,0%,0%,.07), transparent 0.5em);
-    width: 16em;
-    flex: 0 0 auto;
-    overflow: hidden;
-    position: static;
-    transition: width 0.3s var(--material-easing);
-  }
-
-  .App--isNavCollapsed .App-nav {
-    flex-shrink: 1;
-    width: 0;
-  }
-
-  .App-navShow {
-    opacity: 0;
-    transition: opacity 0.3s var(--material-easing),
-                width 0.3s var(--material-easing);
-    width: 0;
-  }
-  .App--isNavCollapsed .App-navShow {
-    opacity: 1;
-    width: 2.6em;
-  }
-
   .App-main {
     display: flex;
     flex: 1 1 0%;
     flex-flow: column;
     min-width: 0;
+  }
+
+  .App-mainHeader {
+    position: relative;
+  }
+
+  .App-navShow {
+    align-items: center;
+    color: hsl(0, 0%, 60%);
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.3s var(--material-easing);
+  }
+  .App--isNavCollapsed .App-navShow {
+    opacity: 1;
+  }
+
+  .App-mainHeaderTitle {
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.3s var(--material-easing);
+  }
+  .App--isNavCollapsed .App-mainHeaderTitle {
+    transform: translate3d(3em, 0, 0);
+  }
+
+  .App-mainHeaderLinks {
+    align-items: center;
+    display: flex;
+    transform: translate3d(0em, 0, 0);
+    transition: transform 0.2s var(--material-easing);
+  }
+
+  .App-mainHeaderLinks > * {
+    margin-left: 0.75em;
+    font-size: 0.8em;
+  }
+
+  .App--isSidebarHidden .App-mainHeaderLinks {
+    transform: translate3d(-3em, 0, 0);
   }
 
   .App-mainContent {
@@ -170,6 +189,7 @@
   .App-sidebar {
     background: hsl(0, 0%, 100%);
     border-left: 1px solid hsla(0, 0%, 0%, 0.075);
+    display: block;
     flex: 0 1 auto;
     padding: 0;
     position: relative;
@@ -196,13 +216,17 @@
   }
 
   .App-sidebarShow {
-    display: inline-flex;
-    visibility: hidden;
+    align-items: center;
+    color: hsl(0, 0%, 60%);
+    display: flex;
+    height: 100%;
+    position: absolute;
+    right: 2em;
     opacity: 0;
-    transition: opacity 0.2s var(--material-easing);
+    top: 0;
+    transition: opacity 0.3s var(--material-easing);
   }
   .App--isSidebarHidden .App-sidebarShow {
-    visibility: visible;
     opacity: 1;
   }
 
@@ -232,7 +256,18 @@
     margin-left: 10px;
   }
 
-  .App-footer {
-    border-top: 1px solid hsla(0, 0%, 0%, 0.075);
+  .App-nav {
+    background: hsl(0, 0%, 23%)
+        linear-gradient(to left, hsla(0,0%,0%,.07), transparent 0.5em);
+    width: 16em;
+    flex: 0 0 auto;
+    overflow: hidden;
+    position: static;
+    transition: width 0.3s var(--material-easing);
+  }
+
+  .App--isNavCollapsed .App-nav {
+    flex-shrink: 1;
+    width: 0;
   }
 }

@@ -134,6 +134,7 @@
   border-top: 1px solid #eee;
   font-size: calc(1em * var(--Calendar-timeSize));
   height: calc(var(--Calendar-entryHeight) / var(--Calendar-timeSize));
+  list-style: none;
   padding-top: 0.25em;
 }
 

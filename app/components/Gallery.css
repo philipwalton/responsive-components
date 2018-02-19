@@ -10,6 +10,7 @@ TODO(philipwalton): feature-detect grid and add a fallback.
   grid-gap: 1em;
   grid-template-columns: 1fr;
   margin: 0;
+  max-width: 100%;
   padding: 1em;
 }
 

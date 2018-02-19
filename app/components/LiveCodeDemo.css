@@ -1,0 +1,52 @@
+.LiveCodeDemo {
+  margin-top: 0;
+}
+
+.LiveCodeDemo-spacer {
+  display: none;
+}
+
+.LiveCodeDemo-classAttr {
+  display: none;
+}
+
+/* -------------- */
+/* Breakpoint: SM */
+/* -------------- */
+
+.SM > .LiveCodeDemo .LiveCodeDemo-spacer {
+  display: inline;
+}
+
+.SM > .LiveCodeDemo .LiveCodeDemo-classAttr {
+  background-color: hsla(60, 100%, 50%, 0.4);
+  display: inline;
+}
+
+.SM > .LiveCodeDemo .LiveCodeDemo-classAttrValue::after {
+  content: 'SM';
+}
+
+/* -------------- */
+/* Breakpoint: MD */
+/* -------------- */
+
+.MD > .LiveCodeDemo .LiveCodeDemo-classAttrValue::after {
+  content: 'SM MD';
+}
+
+/* -------------- */
+/* Breakpoint: LG */
+/* -------------- */
+
+.LG > .LiveCodeDemo .LiveCodeDemo-classAttrValue::after {
+  content: 'SM MD LG';
+}
+
+/* -------------- */
+/* Breakpoint: XL */
+/* -------------- */
+
+.XL > .LiveCodeDemo .LiveCodeDemo-classAttrValue::after {
+  content: 'SM MD LG XL';
+}
