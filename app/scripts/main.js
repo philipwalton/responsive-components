@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 
-import App from './components/App.js';
+import App from './App.js';
 
 const main = async () => {
   new App(document.querySelector('.App'));

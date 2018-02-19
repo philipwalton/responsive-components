@@ -94,7 +94,7 @@ const baseConfig = {
 
 const getModernConfig = () => Object.assign({}, baseConfig, {
   entry: {
-    'main': './app/main.js',
+    'main': './app/scripts/main.js',
   },
   plugins: configurePlugins({runtimeName: 'runtime'}),
   module: {
@@ -114,7 +114,7 @@ const getModernConfig = () => Object.assign({}, baseConfig, {
 
 const getLegacyConfig = () => Object.assign({}, baseConfig, {
   entry: {
-    'main-legacy': './app/main.js',
+    'main-legacy': './app/scripts/main.js',
   },
   plugins: configurePlugins({runtimeName: 'runtime-legacy'}),
   module: {

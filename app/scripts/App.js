@@ -1,7 +1,7 @@
 import Content from './Content.js';
 import Nav from './Nav.js';
 import Sidebar from './Sidebar.js';
-import {transition} from '../transition';
+import {transition} from './transition';
 
 const CONTENT_MIN_WIDTH = 256; /* 16em */
 const SIDEBAR_MIN_WIDTH = 256; /* 16em */

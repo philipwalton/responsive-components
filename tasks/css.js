@@ -32,7 +32,7 @@ const compileCss = async (srcPath) => {
 
 gulp.task('css', async () => {
   try {
-    const srcPath = './app/main.css';
+    const srcPath = './app/styles/main.css';
     const css = await compileCss(srcPath);
     await generateRevisionedAsset(path.basename(srcPath), css);
   } catch (err) {

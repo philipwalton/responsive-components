@@ -1,7 +1,26 @@
 <section id="nested-components">
   <h2 class="Heading">Nested components</h2>
   <div data-demo-root data-observe-resizes>
-    {% include 'components/nested-components.html' %}
+    <ul class="Gallery">
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+    </ul>
   </div>
   {% include '_pin-action.html' %}
 
