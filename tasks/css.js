@@ -13,9 +13,14 @@ const compileCss = async (srcPath) => {
   const plugins = [
     atImport(),
     cssnext({
-      browsers: process.env.NODE_ENV === 'production' ?
+      browsers: ['debug', 'production'].includes(process.env.NODE_ENV) ?
           'defaults' : 'last 2 Chrome versions',
-      features: {customProperties: false},
+      features: {
+        customProperties: {
+          warnings: true,
+          preserve: true,
+        },
+      },
     }),
   ];
   if (process.env.NODE_ENV === 'production') {

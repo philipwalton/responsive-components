@@ -2,11 +2,27 @@
   opacity: 0;
   overflow: hidden;
   position: relative;
-  transition: opacity .2s var(--material-easing);
+  transition: opacity 0.5s var(--material-easing);
+
+  /*
+   * In the event of an error initializing ResizeObserver or loading the
+   * polyfill, make sure the content is shown no matter what.
+   */
+  animation: 0.5s var(--material-easing) 2s 1 forwards script-error-fallback;
+}
+
+@keyframes script-error-fallback {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 [data-observe-resizes][data-observing] {
   opacity: 1;
+
+  /*
+   * Remove the script-error-fallback animation since observation started.
+   */
+  animation: none;
 }
 
 [data-observe-resizes]::before {

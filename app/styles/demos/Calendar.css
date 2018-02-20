@@ -43,6 +43,7 @@
 
 .Calendar-entries {
   margin: 0;
+  max-width: 100%;
   padding: 0;
 }
 
@@ -114,71 +115,74 @@
 /* Breakpoint: LG  */
 /* -------------- */
 
-.LG > .Calendar {
-  --Calendar-dateHeight: 4.5em;
-  --Calendar-entryHeight: 3.333em;
+/* The LG breakpoint requires custom properties, so feature detect first */
+@supports (color: var(--custom)) {
+  .LG > .Calendar {
+    --Calendar-dateHeight: 4.5em;
+    --Calendar-entryHeight: 3.333em;
 
-  display: flex;
-  padding: 1.5em;
-}
+    display: flex;
+    padding: 1.5em;
+  }
 
-.LG > .Calendar .Calendar-times {
-  display: block;
-  margin-top: var(--Calendar-dateHeight);
-  min-width: 4em;
-}
+  .LG > .Calendar .Calendar-times {
+    display: block;
+    margin-top: var(--Calendar-dateHeight);
+    min-width: 4em;
+  }
 
-.LG > .Calendar .Calendar-time {
-  --Calendar-timeSize: 0.8;
+  .LG > .Calendar .Calendar-time {
+    --Calendar-timeSize: 0.8;
 
-  border-top: 1px solid #eee;
-  font-size: calc(1em * var(--Calendar-timeSize));
-  height: calc(var(--Calendar-entryHeight) / var(--Calendar-timeSize));
-  list-style: none;
-  padding-top: 0.25em;
-}
+    border-top: 1px solid #eee;
+    font-size: calc(1em * var(--Calendar-timeSize));
+    height: calc(var(--Calendar-entryHeight) / var(--Calendar-timeSize));
+    list-style: none;
+    padding-top: 0.25em;
+  }
 
-.LG > .Calendar .Calendar-day {
-  flex: 1 0 0%;
-  min-width: 0;
+  .LG > .Calendar .Calendar-day {
+    flex: 1 0 0%;
+    min-width: 0;
 
-  border: 0;
-  border-left: 1px solid #eee;
-  flex-flow: column;
-  padding: 0 1em;
-}
+    border: 0;
+    border-left: 1px solid #eee;
+    flex-flow: column;
+    padding: 0 1em;
+  }
 
-.LG > .Calendar .Calendar-day:last-child {
-  padding-right: 0;
-}
+  .LG > .Calendar .Calendar-day:last-child {
+    padding-right: 0;
+  }
 
-.LG > .Calendar .Calendar-dayHeader {
-  position: static;
-}
+  .LG > .Calendar .Calendar-dayHeader {
+    position: static;
+  }
 
-.LG > .Calendar .Calendar-date {
-  padding: 0;
-  position: static;
-  text-align: left;
-  height: var(--Calendar-dateHeight);
-  overflow: hidden;
-}
+  .LG > .Calendar .Calendar-date {
+    padding: 0;
+    position: static;
+    text-align: left;
+    height: var(--Calendar-dateHeight);
+    overflow: hidden;
+  }
 
-.LG > .Calendar .Calendar-entries {
-  position: relative;
-}
+  .LG > .Calendar .Calendar-entries {
+    position: relative;
+  }
 
-.LG > .Calendar .Calendar-entry {
-  --Calendar-entryOffset: calc(9 * var(--Calendar-entryHeight));
+  .LG > .Calendar .Calendar-entry {
+    --Calendar-entryOffset: calc(9 * var(--Calendar-entryHeight));
 
-  height: calc(var(--Calender-entryDur) * var(--Calendar-entryHeight));
-  margin: 0;
-  position: absolute;
-  top: calc(var(--Calender-entryTime) * var(--Calendar-entryHeight) -
-    var(--Calendar-entryOffset));
-  width: 100%;
-}
+    height: calc(var(--Calender-entryDur) * var(--Calendar-entryHeight));
+    margin: 0;
+    position: absolute;
+    top: calc(var(--Calender-entryTime) * var(--Calendar-entryHeight) -
+      var(--Calendar-entryOffset));
+    width: 100%;
+  }
 
-.LG > .Calendar .Calendar-entryDesc {
-  font-size: 0.8em;
+  .LG > .Calendar .Calendar-entryDesc {
+    font-size: 0.8em;
+  }
 }

@@ -1,5 +1,4 @@
 .Card {
-  --Card-gutter: 1em;
   background: #fff;
   border: 1px solid hsla(0, 0%, 0%, 0.1);
   border-radius: 4px;
@@ -7,7 +6,7 @@
   flex-flow: column;
   min-width: 0;
   overflow: hidden;
-  padding: var(--Card-gutter);
+  padding: 1em;
   position: relative;
   transition: flex-grow 0.5s;
 }
@@ -15,7 +14,7 @@
 .Card-figure {
   width: 100%;
   min-width: 0;
-  margin-bottom: var(--Card-gutter);
+  margin-bottom: 1em;
 }
 
 .Card-body :last-child {
@@ -39,10 +38,10 @@
 .SM > .Card > .Card-figure {
   border-right: 1px solid #eee;
   flex: 2;
-  margin-right: var(--Card-gutter);
+  margin-right: 1em;
   margin-bottom: 0;
   min-width: 0;
-  padding-right: var(--Card-gutter);
+  padding-right: 1em;
 }
 
 .SM > .Card > .Card-body {

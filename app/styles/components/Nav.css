@@ -14,7 +14,7 @@
   color: inherit;
   display: flex;
   font-size: 0.9em;
-  padding: 1rem 1.5rem;
+  padding: 1rem var(--gutter);
   text-decoration: none;
   transition: background-color 0.2s var(--material-easing);
 }

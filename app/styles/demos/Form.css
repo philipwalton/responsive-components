@@ -5,8 +5,7 @@
 }
 
 .Form-field {
-  --gutter: 1em;
-  margin: 0 0 var(--gutter);
+  margin: 0 0 1em;
 }
 .Form-fieldLabel {
   display: block;
@@ -31,15 +30,13 @@
 /* -------------- */
 
 .MD > .Form .Form-field {
-  --gutter: 1.5em;
-
+  align-items: baseline;
   display: grid;
   grid-template-columns: 10em 1fr;
   grid-template-areas:
       "label input"
       "label subText";
-
-  align-items: baseline;
+  margin: 0 0 1.5em;
 }
 
 .MD > .Form .Form-fieldLabel {

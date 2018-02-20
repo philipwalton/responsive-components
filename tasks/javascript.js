@@ -154,7 +154,7 @@ gulp.task('javascript', async () => {
   generateRevisionedAsset('resize-observer.js',
         UglifyJS.minify(resizeObserverPolyfill).code);
 
-  if (process.env.NODE_ENV === 'production') {
+  if (['debug', 'production'].includes(process.env.NODE_ENV)) {
     // Generate the main-legacy bundle.
     const compileLegacyBundle = createCompiler(getLegacyConfig());
     await compileLegacyBundle();

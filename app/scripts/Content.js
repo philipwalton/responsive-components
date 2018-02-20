@@ -14,8 +14,14 @@ export default class Content {
   }
 
   showSection(id) {
+    // Hide the previously visible section.
+    if (this.visibleSection) {
+      document.getElementById(this.visibleSection).style.display = 'none';
+    }
+
+    // Show the new one and update the state.
+    document.getElementById(id).style.display = 'block';
     this.visibleSection = id;
-    this.$root.dataset.visibleSection = id;
   }
 
   cloneVisibleDemo() {

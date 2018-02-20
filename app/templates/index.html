@@ -4,9 +4,6 @@
   <title>Responsive Components</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="{{ 'main.css' | revision }}">
-  <noscript>
-    <style>[data-observe-resizes] {opacity: 1!important}
-  </style>
   </noscript>
   <!-- Adds an event listener to capture uncaught errors. -->
   <script>addEventListener('error', window.__e=function f(e){f.q=f.q||[];f.q.push(e)});</script>
@@ -85,10 +82,6 @@
             {% include 'demos/nested-components.html' %}
             {% include 'demos/custom-breakpoints.html' %}
           </main>
-          <script>
-            document.querySelector('.Content').dataset.visibleSection =
-                location.hash.slice(1) || 'overview';
-          </script>
         </div>
         <div class="App-sidebar" tabindex="-1">
           <div class="App-sidebarGutter"></div>
@@ -131,11 +124,22 @@
   </div>
   {% include 'icons.svg' %}
 
-  {% if NODE_ENV == 'production' %}
+  {% if NODE_ENV === 'production' or NODE_ENV === 'debug' %}
     {% include '_nomodule-shim.html' %}
     <script defer nomodule src="{{ 'runtime-legacy.js' | revision }}"></script>
     <script defer nomodule src="{{ 'main-legacy.js' | revision }}"></script>
   {% endif %}
   {% include '_resize-observer.html' %}
+  <script>
+    // Show the chosen selection, or default to showing the overview.
+    document.getElementById(
+        location.hash.slice(1) || 'overview').style.display = 'block';
+  </script>
+  <noscript>
+    <style>
+      .Content > section {display: block!important;}
+      [data-observe-resizes] {opacity: 1!important}
+    </style>
+  </noscript>
 </body>
 </html>

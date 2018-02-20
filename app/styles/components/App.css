@@ -15,7 +15,7 @@
 }
 
 .App-navHide {
-  display: inline-flex;
+  display: flex;
 }
 
 .App-sidebarShow {
@@ -30,7 +30,7 @@
   color: hsla(0, 0%, 100%, .85);
   display: flex;
   justify-content: space-between;
-  padding: 0 2em;
+  padding: 0 var(--gutter);
 
   height: 5em;
 }
@@ -53,7 +53,7 @@
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.075);
   display: flex;
   height: 5em;
-  padding: 0 2em;
+  padding: 0 var(--gutter);
 }
 
 .App-mainHeaderTitle {
@@ -72,6 +72,10 @@
 
 .App-mainHeaderTitleEmphasis {
   color: var(--accentColor);
+}
+
+.App-content {
+  padding: var(--gutter);
 }
 
 .App-sidebar {
@@ -208,7 +212,7 @@
     display: flex;
     justify-content: space-between;
     min-width: 16em;
-    padding: 1.5em;
+    padding: var(--gutter);
   }
 
   .App-sidebarHeaderTitle {
@@ -221,7 +225,7 @@
     display: flex;
     height: 100%;
     position: absolute;
-    right: 2em;
+    right: var(--gutter);
     opacity: 0;
     top: 0;
     transition: opacity 0.3s var(--material-easing);
@@ -249,9 +253,9 @@
     background-image: linear-gradient(90deg,#888,#888 1px,transparent 2px,transparent 5px);
     background-size: 4px;
     content: "";
-    height: 2em;
+    height: 30px;
     position: fixed;
-    top: calc(50vh + 1.5em);
+    top: 50vh;
     width: 10px;
     margin-left: 10px;
   }

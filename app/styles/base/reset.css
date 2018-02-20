@@ -9,11 +9,20 @@
 body {
   box-sizing: border-box;
   color: hsl(0, 0%, 25%);
+
+	/* Ensure IE11 min-height works on .App */
+  display: flex;
+  flex-flow: column;
+
   font: 1em/1.5 system-ui;
   -webkit-font-smoothing: antialiased;
   margin: 0;
   overflow-x: auto;
   overflow-y: scroll;
+}
+
+main, header, footer, nav, aside {
+  display: block;
 }
 
 h2 {
@@ -69,7 +78,7 @@ pre code {
 
 table {
   border-collapse: collapse;
-  margin: 0 0 1.5em;
+  margin: 0 0 1em;
   max-width: 100%;
   width: 100%;
 }
