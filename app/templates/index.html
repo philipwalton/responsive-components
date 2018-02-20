@@ -17,14 +17,13 @@
 </head>
 <body>
   <div class="App">
-
     <div class="App-nav" tabindex="-1">
       <header class="App-navHeader">
         <span class="App-navHeaderTitle">Demos</span>
         <span class="App-navHide">
           <button class="IconButton IconButton--dark">
             <svg class="Icon">
-              <use xlink:href="{{ 'icons.svg' | revision }}#arrow_back"></use>
+              <use xlink:href="#arrow_back"></use>
             </svg>
           </button>
         </span>
@@ -37,7 +36,7 @@
         <span class="App-navShow" tabindex="-1">
           <button class="IconButton">
             <svg class="Icon">
-              <use xlink:href="{{ 'icons.svg' | revision }}#menu"></use>
+              <use xlink:href="#menu"></use>
             </svg>
           </button>
         </span>
@@ -51,7 +50,7 @@
         <span class="App-sidebarShow" tabindex="-1">
           <button class="IconButton">
             <svg class="Icon">
-              <use xlink:href="{{ 'icons.svg' | revision }}#chrome_reader_mode"></use>
+              <use xlink:href="#chrome_reader_mode"></use>
             </svg>
           </button>
         </span>
@@ -80,7 +79,7 @@
             <span class="App-sidebarHide">
               <button class="IconButton">
                 <svg class="Icon">
-                  <use xlink:href="{{ 'icons.svg' | revision }}#close"></use>
+                  <use xlink:href="#close"></use>
                 </svg>
               </button>
             </span>
@@ -108,13 +107,11 @@
             <span class=Footer-credit>Website and documentation licensed under <a href=https://creativecommons.org/licenses/by/4.0/ >CC BY 4.0</a>.</span>
           </div>
         </footer>
-
-
       </div>
     </div>
-
     <div class="App-modalOverlay"></div>
   </div>
+  {% include 'icons.svg' %}
 
   {% if NODE_ENV == 'production' %}
     {% include '_nomodule-shim.html' %}
