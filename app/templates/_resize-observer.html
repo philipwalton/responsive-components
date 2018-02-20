@@ -13,6 +13,12 @@
         var breakpoints = entry.target.dataset.breakpoints ?
             JSON.parse(entry.target.dataset.breakpoints) : defaultBreakpoints;
 
+        if (entry.contentRect.width === 0) {
+          entry.target.dataset.observing = false;
+        } else {
+          entry.target.dataset.observing = true;
+        }
+
         // Update the matching breakpoints on the target element.
         Object.keys(breakpoints).forEach(function(breakpoint) {
           var minWidth = breakpoints[breakpoint];
@@ -29,7 +35,6 @@
     var elements = document.querySelectorAll('[data-observe-resizes]');
     for (var element, i = 0; element = elements[i]; i++) {
       ro.observe(element);
-      element.dataset.observing = true;
     }
 
     // Monitor the DOM for changes

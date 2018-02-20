@@ -29,7 +29,7 @@
     </div>
 
     <div class="App-main">
-      <div class="App-mainHeader">
+      <div class="App-mainHeader" tabindex="-1">
         <span class="App-navShow" data-requires-js tabindex="-1">
           <button class="IconButton">
             <svg class="Icon">
@@ -81,6 +81,20 @@
             {% include 'demos/gallery.html' %}
             {% include 'demos/nested-components.html' %}
             {% include 'demos/custom-breakpoints.html' %}
+            <script>
+              (function() {
+                // Show the chosen selection or the first one.
+                var $section = document.querySelector(
+                    '[data-section="' + location.hash.slice(1) + '"]') ||
+                        document.querySelector('.Section');
+
+                if ($section) {
+                  $section.classList.add('Section--isSelected');
+                } else {
+                  throw new Error('No section to display');
+                }
+              }());
+            </script>
           </main>
         </div>
         <div class="App-sidebar" tabindex="-1">
@@ -130,14 +144,9 @@
     <script defer nomodule src="{{ 'main-legacy.js' | revision }}"></script>
   {% endif %}
   {% include '_resize-observer.html' %}
-  <script>
-    // Show the chosen selection, or default to showing the overview.
-    document.getElementById(
-        location.hash.slice(1) || 'overview').style.display = 'block';
-  </script>
   <noscript>
     <style>
-      .Content > section {
+      .Section {
         display: block!important;
       }
       [data-observe-resizes] {
@@ -146,6 +155,10 @@
       }
       [data-requires-js] {
         display: none;
+      }
+      [data-section-anchor] {
+        position: static!important;
+        display: inline!important;
       }
       @media (max-width: 48em) {
         .App-nav {

@@ -93,9 +93,6 @@ export default class App {
     // TODO(philipwalton): in addition to adding focus here,
     // consider traping focus in the nav unless the ESC key is pressed
     this.$nav.focus({preventScroll: true});
-
-    // document.addEventListener('touchend', this.onTapOutsideNav);
-    // document.addEventListener('click', this.onTapOutsideNav);
   }
 
   async closeNavDrawer() {
@@ -165,7 +162,10 @@ export default class App {
     });
     this.$root.classList.remove('App--isSidebarTransitioning');
     this.sidebar.unfreezeMinWidth();
+
+    // Not all browsers support `preventScroll`, so we set scroll just in case.
     this.$sidebar.focus({preventScroll: true});
+    window.scrollTo(0, 0);
   }
 
   isNavInDrawerMode() {

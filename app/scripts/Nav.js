@@ -1,14 +1,5 @@
 import delegate from 'dom-utils/lib/delegate';
-
-const SECTIONS = [
-  'overview',
-  'calendar',
-  'card',
-  'form',
-  'gallery',
-  'nested-components',
-  'custom-breakpoints',
-];
+import {SECTIONS} from './sections.js';
 
 export default class Nav {
   constructor($root, {app}) {
@@ -21,9 +12,6 @@ export default class Nav {
 
     window.addEventListener('hashchange', this.onHashChange);
     delegate(this.$root, 'click', '.Nav-link', this.onLinkClick);
-
-    // Set the initial state per the current hash.
-    this.onHashChange();
   }
 
   updateSelected(id) {

@@ -5,7 +5,6 @@
 @import "./components/App.css";
 @import "./components/Button.css";
 @import "./components/Checkbox.css";
-@import "./components/Content.css";
 @import "./components/Icon.css";
 @import "./components/IconActions.css";
 @import "./components/IconButton.css";
@@ -16,6 +15,7 @@
 @import "./components/Nav.css";
 @import "./components/Note.css";
 @import "./components/PinAction.css";
+@import "./components/Section.css";
 @import "./components/Sidebar.css";
 
 @import "./demos/Card.css";

@@ -1,4 +1,5 @@
 import delegate from 'dom-utils/lib/delegate';
+import {SECTIONS} from './sections.js';
 
 export default class Content {
   constructor($root, {app}) {
@@ -9,19 +10,32 @@ export default class Content {
     this.onPinDemoButtonClick = this.onPinDemoButtonClick.bind(this);
 
     this.showSection(location.hash.slice(1) || 'overview');
+
     delegate(this.$root, 'click', '[data-pin-action]',
         this.onPinDemoButtonClick);
   }
 
   showSection(id) {
-    // Hide the previously visible section.
-    if (this.visibleSection) {
-      document.getElementById(this.visibleSection).style.display = 'none';
+    // No-op if the section is already being shown.
+    if (this.visibleSection === id) return;
+
+    if (!SECTIONS.includes(id)) {
+      location.hash = 'overview';
+      return;
     }
 
-    // Show the new one and update the state.
-    document.getElementById(id).style.display = 'block';
+    const shownSections = this.$root.querySelectorAll(
+        `.Section--isSelected:not([data-section="${id}"])`)
+
+    for (var $section of shownSections) {
+      $section.classList.remove('Section--isSelected')
+    }
+
+    this.$root.querySelector(`[data-section="${id}"]`).classList
+        .add('Section--isSelected');
+
     this.visibleSection = id;
+    window.scrollTo(0, 0);
   }
 
   cloneVisibleDemo() {
