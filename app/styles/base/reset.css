@@ -26,11 +26,17 @@ main, header, footer, nav, aside {
 }
 
 h2 {
-  font-size: 1.25em;
+  font-size: 1.4em;
   font-weight: 500;
   margin-bottom: 1em;
   padding-bottom: 0.3em;
   border-bottom: 1px solid hsla(0,0%,0%,0.075);
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-bottom: 0.8em;
 }
 
 a {
@@ -46,7 +52,7 @@ p {
 ul {
   margin: 0 0 1em;
   max-width: 48em;
-  padding-left: 1em;
+  padding-left: 1.2em;
 }
 
 li {

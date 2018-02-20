@@ -1,6 +1,6 @@
-@import "./base/reset.css";
 @import "./base/variables.css";
-@import "./base/resize-observer.css";
+@import "./base/reset.css";
+@import "./base/demos.css";
 
 @import "./components/App.css";
 @import "./components/Button.css";

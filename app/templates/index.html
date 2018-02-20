@@ -17,7 +17,7 @@
     <div class="App-nav" tabindex="-1">
       <header class="App-navHeader">
         <span class="App-navHeaderTitle">Demos</span>
-        <span class="App-navHide">
+        <span class="App-navHide" data-requires-js>
           <button class="IconButton IconButton--dark">
             <svg class="Icon">
               <use xlink:href="#arrow_back"></use>
@@ -30,7 +30,7 @@
 
     <div class="App-main">
       <div class="App-mainHeader">
-        <span class="App-navShow" tabindex="-1">
+        <span class="App-navShow" data-requires-js tabindex="-1">
           <button class="IconButton">
             <svg class="Icon">
               <use xlink:href="#menu"></use>
@@ -62,7 +62,7 @@
             </span>
           </a>
         </div>
-        <span class="App-sidebarShow" tabindex="-1">
+        <span class="App-sidebarShow" data-requires-js tabindex="-1">
           <button class="IconButton">
             <svg class="Icon">
               <use xlink:href="#chrome_reader_mode"></use>
@@ -84,10 +84,10 @@
           </main>
         </div>
         <div class="App-sidebar" tabindex="-1">
-          <div class="App-sidebarGutter"></div>
+          <div class="App-sidebarGutter" data-requires-js></div>
           <header class="App-sidebarHeader">
             <span class="App-sidebarHeaderTitle">Pinned demo</span>
-            <span class="App-sidebarHide">
+            <span class="App-sidebarHide" data-requires-js>
               <button class="IconButton">
                 <svg class="Icon">
                   <use xlink:href="#close"></use>
@@ -120,7 +120,7 @@
         </footer>
       </div>
     </div>
-    <div class="App-modalOverlay"></div>
+    <div class="App-modalOverlay" data-requires-js></div>
   </div>
   {% include 'icons.svg' %}
 
@@ -137,8 +137,23 @@
   </script>
   <noscript>
     <style>
-      .Content > section {display: block!important;}
-      [data-observe-resizes] {opacity: 1!important}
+      .Content > section {
+        display: block!important;
+      }
+      [data-observe-resizes] {
+        opacity: 1!important;
+        animation: none!important;
+      }
+      [data-requires-js] {
+        display: none;
+      }
+      @media (max-width: 48em) {
+        .App-nav {
+          position: static!important;
+          width: 100%;
+          overflow: hidden;
+        }
+      }
     </style>
   </noscript>
 </body>

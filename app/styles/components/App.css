@@ -89,7 +89,7 @@
 }
 
 /* The nav drawer is only enabled at smaller screen sizes */
-@media (max-width: 47.98em) {
+@media (max-width: 48em) {
   .App-nav {
     box-shadow: none;
     bottom: 0;

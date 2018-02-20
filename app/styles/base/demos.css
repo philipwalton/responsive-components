@@ -1,3 +1,7 @@
+[data-demo-root] {
+  margin-bottom: 1.5em;
+}
+
 [data-observe-resizes] {
   opacity: 0;
   overflow: hidden;
