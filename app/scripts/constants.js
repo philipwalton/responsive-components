@@ -1,4 +1,4 @@
-export const SECTIONS = [
+export const SECTIONS = new Set([
   'overview',
   'calendar',
   'card',
@@ -6,4 +6,4 @@ export const SECTIONS = [
   'gallery',
   'nested-components',
   'custom-breakpoints',
-];
+]);

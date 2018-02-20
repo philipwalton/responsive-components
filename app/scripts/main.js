@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-
 import App from './App.js';
 
 const main = async () => {

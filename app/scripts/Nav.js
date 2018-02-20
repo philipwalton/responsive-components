@@ -1,5 +1,5 @@
 import delegate from 'dom-utils/lib/delegate';
-import {SECTIONS} from './sections.js';
+import {stateListener} from './state.js';
 
 export default class Nav {
   constructor($root, {app}) {
@@ -7,35 +7,25 @@ export default class Nav {
     this.app = app;
 
     // Bind callbacks.
-    this.onHashChange = this.onHashChange.bind(this);
     this.onLinkClick = this.onLinkClick.bind(this);
+    this.onStateChange = this.onStateChange.bind(this);
 
-    window.addEventListener('hashchange', this.onHashChange);
+    stateListener.on('change', this.onStateChange);
     delegate(this.$root, 'click', '.Nav-link', this.onLinkClick);
   }
 
-  updateSelected(id) {
+  onStateChange(oldState, newState) {
+    if (oldState.selectedPage === newState.selectedPage) return;
+
     const prevSelectedLink = this.$root.querySelector(`.Nav-link--selected`);
     if (prevSelectedLink) {
       prevSelectedLink.classList.remove('Nav-link--selected');
     }
 
     const nextSelectedLink =
-        this.$root.querySelector(`.Nav-link[href="#${id}"]`);
+        this.$root.querySelector(`.Nav-link[href="#${newState.selectedPage}"]`);
     if (nextSelectedLink) {
       nextSelectedLink.classList.add('Nav-link--selected');
-    }
-
-    this.app.content.showSection(id);
-  }
-
-  onHashChange() {
-    const id = location.hash.slice(1);
-
-    if (!id) {
-      this.updateSelected('overview');
-    } else if (SECTIONS.includes(id)) {
-      this.updateSelected(id);
     }
   }
 

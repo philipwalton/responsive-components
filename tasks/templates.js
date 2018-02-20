@@ -4,7 +4,7 @@ const hljs = require('highlight.js');
 const htmlMinifier = require('html-minifier');
 const nunjucks = require('nunjucks');
 const path = require('path');
-const config = require('../config')
+const config = require('../config');
 
 const {getRevisionedAssetUrl} = require('./utils/assets');
 

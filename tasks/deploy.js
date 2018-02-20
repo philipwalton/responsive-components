@@ -7,7 +7,7 @@ const config = require('../config.json');
 require('./build.js');
 
 gulp.task('deploy', gulp.series('build', (done) => {
-  if (process.env.NODE_ENV != 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     throw new Error('Deploying requires NODE_ENV to be set to production');
   }
   // Create a tempory directory and

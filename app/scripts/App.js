@@ -1,6 +1,8 @@
+import {SECTIONS} from './constants.js';
 import Content from './Content.js';
 import Nav from './Nav.js';
 import Sidebar from './Sidebar.js';
+import {setState} from './state.js';
 import {transition} from './transition';
 
 const CONTENT_MIN_WIDTH = 256; /* 16em */
@@ -38,6 +40,7 @@ export default class App {
       sidebarWidth: null,
     };
 
+    this.onHashChange = this.onHashChange.bind(this);
     this.hideNav = this.hideNav.bind(this);
     this.showNav = this.showNav.bind(this);
     this.hideSidebar = this.hideSidebar.bind(this);
@@ -51,9 +54,18 @@ export default class App {
     this.nav = new Nav(document.querySelector('.Nav'), {app: this});
     this.sidebar = new Sidebar(document.querySelector('.Sidebar'), {app: this});
 
+    window.addEventListener('hashchange', this.onHashChange);
+
     // Initialize controls
     this.initNav();
     this.initSidebar();
+
+    // Set initial state. Do this after all other components are initialized.
+    const sectionId = location.hash.slice(1);
+    setState({
+      selectedPage: SECTIONS.has(sectionId) ? sectionId : 'overview',
+      pinnedDemo: 'card',
+    });
   }
 
   initNav() {
@@ -64,6 +76,13 @@ export default class App {
 
     this.$navShow.addEventListener('touchend', this.showNav);
     this.$navShow.addEventListener('click', this.showNav);
+  }
+
+  onHashChange() {
+    const sectionId = location.hash.slice(1);
+    if (SECTIONS.has(sectionId)) {
+      setState({selectedPage: sectionId});
+    }
   }
 
   showNav(evt) {
