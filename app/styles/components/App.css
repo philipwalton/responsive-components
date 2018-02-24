@@ -1,53 +1,73 @@
+/**
+ * .App
+ * ------------------------------------------------------------------------ \\
+ */
 .App {
   position: relative;
   min-height: 100vh;
 }
-
-.App-nav {
-  background: hsl(0, 0%, 23%);
-  contain: strict;
-  color: hsl(0, 0%, 80%);
-  width: 16em;
+@media (min-width: 48em) {
+  .App {
+    display: flex;
+    position: static;
+  }
 }
 
-.App-navShow {
-  display: flex;
-  width: 2.6em;
+/**
+ * .App-content
+ * ------------------------------------------------------------------------ \\
+ */
+.App-content {
+  padding: var(--gutter);
+}
+@media (min-width: 48em) {
+  .App-content {
+    flex: 1 1 0%;
+    min-width: 16em;
+  }
 }
 
-.App-navHide {
-  display: flex;
+/**
+ * .App-footer
+ * ------------------------------------------------------------------------ \\
+ */
+.App-footer {
+  border-top: 1px solid hsla(0, 0%, 0%, 0.075);
+  font-size: 0.8em;
+  padding: 1.5rem 2rem;
 }
 
-.App-sidebarShow {
-  display: none;
-}
-
-.App-navHeader {
-  align-self: stretch;
-  align-items: center;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid hsla(0, 0%, 100%, 0.075);
-  color: hsla(0, 0%, 100%, .85);
-  contain: strict;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 var(--gutter);
-
-  height: 5em;
-}
-
-.App-navHeaderTitle {
-  font-size: 0.9em;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-}
-
+/**
+ * .App-main
+ * ------------------------------------------------------------------------ \\
+ */
 .App-main {
   background: hsl(0, 0%, 96%);
 }
+@media (min-width: 48em) {
+  .App-main {
+    display: flex;
+    flex: 1 1 0%;
+    flex-flow: column;
+    min-width: 0;
+  }
+}
 
+/**
+ * .App-mainContent
+ * ------------------------------------------------------------------------ \\
+ */
+@media (min-width: 48em) {
+  .App-mainContent {
+    display: flex;
+    flex: 1 0 auto;
+  }
+}
+
+/**
+ * .App-mainHeader
+ * ------------------------------------------------------------------------ \\
+ */
 .App-mainHeader {
   align-items: center;
   background: hsl(0, 0%, 100%);
@@ -58,7 +78,41 @@
   height: 5em;
   padding: 0 var(--gutter);
 }
+@media (min-width: 48em) {
+  .App-mainHeader {
+    position: relative;
+  }
+}
 
+/**
+ * .App-mainHeaderLink
+ * --------------------
+ */
+.App-mainHeaderLink {
+  margin-left: 0.75em;
+  font-size: 0.8em;
+}
+
+/**
+ * .App-mainHeaderLinks
+ * --------------------
+ */
+.App-mainHeaderLinks {
+  align-items: center;
+  display: flex;
+  transform: translate3d(0em, 0, 0);
+}
+.App--isSidebarTransitioning .App-mainHeaderLinks {
+  transition: transform 0.3s var(--material-easing);
+}
+.App--isSidebarHidden .App-mainHeaderLinks {
+  transform: translate3d(-3em, 0, 0);
+}
+
+/**
+ * .App-mainHeaderTitle
+ * ------------------------------------------------------------------------ \\
+ */
 .App-mainHeaderTitle {
   color: #666;
   flex: 1;
@@ -72,31 +126,63 @@
   white-space: nowrap;
   word-spacing: 0.2em;
 }
+@media (min-width: 48em) {
+  .App-mainHeaderTitle {
+    transform: translate3d(0, 0, 0);
+  }
+  .App--isNavTransitioning .App-mainHeaderTitle {
+    transition: transform 0.3s var(--material-easing);
+  }
+  .App--isNavSidebarCollapsed .App-mainHeaderTitle {
+    transform: translate3d(3em, 0, 0);
+  }
+}
 
+/**
+ * .App-mainHeaderTitleEmphasis
+ * ------------------------------------------------------------------------ \\
+ */
 .App-mainHeaderTitleEmphasis {
   color: var(--accentColor);
 }
 
-.App-content {
-  padding: var(--gutter);
-}
-
-.App-sidebar {
+/**
+ * .App-modalOverlay
+ * ------------------------------------------------------------------------ \\
+ */
+.App-modalOverlay {
   display: none;
 }
-
-.App-footer {
-  border-top: 1px solid hsla(0, 0%, 0%, 0.075);
-  font-size: 0.8em;
-  padding: 1.5rem 2rem;
+.App--isNavTransitioning .App-modalOverlay,
+.App--isNavDrawerOpen .App-modalOverlay {
+  background: #000;
+  bottom: 0;
+  display: block;
+  left: 0;
+  right: 0;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+}
+.App--isNavTransitioning .App-modalOverlay {
+  opacity: 0;
+  transition: opacity 0.3s var(--material-easing);
+}
+.App--isNavDrawerOpen .App-modalOverlay {
+  opacity: 0.333;
 }
 
-/* The nav drawer is only enabled at smaller screen sizes */
+/**
+ * .App-nav
+ * ------------------------------------------------------------------------ \\
+ */
+.App-nav {
+  background: hsl(0, 0%, 23%);
+  contain: strict;
+  color: hsl(0, 0%, 80%);
+  width: 16em;
+}
 @media (max-width: 48em) {
-  /**
-   * .App-nav
-   * ------------------------------------------------------------------------
-   */
   .App-nav {
     box-shadow: none;
     bottom: 0;
@@ -118,88 +204,8 @@
         box-shadow 0.3s var(--material-easing),
         transform 0.3s var(--material-easing);
   }
-
-  /**
-   * .App-modalOverlay
-   * ------------------------------------------------------------------------
-   */
-  .App-modalOverlay {
-    background: #000;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    z-index: 100;
-    pointer-events: none;
-  }
-  .App--isNavTransitioning .App-modalOverlay {
-    transition: opacity 0.3s var(--material-easing);
-  }
-  .App--isNavDrawerOpen .App-modalOverlay {
-    opacity: 0.333;
-    pointer-events: auto;
-  }
 }
-
 @media (min-width: 48em) {
-  .App {
-    display: flex;
-    position: static;
-  }
-
-  .App-main {
-    display: flex;
-    flex: 1 1 0%;
-    flex-flow: column;
-    min-width: 0;
-  }
-
-  .App-mainHeader {
-    position: relative;
-  }
-
-  /**
-   * .App-navShow
-   * ------------------------------------------------------------------------
-   */
-  .App-navShow {
-    align-items: center;
-    color: hsl(0, 0%, 60%);
-    display: none;
-    height: 100%;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-  }
-  .App--isNavSidebarCollapsed .App-navShow {
-    display: flex;
-    opacity: 1;
-  }
-  .App--isNavTransitioning .App-navShow {
-    display: flex;
-    transition: opacity 0.3s var(--material-easing);
-  }
-
-  /**
-   * .App-mainHeaderTitle
-   * ------------------------------------------------------------------------
-   */
-  .App-mainHeaderTitle {
-    transform: translate3d(0, 0, 0);
-  }
-  .App--isNavTransitioning .App-mainHeaderTitle {
-    transition: transform 0.3s var(--material-easing);
-  }
-  .App--isNavSidebarCollapsed .App-mainHeaderTitle {
-    transform: translate3d(3em, 0, 0);
-  }
-
-  /**
-   * .App-nav
-   * ------------------------------------------------------------------------
-   */
   .App-nav {
     background: hsl(0, 0%, 23%)
         linear-gradient(to left, hsla(0,0%,0%,.07), transparent 0.5em);
@@ -218,43 +224,81 @@
   .App--isNavSidebarCollapsed:not(.App--isNavTransitioning) .App-nav {
     display: none;
   }
+}
 
-  /**
-   * .App-mainHeaderLinks
-   * --------------------
-   */
-  .App-mainHeaderLinks {
+/**
+ * .App-navHeader
+ * ------------------------------------------------------------------------ \\
+ */
+.App-navHeader {
+  align-self: stretch;
+  align-items: center;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.075);
+  color: hsla(0, 0%, 100%, .85);
+  contain: strict;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--gutter);
+
+  height: 5em;
+}
+
+/**
+ * .App-navHeaderTitle
+ * ------------------------------------------------------------------------ \\
+ */
+.App-navHeaderTitle {
+  font-size: 0.9em;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/**
+ * .App-navShow
+ * ------------------------------------------------------------------------ \\
+ */
+.App-navShow {
+  display: flex;
+  width: 2.6em;
+}
+@media (min-width: 48em) {
+  .App-navShow {
     align-items: center;
+    color: hsl(0, 0%, 60%);
+    display: none;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+  }
+  .App--isNavSidebarCollapsed .App-navShow {
     display: flex;
-    transform: translate3d(0em, 0, 0);
+    opacity: 1;
   }
-  .App--isSidebarTransitioning .App-mainHeaderLinks {
-    transition: transform 0.3s var(--material-easing);
-  }
-  .App--isSidebarHidden .App-mainHeaderLinks {
-    transform: translate3d(-3em, 0, 0);
-  }
-
-  .App-mainHeaderLinks > * {
-    margin-left: 0.75em;
-    font-size: 0.8em;
-  }
-
-
-  .App-mainContent {
+  .App--isNavTransitioning .App-navShow {
     display: flex;
-    flex: 1 0 auto;
+    transition: opacity 0.3s var(--material-easing);
   }
+}
 
-  .App-content {
-    flex: 1 1 0%;
-    min-width: 16em;
-  }
+/**
+ * .App-navHide
+ * ------------------------------------------------------------------------ \\
+ */
+.App-navHide {
+  display: flex;
+}
 
-  /**
-   * .App-sidebar
-   * ------------
-   */
+/**
+ * .App-sidebar
+ * ------------------------------------------------------------------------ \\
+ */
+.App-sidebar {
+  display: none;
+}
+@media (min-width: 48em) {
   .App-sidebar {
     background: hsl(0, 0%, 100%);
     border-left: 1px solid hsla(0, 0%, 0%, 0.075);
@@ -274,11 +318,78 @@
   .App--isSidebarHidden:not(.App--isSidebarTransitioning) .App-sidebar {
     display: none;
   }
+}
 
-  /**
-   * .App-sidebarShow
-   * ----------------
-   */
+/**
+ * .App-sidebarGutter
+ * ------------------------------------------------------------------------ \\
+ */
+.App-sidebarGutter {
+  cursor: ew-resize;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -15px;
+  width: 30px;
+  height: 100%;
+}
+
+/**
+ * .App-sidebarGutter::before
+ * ------------------------------------------------------------------------ \\
+ */
+.App-sidebarGutter::before {
+  background-image: linear-gradient(90deg,#888,#888 1px,transparent 2px,transparent 5px);
+  background-size: 4px;
+  content: "";
+  height: 30px;
+  position: fixed;
+  top: 50vh;
+  width: 10px;
+  margin-left: 10px;
+}
+
+/**
+ * .App-sidebarHeader
+ * ------------------------------------------------------------------------ \\
+ */
+@media (min-width: 48em) {
+  .App-sidebarHeader {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    min-width: 16em;
+    padding: var(--gutter);
+  }
+}
+
+/**
+ * .App-sidebarHeaderTitle
+ * ------------------------------------------------------------------------ \\
+ */
+@media (min-width: 48em) {
+  .App-sidebarHeaderTitle {
+    font-size: 1.333em;
+  }
+}
+
+/**
+ * .App-sidebarHide
+ * ------------------------------------------------------------------------ \\
+ */
+.App-sidebarHide {
+  color: hsla(0, 0%, 70%);
+  display: inline-flex;
+}
+
+/**
+ * .App-sidebarShow
+ * ------------------------------------------------------------------------ \\
+ */
+.App-sidebarShow {
+  display: none;
+}
+@media (min-width: 48em) {
   .App-sidebarShow {
     align-items: center;
     color: hsl(0, 0%, 60%);
@@ -294,43 +405,5 @@
   }
   .App--isSidebarHidden .App-sidebarShow {
     opacity: 1;
-  }
-
-  .App-sidebarHeader {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    min-width: 16em;
-    padding: var(--gutter);
-  }
-
-  .App-sidebarHeaderTitle {
-    font-size: 1.333em;
-  }
-
-  .App-sidebarHide {
-    color: hsla(0, 0%, 70%);
-    display: inline-flex;
-  }
-
-  .App-sidebarGutter {
-    cursor: ew-resize;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: -15px;
-    width: 30px;
-    height: 100%;
-  }
-
-  .App-sidebarGutter::before {
-    background-image: linear-gradient(90deg,#888,#888 1px,transparent 2px,transparent 5px);
-    background-size: 4px;
-    content: "";
-    height: 30px;
-    position: fixed;
-    top: 50vh;
-    width: 10px;
-    margin-left: 10px;
   }
 }
