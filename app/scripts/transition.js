@@ -1,9 +1,27 @@
-export const transition = (duration, run) => {
+export const transition =
+    ($el, timeout, {to, using, from, useTransitions = true} = {}) => {
   return new Promise((resolve, reject) => {
-    if (run) {
-      // Double rAF to ensure a frame happens before run.
-      requestAnimationFrame(() => requestAnimationFrame(run));
+    const change = () => {
+      if (to) {
+        $el.classList.add(to);
+      } else if (from) {
+        $el.classList.remove(from);
+      }
     }
-    setTimeout(resolve, duration);
+
+    if (useTransitions) {
+      $el.classList.add(using);
+
+      // Double rAF to ensure a frame happens before the class is added.
+      requestAnimationFrame(() => requestAnimationFrame(change));
+
+      setTimeout(() => {
+        $el.classList.remove(using);
+        resolve();
+      }, timeout);
+    } else {
+      change();
+      resolve();
+    }
   });
 };

@@ -90,24 +90,36 @@
 
 /* The nav drawer is only enabled at smaller screen sizes */
 @media (max-width: 48em) {
+  /**
+   * .App-nav
+   * ------------------------------------------------------------------------
+   */
   .App-nav {
     box-shadow: none;
     bottom: 0;
+    display: none;
     left: -16em;
     position: absolute;
     top: 0;
     transform: translate3d(0%, 0, 0);
-    transition:
-        box-shadow 0.3s var(--material-easing),
-        transform 0.3s var(--material-easing);
     z-index: 101;
   }
-
   .App--isNavDrawerOpen .App-nav {
+    display: block;
     box-shadow: 0 0 1em hsla(0, 0%, 0%, .5);
     transform: translate3d(100%, 0, 0);
   }
+  .App--isNavTransitioning .App-nav {
+    display: block;
+    transition:
+        box-shadow 0.3s var(--material-easing),
+        transform 0.3s var(--material-easing);
+  }
 
+  /**
+   * .App-modalOverlay
+   * ------------------------------------------------------------------------
+   */
   .App-modalOverlay {
     background: #000;
     position: absolute;
@@ -116,9 +128,11 @@
     bottom: 0;
     left: 0;
     opacity: 0;
-    transition: opacity 0.3s var(--material-easing);
     z-index: 100;
     pointer-events: none;
+  }
+  .App--isNavTransitioning .App-modalOverlay {
+    transition: opacity 0.3s var(--material-easing);
   }
   .App--isNavDrawerOpen .App-modalOverlay {
     opacity: 0.333;
@@ -143,32 +157,79 @@
     position: relative;
   }
 
+  /**
+   * .App-navShow
+   * ------------------------------------------------------------------------
+   */
   .App-navShow {
     align-items: center;
     color: hsl(0, 0%, 60%);
+    display: none;
     height: 100%;
     opacity: 0;
     position: absolute;
     top: 0;
-    transition: opacity 0.3s var(--material-easing);
   }
-  .App--isNavCollapsed .App-navShow {
+  .App--isNavSidebarCollapsed .App-navShow {
+    display: flex;
     opacity: 1;
   }
+  .App--isNavTransitioning .App-navShow {
+    display: flex;
+    transition: opacity 0.3s var(--material-easing);
+  }
 
+  /**
+   * .App-mainHeaderTitle
+   * ------------------------------------------------------------------------
+   */
   .App-mainHeaderTitle {
     transform: translate3d(0, 0, 0);
+  }
+  .App--isNavTransitioning .App-mainHeaderTitle {
     transition: transform 0.3s var(--material-easing);
   }
-  .App--isNavCollapsed .App-mainHeaderTitle {
+  .App--isNavSidebarCollapsed .App-mainHeaderTitle {
     transform: translate3d(3em, 0, 0);
   }
 
+  /**
+   * .App-nav
+   * ------------------------------------------------------------------------
+   */
+  .App-nav {
+    background: hsl(0, 0%, 23%)
+        linear-gradient(to left, hsla(0,0%,0%,.07), transparent 0.5em);
+    width: 16em;
+    flex: 0 0 auto;
+    overflow: hidden;
+    position: static;
+  }
+  .App--isNavTransitioning .App-nav {
+     transition: width 0.3s var(--material-easing);
+  }
+  .App--isNavSidebarCollapsed .App-nav {
+    flex-shrink: 1;
+    width: 0;
+  }
+  .App--isNavSidebarCollapsed:not(.App--isNavTransitioning) .App-nav {
+    display: none;
+  }
+
+  /**
+   * .App-mainHeaderLinks
+   * --------------------
+   */
   .App-mainHeaderLinks {
     align-items: center;
     display: flex;
     transform: translate3d(0em, 0, 0);
-    transition: transform 0.2s var(--material-easing);
+  }
+  .App--isSidebarTransitioning .App-mainHeaderLinks {
+    transition: transform 0.3s var(--material-easing);
+  }
+  .App--isSidebarHidden .App-mainHeaderLinks {
+    transform: translate3d(-3em, 0, 0);
   }
 
   .App-mainHeaderLinks > * {
@@ -176,9 +237,6 @@
     font-size: 0.8em;
   }
 
-  .App--isSidebarHidden .App-mainHeaderLinks {
-    transform: translate3d(-3em, 0, 0);
-  }
 
   .App-mainContent {
     display: flex;
@@ -190,6 +248,10 @@
     min-width: 16em;
   }
 
+  /**
+   * .App-sidebar
+   * ------------
+   */
   .App-sidebar {
     background: hsl(0, 0%, 100%);
     border-left: 1px solid hsla(0, 0%, 0%, 0.075);
@@ -197,14 +259,38 @@
     flex: 0 1 auto;
     padding: 0;
     position: relative;
-    width: 24em;
+    transform: translate3d(0, 0, 0);
+    width: 28em;
   }
-
   .App--isSidebarTransitioning .App-sidebar {
     transition: width 0.3s var(--material-easing);
   }
   .App--isSidebarHidden .App-sidebar {
-    width: 0;
+    width: 0!important;
+  }
+  .App--isSidebarHidden:not(.App--isSidebarTransitioning) .App-sidebar {
+    display: none;
+  }
+
+  /**
+   * .App-sidebarShow
+   * ----------------
+   */
+  .App-sidebarShow {
+    align-items: center;
+    color: hsl(0, 0%, 60%);
+    display: flex;
+    height: 100%;
+    position: absolute;
+    right: var(--gutter);
+    opacity: 0;
+    top: 0;
+  }
+  .App--isSidebarTransitioning .App-sidebarShow {
+    transition: opacity 0.3s var(--material-easing);
+  }
+  .App--isSidebarHidden .App-sidebarShow {
+    opacity: 1;
   }
 
   .App-sidebarHeader {
@@ -219,21 +305,6 @@
     font-size: 1.333em;
   }
 
-  .App-sidebarShow {
-    align-items: center;
-    color: hsl(0, 0%, 60%);
-    display: flex;
-    height: 100%;
-    position: absolute;
-    right: var(--gutter);
-    opacity: 0;
-    top: 0;
-    transition: opacity 0.3s var(--material-easing);
-  }
-  .App--isSidebarHidden .App-sidebarShow {
-    opacity: 1;
-  }
-
   .App-sidebarHide {
     color: hsla(0, 0%, 70%);
     display: inline-flex;
@@ -245,7 +316,7 @@
     position: absolute;
     top: 0;
     left: -15px;
-    width: 15px;
+    width: 30px;
     height: 100%;
   }
 
@@ -258,20 +329,5 @@
     top: 50vh;
     width: 10px;
     margin-left: 10px;
-  }
-
-  .App-nav {
-    background: hsl(0, 0%, 23%)
-        linear-gradient(to left, hsla(0,0%,0%,.07), transparent 0.5em);
-    width: 16em;
-    flex: 0 0 auto;
-    overflow: hidden;
-    position: static;
-    transition: width 0.3s var(--material-easing);
-  }
-
-  .App--isNavCollapsed .App-nav {
-    flex-shrink: 1;
-    width: 0;
   }
 }

@@ -2,13 +2,13 @@ import {SECTIONS} from './constants.js';
 import Content from './Content.js';
 import Nav from './Nav.js';
 import Sidebar from './Sidebar.js';
-import {setState} from './state.js';
+import {getState, setState, stateListener} from './state.js';
 import {transition} from './transition';
 
 const CONTENT_MIN_WIDTH = 256; /* 16em */
-const SIDEBAR_MIN_WIDTH = 256; /* 16em */
+const SIDEBAR_MIN_WIDTH = 257; /* 16em + 1px (border) */
 
-const NAV_OPEN_TIMEOUT = 300;
+const NAV_OPEN_TIMEOUT = 600;
 const SIDEBAR_TRANSITION_TIME = 300;
 
 export default class App {
@@ -24,23 +24,11 @@ export default class App {
     this.$sidebarGutter = document.querySelector('.App-sidebarGutter');
     this.$modalOverlay = document.querySelector('.App-modalOverlay');
 
-    // Listen for breakpoint changes that affect the nav drawer.
-    this.mql = window.matchMedia('(min-width: 48em)');
-    this.mql.addListener((evt) => {
-      if (evt.target.matches) {
-        if (this.$root.classList.contains('App--isNavDrawerOpen')) {
-          this.$root.classList.remove('App--isNavDrawerOpen');
-          this.$root.classList.remove('App--isNavCollapsed');
-        }
-      }
-    });
-
-    this.state = {
-      sidebarOpen: true,
-      sidebarWidth: null,
-    };
-
+    // Bind callbacks
+    this.onStateChange = this.onStateChange.bind(this);
     this.onHashChange = this.onHashChange.bind(this);
+    this.onSidebarHide = this.onSidebarHide.bind(this);
+    this.onSidebarShow = this.onSidebarShow.bind(this);
     this.hideNav = this.hideNav.bind(this);
     this.showNav = this.showNav.bind(this);
     this.hideSidebar = this.hideSidebar.bind(this);
@@ -54,18 +42,12 @@ export default class App {
     this.nav = new Nav(document.querySelector('.Nav'), {app: this});
     this.sidebar = new Sidebar(document.querySelector('.Sidebar'), {app: this});
 
-    window.addEventListener('hashchange', this.onHashChange);
-
     // Initialize controls
     this.initNav();
     this.initSidebar();
 
-    // Set initial state. Do this after all other components are initialized.
-    const sectionId = location.hash.slice(1);
-    setState({
-      selectedPage: SECTIONS.has(sectionId) ? sectionId : 'overview',
-      pinnedDemo: 'card',
-    });
+    window.addEventListener('hashchange', this.onHashChange);
+    stateListener.on('change', this.onStateChange);
   }
 
   initNav() {
@@ -78,75 +60,14 @@ export default class App {
     this.$navShow.addEventListener('click', this.showNav);
   }
 
-  onHashChange() {
-    const sectionId = location.hash.slice(1);
-    if (SECTIONS.has(sectionId)) {
-      setState({selectedPage: sectionId});
-    }
-  }
-
-  showNav(evt) {
-    evt.preventDefault();
-    if (this.isNavInDrawerMode()) {
-      this.openNavDrawer();
-    } else {
-      this.expandNav();
-    }
-  }
-
-  hideNav(evt) {
-    evt.preventDefault();
-    if (this.isNavInDrawerMode()) {
-      this.closeNavDrawer();
-    } else {
-      this.collapseNav();
-    }
-  }
-
-  async openNavDrawer() {
-    this.$nav.style.display = 'block';
-    await transition(NAV_OPEN_TIMEOUT, () => {
-      this.$root.classList.add('App--isNavDrawerOpen');
-    });
-
-    // TODO(philipwalton): in addition to adding focus here,
-    // consider traping focus in the nav unless the ESC key is pressed
-    this.$nav.focus({preventScroll: true});
-  }
-
-  async closeNavDrawer() {
-    this.$root.classList.remove('App--isNavDrawerOpen');
-    await transition(NAV_OPEN_TIMEOUT);
-
-    this.$navShow.focus({preventScroll: true});
-    this.$nav.style.display = 'none';
-  }
-
-  async expandNav() {
-    this.$nav.style.display = 'block';
-    await transition(NAV_OPEN_TIMEOUT, () => {
-      this.$root.classList.remove('App--isNavCollapsed');
-    });
-
-    this.$nav.focus({preventScroll: true});
-  }
-
-  async collapseNav() {
-    this.$root.classList.add('App--isNavCollapsed');
-    await transition(NAV_OPEN_TIMEOUT);
-
-    this.$nav.style.display = 'none';
-    this.$navShow.focus({preventScroll: true});
-  }
-
   initSidebar() {
-    this.$sidebarShow.addEventListener('touchend', this.showSidebar);
-    this.$sidebarShow.addEventListener('click', this.showSidebar);
-    this.$sidebarHide.addEventListener('touchend', this.hideSidebar);
-    this.$sidebarHide.addEventListener('click', this.hideSidebar);
+    this.$sidebarShow.addEventListener('touchend', this.onSidebarShow);
+    this.$sidebarShow.addEventListener('click', this.onSidebarShow);
+    this.$sidebarHide.addEventListener('touchend', this.onSidebarHide);
+    this.$sidebarHide.addEventListener('click', this.onSidebarHide);
 
     this.$sidebarGutter.addEventListener(
-        'touchstart', this.onSidebarStartDrag);
+        'touchstart', this.onSidebarStartDrag, {passive: true});
     this.$sidebarGutter.addEventListener(
         'mousedown', this.onSidebarStartDrag);
 
@@ -154,41 +75,138 @@ export default class App {
     document.addEventListener('mouseup', this.onSidebarStopDrag);
   }
 
-  async hideSidebar(evt) {
-    evt.preventDefault();
-    this.sidebar.freezeMinWidth();
-    this.$root.classList.add('App--isSidebarTransitioning');
-    await transition(SIDEBAR_TRANSITION_TIME, () => {
-      if (this.state.sidebarWidth) {
-        this.$sidebar.style.width = null;
-      }
-      this.$root.classList.add('App--isSidebarHidden');
-    });
-    this.$root.classList.remove('App--isSidebarTransitioning');
-    this.$sidebar.style.display = 'none';
-    this.$sidebarShow.focus({preventScroll: true});
+  getSidebarWidth() {
+    return this.$sidebar.clientWidth;
   }
 
-  async showSidebar(evt) {
-    evt.preventDefault();
-    this.$sidebar.style.display = 'block';
-    this.$root.classList.add('App--isSidebarTransitioning');
-    await transition(SIDEBAR_TRANSITION_TIME, () => {
-      if (this.state.sidebarWidth) {
-        this.$sidebar.style.width = this.state.sidebarWidth;
+  async onStateChange(oldState, state, changedProps) {
+    if (changedProps.has('isNavDrawerOpen')) {
+      if (state.isNavDrawerOpen) {
+        this.openNavDrawer({useTransitions: state.isNavTransitioning});
+      } else {
+        this.closeNavDrawer({useTransitions: state.isNavTransitioning});
       }
-      this.$root.classList.remove('App--isSidebarHidden');
+    }
+
+    if (changedProps.has('isNavSidebarCollapsed')) {
+      if (state.isNavSidebarCollapsed) {
+        this.collapseNav({useTransitions: state.isNavTransitioning});
+      } else {
+        this.expandNav({useTransitions: state.isNavTransitioning});
+      }
+    }
+
+    if (changedProps.has('isSidebarHidden')) {
+      if (state.isSidebarHidden) {
+        this.hideSidebar({useTransitions: state.isSidebarTransitioning});
+      } else {
+        this.showSidebar({useTransitions: state.isSidebarTransitioning});
+      }
+    }
+
+    if (changedProps.has('sidebarWidth')) {
+      this.$sidebar.style.width = `${state.sidebarWidth}px`;
+    }
+  }
+
+  showNav(evt) {
+    evt.preventDefault();
+
+    const state = getState();
+    if (state.isNavInDrawerMode) {
+      setState({isNavDrawerOpen: true, isNavTransitioning: true});
+    } else {
+      setState({isNavSidebarCollapsed: false, isNavTransitioning: true});
+    }
+  }
+
+  hideNav(evt) {
+    evt.preventDefault();
+
+    const state = getState();
+    if (state.isNavInDrawerMode) {
+      setState({isNavDrawerOpen: false, isNavTransitioning: true});
+    } else {
+      setState({isNavSidebarCollapsed: true, isNavTransitioning: true});
+    }
+  }
+
+  async openNavDrawer({useTransitions}) {
+    await transition(this.$root, NAV_OPEN_TIMEOUT, {
+      to: 'App--isNavDrawerOpen',
+      using: 'App--isNavTransitioning',
     });
-    this.$root.classList.remove('App--isSidebarTransitioning');
-    this.sidebar.unfreezeMinWidth();
+    // TODO(philipwalton): in addition to adding focus here,
+    // consider traping focus in the nav unless the ESC key is pressed
+    this.$nav.focus({preventScroll: true});
+    setState({isNavTransitioning: false});
+  }
+
+  async closeNavDrawer({useTransitions}) {
+    await transition(this.$root, NAV_OPEN_TIMEOUT, {
+      from: 'App--isNavDrawerOpen',
+      using: 'App--isNavTransitioning',
+    });
+    this.$navShow.focus({preventScroll: true});
+    setState({isNavTransitioning: false});
+  }
+
+  async expandNav({useTransitions}) {
+    await transition(this.$root, NAV_OPEN_TIMEOUT, {
+      from: 'App--isNavSidebarCollapsed',
+      using: 'App--isNavTransitioning',
+    });
+    this.$nav.focus({preventScroll: true});
+    setState({isNavTransitioning: false});
+  }
+
+  async collapseNav({useTransitions}) {
+    await transition(this.$root, NAV_OPEN_TIMEOUT, {
+      to: 'App--isNavSidebarCollapsed',
+      using: 'App--isNavTransitioning',
+    });
+    this.$navShow.focus({preventScroll: true});
+    setState({isNavTransitioning: false});
+  }
+
+  async hideSidebar({useTransitions}) {
+    await transition(this.$root, SIDEBAR_TRANSITION_TIME, {
+      to: 'App--isSidebarHidden',
+      using: 'App--isSidebarTransitioning',
+      useTransitions,
+    });
+    this.$sidebarShow.focus({preventScroll: true});
+    setState({isSidebarTransitioning: false});
+  }
+
+  async showSidebar({useTransitions}) {
+    await transition(this.$root, SIDEBAR_TRANSITION_TIME, {
+      from: 'App--isSidebarHidden',
+      using: 'App--isSidebarTransitioning',
+      useTransitions,
+    });
 
     // Not all browsers support `preventScroll`, so we set scroll just in case.
     this.$sidebar.focus({preventScroll: true});
     window.scrollTo(0, 0);
+    setState({isSidebarTransitioning: false});
   }
 
-  isNavInDrawerMode() {
-    return !this.mql.matches;
+  onHashChange() {
+    const sectionId = location.hash.slice(1);
+    if (SECTIONS.has(sectionId)) {
+      setState({selectedPage: sectionId});
+    }
+  }
+
+  onSidebarHide(evt) {
+    evt.preventDefault();
+    setState({isSidebarHidden: true, isSidebarTransitioning: true});
+  }
+
+  onSidebarShow(evt) {
+    evt.preventDefault();
+    setState({isSidebarHidden: false, isSidebarTransitioning: true});
   }
 
   onSidebarStartDrag(evt) {
@@ -218,9 +236,10 @@ export default class App {
     // than --App-contentMinWidth.
     const contentWidthCandidate = Math.max(CONTENT_MIN_WIDTH,
         pageX - this._navWidth);
+
     const sidebarWidth = Math.max(SIDEBAR_MIN_WIDTH,
         this._screenWidth - (this._navWidth + contentWidthCandidate));
 
-    this.state.sidebarWidth = this.$sidebar.style.width = `${sidebarWidth}px`;
+    setState({sidebarWidth});
   }
 }

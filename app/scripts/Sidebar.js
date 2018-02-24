@@ -11,22 +11,22 @@ export default class Nav {
     stateListener.on('change', this.onStateChange);
   }
 
-  onStateChange(oldState, newState) {
-    if (oldState.pinnedDemo === newState.pinnedDemo) return;
+  onStateChange(oldState, state, changedProps) {
+    if (changedProps.has('pinnedDemo')) {
+      const $oldDemo = this.$root.querySelector('[data-demo-root]');
+      const $newDemo = this.app.content.cloneSelectedDemo(state.pinnedDemo);
+      const $demoParent = $oldDemo.parentElement;
 
-    const $oldDemo = this.$root.querySelector('[data-demo-root]');
-    const $newDemo = this.app.content.cloneSelectedDemo(newState.pinnedDemo);
-    const $demoParent = $oldDemo.parentElement;
+      $demoParent.insertBefore($newDemo, $oldDemo);
+      $demoParent.removeChild($oldDemo);
+    }
 
-    $demoParent.insertBefore($newDemo, $oldDemo);
-    $demoParent.removeChild($oldDemo);
-  }
-
-  freezeMinWidth() {
-    this.$root.style.minWidth = `${this.$root.clientWidth}px`;
-  }
-
-  unfreezeMinWidth() {
-    this.$root.style.minWidth = null;
+    if (changedProps.has('isSidebarTransitioning')) {
+      if (state.isSidebarTransitioning) {
+        this.$root.style.minWidth = `${state.sidebarWidth}px`;
+      } else {
+        this.$root.style.minWidth = null;
+      }
+    }
   }
 }
