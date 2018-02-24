@@ -1,4 +1,5 @@
 .Icon {
+  contain: strict;
   display: inherit;
   fill: currentColor;
   height: 1.5em;

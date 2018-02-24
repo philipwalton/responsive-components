@@ -13,6 +13,8 @@
 }
 
 [data-observe-resizes] {
+  contain: content;
+
   opacity: 0;
   overflow: hidden;
   position: relative;
@@ -40,8 +42,8 @@
 }
 
 [data-observe-resizes]::before {
-  background: hsla(0, 100%, 100%, 0);
-  color: #fff;
+  background-color: #ccc;
+  color: hsla(0, 100%, 100%, 0);
   content: "\00a0";
   font-size: 0.8em;
   -webkit-font-smoothing: initial;
@@ -58,7 +60,8 @@
 }
 
 [data-observe-resizes][data-observing="true"]::before {
-  transition: background .5s var(--material-easing);
+  transition: background-color 0.2s var(--material-easing),
+    color 0.2s var(--material-easing);
 }
 
 [data-observe-resizes] [data-observe-resizes]::before {
@@ -69,38 +72,40 @@
 }
 
 .SM[data-observe-resizes]::before {
-  background: #40bf80;
+  background-color: #40bf80;
+  color: hsla(0, 100%, 100%, 100);
   content: "SM";
 }
 
 .MD[data-observe-resizes]::before {
-  background: #33b2cc;
+  background-color: #33b2cc;
   content: "MD";
 }
 
 .LG[data-observe-resizes]::before {
-  background: #bc79ec;
+  background-color: #bc79ec;
   content: "LG";
 }
 
 .XL[data-observe-resizes]::before {
-  background: #f0427c;
+  background-color: #f0427c;
   content: "XL";
 }
 
 /* Custom breakpoints */
 
 .C2[data-observe-resizes]::before {
-  background: #40bf80;
+  background-color: #40bf80;
+  color: hsla(0, 100%, 100%, 100);
   content: "C2";
 }
 
 .C3[data-observe-resizes]::before {
-  background: #33b2cc;
+  background-color: #33b2cc;
   content: "C3";
 }
 
 .C4[data-observe-resizes]::before {
-  background: #bc79ec;
+  background-color: #bc79ec;
   content: "C4";
 }

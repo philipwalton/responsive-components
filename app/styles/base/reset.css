@@ -17,12 +17,22 @@ body {
   font: 1em/1.5 system-ui;
   -webkit-font-smoothing: antialiased;
   margin: 0;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 
-main, header, footer, nav, aside {
+@supports (contain: strict) {
+  body {
+    /* The IE11 hack above breaks containment, so unset it. */
+    display: block;
+  }
+}
+
+div, main, header, footer, nav, aside {
   display: block;
+
+  /* Assume block content is contained. Let individual elements override */
+  contain: content;
 }
 
 h2 {

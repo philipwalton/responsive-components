@@ -5,6 +5,7 @@
 
 .App-nav {
   background: hsl(0, 0%, 23%);
+  contain: strict;
   color: hsl(0, 0%, 80%);
   width: 16em;
 }
@@ -28,6 +29,7 @@
   border-top: 1px solid #000;
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.075);
   color: hsla(0, 0%, 100%, .85);
+  contain: strict;
   display: flex;
   justify-content: space-between;
   padding: 0 var(--gutter);
@@ -51,6 +53,7 @@
   background: hsl(0, 0%, 100%);
   border-top: 1px solid var(--accentColor);
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.075);
+  contain: strict;
   display: flex;
   height: 5em;
   padding: 0 var(--gutter);
