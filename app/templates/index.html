@@ -179,9 +179,11 @@
       }
       @media (max-width: 48em) {
         .App-nav {
+          contain: content;
+          display: block;
+          overflow: hidden;
           position: static!important;
           width: 100%;
-          overflow: hidden;
         }
       }
     </style>
