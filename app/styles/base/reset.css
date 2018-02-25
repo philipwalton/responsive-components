@@ -28,11 +28,8 @@ body {
   }
 }
 
-div, main, header, footer, nav, aside {
+main, header, footer, nav, aside {
   display: block;
-
-  /* Assume block content is contained. Let individual elements override */
-  contain: content;
 }
 
 h2 {

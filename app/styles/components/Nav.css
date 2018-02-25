@@ -12,9 +12,11 @@
   align-items: center;
   background-color: transparent;
   color: inherit;
+  contain: strict;
   display: flex;
   font-size: 0.9em;
-  padding: 1rem var(--gutter);
+  height: 3.25rem;
+  padding: 0 var(--gutter);
   text-decoration: none;
   transition: background-color 0.2s var(--material-easing);
 }

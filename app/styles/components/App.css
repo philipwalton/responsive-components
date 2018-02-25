@@ -18,6 +18,7 @@
  * ------------------------------------------------------------------------ \\
  */
 .App-content {
+  contain: content;
   padding: var(--gutter);
 }
 @media (min-width: 48em) {
@@ -33,6 +34,7 @@
  */
 .App-footer {
   border-top: 1px solid hsla(0, 0%, 0%, 0.075);
+  contain: content;
   font-size: 0.8em;
   padding: 1.5rem 2rem;
 }
@@ -42,6 +44,7 @@
  * ------------------------------------------------------------------------ \\
  */
 .App-main {
+  contain: content;
   background: hsl(0, 0%, 96%);
 }
 @media (min-width: 48em) {
@@ -59,6 +62,7 @@
  */
 @media (min-width: 48em) {
   .App-mainContent {
+    contain: content;
     display: flex;
     flex: 1 0 auto;
   }
@@ -302,12 +306,13 @@
   .App-sidebar {
     background: hsl(0, 0%, 100%);
     border-left: 1px solid hsla(0, 0%, 0%, 0.075);
+    contain: content;
     display: block;
     flex: 0 1 auto;
     padding: 0;
     position: relative;
     transform: translate3d(0, 0, 0);
-    width: 28em;
+    width: 24em;
   }
   .App--isSidebarTransitioning .App-sidebar {
     transition: width 0.3s var(--material-easing);
@@ -353,25 +358,28 @@
  * .App-sidebarHeader
  * ------------------------------------------------------------------------ \\
  */
-@media (min-width: 48em) {
-  .App-sidebarHeader {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    min-width: 16em;
-    padding: var(--gutter);
-  }
+.App-sidebarHeader {
+  align-items: center;
+  display: flex;
+  contain: strict;
+  height: 6em;
+  justify-content: space-between;
+  min-width: 16em;
+  padding: 0 var(--gutter);
 }
+
 
 /**
  * .App-sidebarHeaderTitle
  * ------------------------------------------------------------------------ \\
  */
-@media (min-width: 48em) {
-  .App-sidebarHeaderTitle {
-    font-size: 1.333em;
-  }
+.App-sidebarHeaderTitle {
+  font-size: 1.333em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
 
 /**
  * .App-sidebarHide
