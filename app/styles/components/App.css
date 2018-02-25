@@ -93,25 +93,46 @@
  * --------------------
  */
 .App-mainHeaderLink {
-  margin-left: 0.75em;
-  font-size: 0.8em;
+  color: inherit;
+  margin-left: 1.25em;
 }
+@media (min-width: 72em) {
+  .App-mainHeaderLink {
+    font-size: 0.8em;
+    margin-left: 0.75em;
+  }
+}
+.App-mainHeaderLink:first-child {
+  margin-left: 0;
+}
+
 
 /**
  * .App-mainHeaderLinks
  * --------------------
  */
 .App-mainHeaderLinks {
-  align-items: center;
-  display: flex;
-  transform: translate3d(0em, 0, 0);
+  display: none;
 }
-.App--isSidebarTransitioning .App-mainHeaderLinks {
-  transition: transform 0.3s var(--material-easing);
+@media (min-width: 28em) {
+  .App-mainHeaderLinks {
+    align-items: center;
+    display: flex;
+  }
 }
-.App--isSidebarHidden .App-mainHeaderLinks {
-  transform: translate3d(-3em, 0, 0);
+@media (min-width: 48em) {
+  .App-mainHeaderLinks {
+    transform: translate3d(0em, 0, 0);
+  }
+  .App--isSidebarTransitioning .App-mainHeaderLinks {
+    transition: transform 0.3s var(--material-easing);
+  }
+  .App--isSidebarHidden .App-mainHeaderLinks {
+    transform: translate3d(-3em, 0, 0);
+  }
 }
+
+
 
 /**
  * .App-mainHeaderTitle
@@ -121,7 +142,7 @@
   color: #666;
   flex: 1;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
   margin: 0;
   max-width: 100%;
   overflow: hidden;
@@ -132,6 +153,7 @@
 }
 @media (min-width: 48em) {
   .App-mainHeaderTitle {
+    word-spacing: 0.2em;
     transform: translate3d(0, 0, 0);
   }
   .App--isNavTransitioning .App-mainHeaderTitle {
@@ -186,7 +208,7 @@
   color: hsl(0, 0%, 80%);
   width: 16em;
 }
-@media (max-width: 48em) {
+@media (max-width: 47.97em) {
   .App-nav {
     box-shadow: none;
     bottom: 0;

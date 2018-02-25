@@ -5,9 +5,9 @@
   --material-easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (max-width: 24em) {
+@media (max-width: 23.97em) {
   :root {
-    --gutter: 1rem;
+    --gutter: 1.25rem;
   }
 }
 

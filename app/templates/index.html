@@ -41,20 +41,28 @@
           <em class="App-mainHeaderTitleEmphasis">Responsive</em> Components
         </h1>
         <nav class="App-mainHeaderLinks">
-          <span class="App-mainHeaderLink">
-            <a href="https://github.com/philipwalton/responsive-components" class="Button">
-              <span class="Button-wrapper">
-                <svg class="Icon Icon--inline">
-                  <use xlink:href="#github"></use>
-                </svg>
-                <span class="Button-text">
-                  View demo source
+          <a class="App-mainHeaderLink" href="https://github.com/philipwalton/responsive-components">
+            <span class="hidden@XL">
+              <span class="Button">
+                <span class="Button-wrapper">
+                  <svg class="Icon Icon--inline">
+                    <use xlink:href="#github"></use>
+                  </svg>
+                  <span class="Button-text">
+                    View demo source
+                  </span>
                 </span>
               </span>
-            </a>
-          </span>
-          <span class="App-mainHeaderLink">
-            <a href="#" class="Button">
+            </span>
+            <span class="IconButton visible@XL">
+              <svg class="Icon">
+                <use xlink:href="#github"></use>
+              </svg>
+            </span>
+          </a>
+
+          <a class="App-mainHeaderLink" href="#">
+            <span class="Button hidden@XL">
               <span class="Button-wrapper">
                 <svg class="Icon Icon--inline">
                   <use xlink:href="#twitter"></use>
@@ -63,8 +71,13 @@
                   Spread the word
                 </span>
               </span>
-            </a>
-          </span>
+            </span>
+            <span class="IconButton visible@XL">
+              <svg class="Icon">
+                <use xlink:href="#twitter"></use>
+              </svg>
+            </span>
+          </a>
         </nav>
         <span class="App-sidebarShow" data-requires-js tabindex="-1">
           <button class="IconButton">
