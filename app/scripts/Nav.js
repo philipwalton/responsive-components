@@ -1,5 +1,5 @@
 import delegate from 'dom-utils/lib/delegate';
-import {stateListener} from './state.js';
+import {getState, setState, stateListener} from './state.js';
 
 export default class Nav {
   constructor($root, {app}) {
@@ -32,5 +32,10 @@ export default class Nav {
   onLinkClick(evt, link) {
     evt.preventDefault();
     window.location.hash = link.hash;
+
+    const state = getState();
+    if (state.isNavInDrawerMode) {
+      setState({isNavDrawerOpen: false});
+    }
   }
 }
