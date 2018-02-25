@@ -136,7 +136,9 @@ export default class App {
     // TODO(philipwalton): in addition to adding focus here,
     // consider traping focus in the nav unless the ESC key is pressed
     this.$nav.focus({preventScroll: true});
-    setState({isNavTransitioning: false});
+    if (useTransitions) {
+      setState({isNavTransitioning: false});
+    }
   }
 
   async closeNavDrawer({useTransitions}) {
@@ -145,7 +147,9 @@ export default class App {
       using: 'App--isNavTransitioning',
     });
     this.$navShow.focus({preventScroll: true});
-    setState({isNavTransitioning: false});
+    if (useTransitions) {
+      setState({isNavTransitioning: false});
+    }
   }
 
   async expandNav({useTransitions}) {
@@ -154,7 +158,9 @@ export default class App {
       using: 'App--isNavTransitioning',
     });
     this.$nav.focus({preventScroll: true});
-    setState({isNavTransitioning: false});
+    if (useTransitions) {
+      setState({isNavTransitioning: false});
+    }
   }
 
   async collapseNav({useTransitions}) {
@@ -163,7 +169,9 @@ export default class App {
       using: 'App--isNavTransitioning',
     });
     this.$navShow.focus({preventScroll: true});
-    setState({isNavTransitioning: false});
+    if (useTransitions) {
+      setState({isNavTransitioning: false});
+    }
   }
 
   async hideSidebar({useTransitions}) {
@@ -173,7 +181,9 @@ export default class App {
       useTransitions,
     });
     this.$sidebarShow.focus({preventScroll: true});
-    setState({isSidebarTransitioning: false});
+    if (useTransitions) {
+      setState({isSidebarTransitioning: false});
+    }
   }
 
   async showSidebar({useTransitions}) {
@@ -186,7 +196,9 @@ export default class App {
     // Not all browsers support `preventScroll`, so we set scroll just in case.
     this.$sidebar.focus({preventScroll: true});
     window.scrollTo(0, 0);
-    setState({isSidebarTransitioning: false});
+    if (useTransitions) {
+      setState({isSidebarTransitioning: false});
+    }
   }
 
   onHashChange() {
@@ -216,6 +228,8 @@ export default class App {
     document.addEventListener('mousemove', this.onSidebarDrag);
     document.addEventListener('touchend', this.onSidebarStopDrag);
     document.addEventListener('mouseup', this.onSidebarStopDrag);
+
+    setState({isSidebarDragging: true});
   }
 
   onSidebarStopDrag() {
@@ -223,6 +237,8 @@ export default class App {
     document.removeEventListener('mousemove', this.onSidebarDrag);
     document.removeEventListener('touchend', this.onSidebarStopDrag);
     document.removeEventListener('mouseup', this.onSidebarStopDrag);
+
+    setState({isSidebarDragging: false});
   }
 
   onSidebarDrag(evt) {

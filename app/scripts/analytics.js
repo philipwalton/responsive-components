@@ -3,6 +3,8 @@ import 'autotrack/lib/plugins/clean-url-tracker';
 import 'autotrack/lib/plugins/media-query-tracker';
 import 'autotrack/lib/plugins/outbound-link-tracker';
 import 'autotrack/lib/plugins/page-visibility-tracker';
+import {getState, stateListener} from './state.js';
+
 
 
 /* global ga */
@@ -20,7 +22,7 @@ const TRACKING_ID = 'UA-40829935-7';
  * implementation. This allows you to create a segment or view filter
  * that isolates only data captured with the most recent tracking changes.
  */
-const TRACKING_VERSION = '1';
+const TRACKING_VERSION = '2';
 
 
 /**
@@ -45,6 +47,8 @@ const dimensions = {
   VISIBILITY_STATE: 'dimension8',
   URL_QUERY_PARAMS: 'dimension9',
   BREAKPOINT: 'dimension10',
+  SELECTED_PAGE: 'dimension11',
+  PINNED_DEMO: 'dimension12',
 };
 
 
@@ -69,7 +73,69 @@ export const init = () => {
   trackErrors();
   trackCustomDimensions();
   requireAutotrackPlugins();
+
+  stateListener.on('change', onStateChange);
 };
+
+const onStateChange = (oldState, state, changedProps) => {
+  ga('set', dimensions.SELECTED_PAGE, state.selectedPage);
+  ga('set', dimensions.PINNED_DEMO, state.pinnedDemo);
+
+  if (changedProps.has('selectedPage')) {
+    ga('send', 'pageview');
+  }
+  if (changedProps.has('pinnedDemo')) {
+    ga('send', 'event', {
+      eventCategory: 'Pinned Demo',
+      eventAction: 'change',
+      eventLabel: state.pinnedDemo,
+    });
+  }
+  if (changedProps.has('isSidebarDragging')) {
+    if (!state.isSidebarDragging) {
+      ga('send', 'event', {
+        eventCategory: 'Sidebar',
+        eventAction: 'drag',
+        eventLabel: state.sidebarWidth,
+        eventValue: state.sidebarWidth,
+      });
+    }
+  }
+  if (changedProps.has('isSidebarHidden')) {
+    if (state.isSidebarHidden) {
+      ga('send', 'event', {
+        eventCategory: 'Sidebar',
+        eventAction: 'hide',
+      });
+    } else {
+      ga('send', 'event', {
+        eventCategory: 'Sidebar',
+        eventAction: 'show',
+      });
+    }
+  }
+  if (changedProps.has('isNavSidebarCollapsed')) {
+    if (state.isNavSidebarCollapsed) {
+      ga('send', 'event', {
+        eventCategory: 'Nav',
+        eventAction: 'collapse',
+      });
+    } else {
+      ga('send', 'event', {
+        eventCategory: 'Nav',
+        eventAction: 'uncollapse',
+      });
+    }
+  }
+  if (changedProps.has('isNavDrawerOpen')) {
+    if (state.isNavDrawerOpen) {
+      ga('send', 'event', {
+        eventCategory: 'Nav',
+        eventAction: 'open',
+      });
+    }
+  }
+}
 
 
 /**
@@ -101,6 +167,39 @@ const createTracker = () => {
 
   // Ensures all hits are sent via `navigator.sendBeacon()`.
   ga('set', 'transport', 'beacon');
+
+  // Log hits in non-production environments.
+  if (process.env.NODE_ENV != 'production') {
+    ga('set', 'sendHitTask', function(model) {
+      let paramsToIgnore = ['v', 'did', 't', 'tid', 'ec', 'ea', 'el', 'ev',
+          'a', 'z', 'ul', 'de', 'sd', 'sr', 'vp', 'je', 'fl', 'jid'];
+
+      let hitType = model.get('&t');
+      let hitPayload = model.get('hitPayload');
+      let hit = hitPayload
+          .split('&')
+          .map(decodeURIComponent)
+          .filter((item) => {
+            const [param] = item.split('=');
+            return !(param.charAt(0) === '_' ||
+                paramsToIgnore.indexOf(param) > -1);
+          });
+
+      let parts = [model.get('&tid'), hitType];
+      if (hitType == 'event') {
+        parts = [
+          ...parts,
+          model.get('&ec'),
+          model.get('&ea'),
+          model.get('&el'),
+        ];
+        if (model.get('&ev')) parts.push(model.get('&ev'));
+      }
+
+      // eslint-disable-next-line no-console
+      console.log(...parts, hit);
+    });
+  }
 };
 
 
@@ -153,10 +252,15 @@ const trackCustomDimensions = () => {
 
   // Adds tracking of dimensions known at page load time.
   ga((tracker) => {
+    const {selectedPage, pinnedDemo} = getState();
     tracker.set({
+      // General dimensions
       [dimensions.TRACKING_VERSION]: TRACKING_VERSION,
       [dimensions.CLIENT_ID]: tracker.get('clientId'),
       [dimensions.WINDOW_ID]: uuid(),
+      // Demo dimensions
+      [dimensions.SELECTED_PAGE]: selectedPage,
+      [dimensions.PINNED_DEMO]: pinnedDemo,
     });
   });
 
