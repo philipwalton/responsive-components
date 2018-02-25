@@ -70,9 +70,6 @@ export default class App {
         'touchstart', this.onSidebarStartDrag, {passive: true});
     this.$sidebarGutter.addEventListener(
         'mousedown', this.onSidebarStartDrag);
-
-    document.addEventListener('touchend', this.onSidebarStopDrag);
-    document.addEventListener('mouseup', this.onSidebarStopDrag);
   }
 
   getSidebarWidth() {
@@ -209,9 +206,7 @@ export default class App {
     setState({isSidebarHidden: false, isSidebarTransitioning: true});
   }
 
-  onSidebarStartDrag(evt) {
-    evt.preventDefault();
-
+  onSidebarStartDrag() {
     // Cache these values at the start of a drag,
     // so constant DOM measurements/lookups aren't required.
     this._screenWidth = this.$root.clientWidth;
@@ -219,12 +214,15 @@ export default class App {
 
     document.addEventListener('touchmove', this.onSidebarDrag);
     document.addEventListener('mousemove', this.onSidebarDrag);
+    document.addEventListener('touchend', this.onSidebarStopDrag);
+    document.addEventListener('mouseup', this.onSidebarStopDrag);
   }
 
-  onSidebarStopDrag(evt) {
-    evt.preventDefault();
-    document.addEventListener('touchmove', this.onSidebarDrag);
+  onSidebarStopDrag() {
+    document.removeEventListener('touchmove', this.onSidebarDrag);
     document.removeEventListener('mousemove', this.onSidebarDrag);
+    document.removeEventListener('touchend', this.onSidebarStopDrag);
+    document.removeEventListener('mouseup', this.onSidebarStopDrag);
   }
 
   onSidebarDrag(evt) {
