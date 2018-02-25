@@ -286,13 +286,13 @@
  * ------------------------------------------------------------------------ \\
  */
 .App-navShow {
+  color: hsl(0, 0%, 60%);
   display: flex;
   width: 2.6em;
 }
 @media (min-width: 48em) {
   .App-navShow {
     align-items: center;
-    color: hsl(0, 0%, 60%);
     display: none;
     height: 100%;
     opacity: 0;
