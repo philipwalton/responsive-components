@@ -60,8 +60,8 @@
 }
 
 [data-observe-resizes][data-observing="true"]::before {
-  transition: background-color 0.2s var(--material-easing),
-    color 0.2s var(--material-easing);
+  transition: background-color 0.2s var(--material-easing) 0.05s,
+    color 0.2s var(--material-easing) 0.05s;
 }
 
 [data-observe-resizes] [data-observe-resizes]::before {

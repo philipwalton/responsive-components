@@ -15,6 +15,7 @@ export default class App {
   constructor($root) {
     this.$root = $root;
     this.$main = document.querySelector('.App-main');
+    this.$modalOverlay = document.querySelector('.App-modalOverlay');
     this.$nav = document.querySelector('.App-nav');
     this.$navShow = document.querySelector('.App-navShow');
     this.$navHide = document.querySelector('.App-navHide');
@@ -22,7 +23,8 @@ export default class App {
     this.$sidebarShow = document.querySelector('.App-sidebarShow');
     this.$sidebarHide = document.querySelector('.App-sidebarHide');
     this.$sidebarGutter = document.querySelector('.App-sidebarGutter');
-    this.$modalOverlay = document.querySelector('.App-modalOverlay');
+    this.$sidebarResizeHandle =
+        document.querySelector('.App-sidebarResizeHandle');
 
     // Bind callbacks
     this.onStateChange = this.onStateChange.bind(this);
@@ -102,7 +104,10 @@ export default class App {
     }
 
     if (changedProps.has('sidebarWidth')) {
-      this.$sidebar.style.width = `${state.sidebarWidth}px`;
+      const sidebarWidthInPixels = `${state.sidebarWidth}px`;
+      this.$sidebar.style.width = sidebarWidthInPixels;
+      this.$sidebarResizeHandle.style.transform =
+        `translate3d(-${sidebarWidthInPixels}, 0, 0)`;
     }
   }
 

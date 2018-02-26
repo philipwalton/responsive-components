@@ -239,9 +239,10 @@
     flex: 0 0 auto;
     overflow: hidden;
     position: static;
+    will-change: width;
   }
   .App--isNavTransitioning .App-nav {
-     transition: width 0.3s var(--material-easing);
+    transition: width 0.3s var(--material-easing);
   }
   .App--isNavSidebarCollapsed .App-nav {
     flex-shrink: 1;
@@ -328,13 +329,14 @@
   .App-sidebar {
     background: hsl(0, 0%, 100%);
     border-left: 1px solid hsla(0, 0%, 0%, 0.075);
-    contain: content;
+    contain: layout style;
     display: block;
     flex: 0 1 auto;
     padding: 0;
     position: relative;
     transform: translate3d(0, 0, 0);
     width: 24em;
+    will-change: width;
   }
   .App--isSidebarTransitioning .App-sidebar {
     transition: width 0.3s var(--material-easing);
@@ -346,34 +348,62 @@
     display: none;
   }
 }
+@supports (contain: strict) {
+  .App--isSidebarTransitioning .App-sidebar {
+    contain: content;
+  }
+}
 
 /**
  * .App-sidebarGutter
  * ------------------------------------------------------------------------ \\
  */
 .App-sidebarGutter {
+  contain: strict;
   cursor: ew-resize;
   display: block;
-  position: absolute;
-  top: 0;
-  left: -15px;
-  width: 30px;
   height: 100%;
+  opacity: 1;
+  position: absolute;
+  left: -15px;
+  top: 0;
+  width: 30px;
 }
+
 
 /**
  * .App-sidebarGutter::before
  * ------------------------------------------------------------------------ \\
  */
-.App-sidebarGutter::before {
-  background-image: linear-gradient(90deg,#888,#888 1px,transparent 2px,transparent 5px);
-  background-size: 4px;
-  content: "";
-  height: 30px;
-  position: fixed;
-  top: 50vh;
-  width: 10px;
-  margin-left: 10px;
+.App-sidebarResizeHandle {
+  display: none;
+}
+@media(min-width: 48em) and (min-height: 14em) {
+  .App-sidebarResizeHandle {
+    background-image:
+        linear-gradient(90deg, #888, #888 1px, transparent 2px, transparent 5px);
+    background-size: 4px;
+    display: block;
+    height: 30px;
+    opacity: 1;
+    position: fixed;
+    pointer-events: none;
+    top: 50vh;
+    right: -6px;
+    width: 10px;
+    transform: translate3d(-24em, 0, 0);
+  }
+  .App--isSidebarTransitioning .App-sidebarResizeHandle {
+    transition: opacity 0.3s var(--material-easing),
+        transform 0.3s var(--material-easing);
+  }
+  .App--isSidebarHidden .App-sidebarResizeHandle {
+    opacity: 0;
+    transform: translate3d(0, 0, 0)!important; /* to override inline styles */
+  }
+  .App--isSidebarHidden:not(.App--isSidebarTransitioning) .App-sidebarResizeHandle {
+    display: none;
+  }
 }
 
 /**
