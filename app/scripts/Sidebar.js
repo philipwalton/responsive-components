@@ -1,6 +1,6 @@
 import {stateListener} from './state.js';
 
-export default class Nav {
+export default class Sidebar {
   constructor($root, {app}) {
     this.$root = $root;
     this.app = app;
@@ -23,7 +23,7 @@ export default class Nav {
 
     if (changedProps.has('isSidebarTransitioning')) {
       if (state.isSidebarTransitioning) {
-        this.$root.style.minWidth = `${state.sidebarWidth}px`;
+        this.$root.style.minWidth = `${state.sidebarWidth - 1}px`;
       } else {
         this.$root.style.minWidth = null;
       }
