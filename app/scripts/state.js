@@ -33,6 +33,7 @@ export const setState = (appliedState) => {
   }
 
   if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line
     console.log('State change:', appliedState, changedProps, oldState, state);
   }
   stateListener.emit('change', oldState, state, changedProps);

@@ -2,6 +2,10 @@
   "plugins": [
     "html",
   ],
+  "env": {
+    "browser": true,
+    "node": true,
+  },
   "globals": {
     "browser": false
   },

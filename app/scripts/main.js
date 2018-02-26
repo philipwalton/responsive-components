@@ -33,7 +33,7 @@ const main = async () => {
       const newState = {
         isNavInDrawerMode: false,
         // isNavDrawerOpen: false,
-      }
+      };
       if (state.isNavDrawerOpen) {
         newState.isNavSidebarCollapsed = false;
       }

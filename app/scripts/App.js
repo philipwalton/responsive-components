@@ -223,7 +223,9 @@ export default class App {
     setState({isSidebarHidden: false, isSidebarTransitioning: true});
   }
 
-  onSidebarStartDrag() {
+  onSidebarStartDrag(evt) {
+    evt.preventDefault();
+
     // Cache these values at the start of a drag,
     // so constant DOM measurements/lookups aren't required.
     this._screenWidth = this.$root.clientWidth;
@@ -237,7 +239,9 @@ export default class App {
     setState({isSidebarDragging: true});
   }
 
-  onSidebarStopDrag() {
+  onSidebarStopDrag(evt) {
+    evt.preventDefault();
+
     document.removeEventListener('touchmove', this.onSidebarDrag);
     document.removeEventListener('mousemove', this.onSidebarDrag);
     document.removeEventListener('touchend', this.onSidebarStopDrag);
@@ -247,6 +251,8 @@ export default class App {
   }
 
   onSidebarDrag(evt) {
+    evt.preventDefault();
+
     // Use the touch target's pageX value if it's a touch event.
     const pageX = evt.targetTouches ? evt.targetTouches[0].pageX : evt.pageX;
 

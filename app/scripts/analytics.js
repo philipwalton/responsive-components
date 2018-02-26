@@ -6,7 +6,6 @@ import 'autotrack/lib/plugins/page-visibility-tracker';
 import {getState, stateListener} from './state.js';
 
 
-
 /* global ga */
 
 
@@ -135,7 +134,7 @@ const onStateChange = (oldState, state, changedProps) => {
       });
     }
   }
-}
+};
 
 
 /**
@@ -169,7 +168,7 @@ const createTracker = () => {
   ga('set', 'transport', 'beacon');
 
   // Log hits in non-production environments.
-  if (process.env.NODE_ENV != 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     ga('set', 'sendHitTask', function(model) {
       let paramsToIgnore = ['v', 'did', 't', 'tid', 'ec', 'ea', 'el', 'ev',
           'a', 'z', 'ul', 'de', 'sd', 'sr', 'vp', 'je', 'fl', 'jid'];
@@ -186,7 +185,7 @@ const createTracker = () => {
           });
 
       let parts = [model.get('&tid'), hitType];
-      if (hitType == 'event') {
+      if (hitType === 'event') {
         parts = [
           ...parts,
           model.get('&ec'),

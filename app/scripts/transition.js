@@ -7,7 +7,7 @@ export const transition =
       } else if (from) {
         $el.classList.remove(from);
       }
-    }
+    };
 
     if (useTransitions) {
       $el.classList.add(using);
