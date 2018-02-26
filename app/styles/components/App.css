@@ -454,7 +454,6 @@
   .App-sidebarShow {
     align-items: center;
     color: hsl(0, 0%, 60%);
-    display: flex;
     height: 100%;
     position: absolute;
     right: var(--gutter);
@@ -462,9 +461,11 @@
     top: 0;
   }
   .App--isSidebarTransitioning .App-sidebarShow {
+    display: flex;
     transition: opacity 0.3s var(--material-easing);
   }
   .App--isSidebarHidden .App-sidebarShow {
+    display: flex;
     opacity: 1;
   }
 }
