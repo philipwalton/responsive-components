@@ -29,27 +29,29 @@
 /* Breakpoint: MD */
 /* -------------- */
 
-.MD > .Form .Form-field {
-  align-items: baseline;
-  display: grid;
-  grid-template-columns: 10em 1fr;
-  grid-template-areas:
-      "label input"
-      "label subText";
-  margin: 0 0 1.5em;
-}
+@supports (display: grid) {
+  .MD > .Form .Form-field {
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 10em 1fr;
+    grid-template-areas:
+        "label input"
+        "label subText";
+    margin: 0 0 1.5em;
+  }
 
-.MD > .Form .Form-fieldLabel {
-  grid-area: label;
+  .MD > .Form .Form-fieldLabel {
+    grid-area: label;
 
-  margin-right: 1em;
-  text-align: right;
-}
+    margin-right: 1em;
+    text-align: right;
+  }
 
-.MD > .Form .Form-fieldInput {
-  grid-area: input;
-}
+  .MD > .Form .Form-fieldInput {
+    grid-area: input;
+  }
 
-.MD > .Form .Form-fieldSubText {
-  grid-area: subText;
+  .MD > .Form .Form-fieldSubText {
+    grid-area: subText;
+  }
 }
