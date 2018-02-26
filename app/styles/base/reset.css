@@ -70,6 +70,10 @@ strong {
   font-weight: 600;
 }
 
+em {
+  font-style: italic;
+}
+
 code {
   background: hsla(0, 0%, 0%, 0.05);
   border-radius: 2px;
@@ -110,6 +114,11 @@ th, td {
   border: 1px solid hsl(0, 0%, 92.5%);
   padding: .5em 1em;
   text-align: left;
+}
+
+[type="checkbox"] {
+  vertical-align: .1em;
+  margin-right: .333em;
 }
 
 [tabindex="-1"] {

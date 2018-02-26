@@ -27,12 +27,35 @@
   </div>
   {% include '_pin-action.html' %}
 
-  <h3>Go deeper</h3>
+  <h3>The code</h3>
+
+  <p>This demo shows the responsive <a href="#card">Card</a> component nested inside the responsive <a href="#gallery">Gallery</a> component. As the gallery's matching breakpoint changes, its layout will update and in turn cause a change in size to the card's container element.</p>
+
+  {% highlight 'html' %}
+  <!-- Outter container element -->
+  <div data-demo-root data-observe-resizes>
+      <!-- Outer component element -->
+      <ul class="Gallery">
+        <!-- Inner container element -->
+        <li data-observe-resizes>
+          <!-- Inner component element -->
+          <div class="Card">...</div>
+        </li>
+        <!-- Inner container element -->
+        <li data-observe-resizes>
+          <!-- Inner component element -->
+          <div class="Card">...</div>
+        </li>
+        ...
+      </ul>
+    </div>
+  {% endhighlight %}
+
   <ul>
     <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/components/Card.css">
-    Card CSS source</a></li>
+    Full card CSS source</a></li>
     <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/components/Gallery.css">
-    Gallery CSS source</a></li>
+    Full gallery CSS source</a></li>
     <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/templates/components/custom-breakpoints.html">
     Full demo HTML source</a></li>
   </ul>

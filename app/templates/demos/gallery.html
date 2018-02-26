@@ -9,11 +9,25 @@
   {% set component = 'Gallery' %}
   {% include '_pin-action.html' %}
 
-  <h3>Go deeper</h3>
+  <h3>The code</h3>
+
+  {% highlight 'html' %}
+  <!-- Container element -->
+  <div data-observe-resizes>
+    <!-- Component element -->
+    <ul class="Gallery">
+      <li></li>
+      <li></li>
+      <li></li>
+      ...
+    </ul>
+  </div>
+  {% endhighlight %}
+
   <ul>
     <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/components/Gallery.css">
-    Gallery CSS source</a></li>
+    Full gallery CSS source</a></li>
     <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/templates/components/gallery.html">
-    Gallery HTML source</a></li>
+    Full gallery HTML source</a></li>
   </ul>
 </section>

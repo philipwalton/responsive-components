@@ -9,13 +9,22 @@
   </div>
   {% include '_pin-action.html' %}
 
-  <h3>Go deeper</h3>
+  <h3>The code</h3>
+
+  {% highlight 'html' %}
+  <!-- Container element -->
+  <div **data-breakpoints='{"C2":400,"C3":800,"C4":1200}'** data-observe-resizes>
+    <!-- Component element -->
+    <div class="MultiColBox">...</div>
+  </div>
+  {% endhighlight %}
+
   <ul>
     <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/components/MultiColBox.css">
-    MultiColBox CSS source</a></li>
+    Full MultiColBox CSS source</a></li>
     <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/templates/components/custom-breakpoints.html">
-    MultiColBox HTML source</a></li>
+    Full MultiColBox HTML source</a></li>
     <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/templates/demos/custom-breakpoints.html#L3-L4">
-    Breakpoint definition source</a></li>
+    Full breakpoint definition source</a></li>
   </ul>
 </section>
