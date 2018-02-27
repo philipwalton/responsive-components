@@ -33,10 +33,7 @@
  * ------------------------------------------------------------------------ \\
  */
 .App-footer {
-  border-top: 1px solid hsla(0, 0%, 0%, 0.075);
   contain: content;
-  font-size: 0.8em;
-  padding: 1.5rem 2rem;
 }
 
 /**
