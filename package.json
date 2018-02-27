@@ -1,16 +1,24 @@
 {
-  "name": "responsive-containers",
+  "name": "responsive-components",
+  "description": "A modern strategy for styling components based on the size of their container",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/philipwalton/responsive-components.git"
+  },
   "private": true,
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "author": {
+    "name": "Philip Walton",
+    "url": "https://philipwalton.com"
+  },
+  "bugs": {
+    "url": "https://github.com/philipwalton/responsive-components/issues"
+  },
+  "license": "MIT",
   "scripts": {
     "build": "gulp build",
     "lint": "eslint app/**/*.js app/templates/_*.html tasks/**/*.js",
     "start": "gulp serve"
   },
-  "author": "",
-  "license": "MIT",
   "devDependencies": {
     "autotrack": "^2.4.1",
     "babel-core": "^6.26.0",
