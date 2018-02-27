@@ -1,7 +1,7 @@
 const title = `Responsive Components`;
 const repo = `responsive-components`;
 const url = `https://philipwalton.github.io/${repo}/`
-const desc = `a modern strategy for styling components ` +
+const desc = `a modern approach to styling elements ` +
     `based on the size of their container`;
 
 const authorUrl = `https://philipwalton.com`;
