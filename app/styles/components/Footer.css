@@ -17,6 +17,9 @@
  * .Footer-credit
  * ------------------------------------------------------------------------ \\
  */
+.Footer-credit {
+  margin-top: 0.333em;
+}
 @media (min-width: 48em) {
   .Footer-credit {
     margin-right: 0.75em;
@@ -59,7 +62,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.333em;
 }
 @media (min-width: 48em) {
   .Footer-social {
