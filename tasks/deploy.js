@@ -17,7 +17,7 @@ gulp.task('deploy', gulp.series('build', (done) => {
   sh.cd('_tmp');
   sh.exec('git init');
   sh.exec('git remote add origin git@github.com:philipwalton/' +
-      config.repoName + '.git');
+      config.repo + '.git');
   sh.exec('git pull origin gh-pages');
 
   // Delete all the static files and add the new ones from the build directory.
