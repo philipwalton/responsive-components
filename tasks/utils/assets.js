@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const revHash = require('rev-hash');
 const revPath = require('rev-path');
-const config = require('../../config.json');
+const config = require('../../config');
 
 let revisionedAssetManifest;
 

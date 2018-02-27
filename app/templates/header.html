@@ -1,0 +1,42 @@
+<h1 class="App-mainHeaderTitle">
+  <em class="App-mainHeaderTitleEmphasis">Responsive</em> Components
+</h1>
+<nav class="App-mainHeaderLinks">
+  <a class="App-mainHeaderLink" href="{{ repoUrl }}">
+    <span class="hidden@XL">
+      <span class="Button">
+        <span class="Button-wrapper">
+          <svg class="Icon Icon--inline">
+            <use xlink:href="#github"></use>
+          </svg>
+          <span class="Button-text">
+            View demo source
+          </span>
+        </span>
+      </span>
+    </span>
+    <span class="IconButton visible@XL">
+      <svg class="Icon">
+        <use xlink:href="#github"></use>
+      </svg>
+    </span>
+  </a>
+
+  <a class="App-mainHeaderLink" href="http://twitter.com/intent/tweet?{{ shareInfo | urlencode }}">
+    <span class="Button hidden@XL">
+      <span class="Button-wrapper">
+        <svg class="Icon Icon--inline">
+          <use xlink:href="#twitter"></use>
+        </svg>
+        <span class="Button-text">
+          Spread the word
+        </span>
+      </span>
+    </span>
+    <span class="IconButton visible@XL">
+      <svg class="Icon">
+        <use xlink:href="#twitter"></use>
+      </svg>
+    </span>
+  </a>
+</nav>

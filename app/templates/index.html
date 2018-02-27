@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Responsive Components</title>
+  <title>{{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="{{ 'main.css' | revision }}">
   </noscript>
@@ -12,14 +12,14 @@
   <script defer type="module" src="{{ 'runtime.js' | revision }}"></script>
   <script defer type="module" src="{{ 'main.js' | revision }}"></script>
 
-  <link rel="canonical" href="https://philipwalton.github.io/responsive-components/">
+  <link rel="canonical" href="{{ url }}">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:creator" content="@philwalton">
-  <meta property="og:url" content="https://philipwalton.github.io/responsive-components/">
-  <meta property="og:title" content="Responsive Components">
-  <meta property="og:description" content="Showcasing a strategy for styling components based on the size of their container">
-  <meta property="og:image" content="https://philipwalton.github.io/responsive-components/responsive-components-demo.png">
+  <meta name="twitter:creator" content="@{{ shareInfo.via }}">
+  <meta property="og:url" content="{{ url }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ desc }}">
+  <meta property="og:image" content="{{ url }}responsive-components-demo.png">
 </head>
 <body>
   <div class="App">
@@ -46,48 +46,7 @@
             </svg>
           </button>
         </span>
-        <h1 class="App-mainHeaderTitle">
-          <em class="App-mainHeaderTitleEmphasis">Responsive</em> Components
-        </h1>
-        <nav class="App-mainHeaderLinks">
-          <a class="App-mainHeaderLink" href="https://github.com/philipwalton/responsive-components">
-            <span class="hidden@XL">
-              <span class="Button">
-                <span class="Button-wrapper">
-                  <svg class="Icon Icon--inline">
-                    <use xlink:href="#github"></use>
-                  </svg>
-                  <span class="Button-text">
-                    View demo source
-                  </span>
-                </span>
-              </span>
-            </span>
-            <span class="IconButton visible@XL">
-              <svg class="Icon">
-                <use xlink:href="#github"></use>
-              </svg>
-            </span>
-          </a>
-
-          <a class="App-mainHeaderLink" href="#">
-            <span class="Button hidden@XL">
-              <span class="Button-wrapper">
-                <svg class="Icon Icon--inline">
-                  <use xlink:href="#twitter"></use>
-                </svg>
-                <span class="Button-text">
-                  Spread the word
-                </span>
-              </span>
-            </span>
-            <span class="IconButton visible@XL">
-              <svg class="Icon">
-                <use xlink:href="#twitter"></use>
-              </svg>
-            </span>
-          </a>
-        </nav>
+        {% include 'header.html' %}
         <span class="App-sidebarShow" data-requires-js tabindex="-1">
           <button class="IconButton">
             <svg class="Icon">
@@ -143,23 +102,7 @@
         </div>
       </div>
       <div class="App-footer">
-        <footer class=Footer>
-          <!--
-          <iframe class=github-btn src="https://ghbtns.com/github-btn.html?user=philipwalton&repo=responsive-components&type=watch&count=true" allowtransparency=true frameborder=0 scrolling=0 width=106px height=20px></iframe>
-
-          <a href=https://twitter.com/philwalton class=twitter-follow-button data-show-count=true data-lang=en>@philwalton</a>
-
-          <a href=https://twitter.com/share class=twitter-share-button data-text="Showcasing a strategy for styling components based on the size of their container." data-url=https://philipwalton.github.io/responsive-components/ data-count=horizontal data-via=philwalton>Tweet</a>
-
-          <script async src="https://platform.twitter.com/widgets.js"></script>
-          -->
-
-          <div class=Footer-credits>
-            <span class=Footer-credit>Created and maintained by <a href=https://philipwalton.com>Philip Walton</a>.</span>
-            <span class=Footer-credit>Source code and examples released under the <a href=https://github.com/philipwalton/responsive-components/blob/master/LICENSE>MIT</a> license.</span>
-            <span class=Footer-credit>Website and documentation licensed under <a href=https://creativecommons.org/licenses/by/4.0/ >CC BY 4.0</a>.</span>
-          </div>
-        </footer>
+        {% include 'footer.html' %}
       </div>
     </div>
     <div class="App-sidebarResizeHandle" data-requires-js></div>
@@ -167,7 +110,7 @@
   </div>
   {% include 'icons.svg' %}
 
-  {% if NODE_ENV === 'production' or NODE_ENV === 'debug' %}
+  {% if ENV === 'production' or ENV === 'debug' %}
     {% include '_nomodule-shim.html' %}
     <script defer nomodule src="{{ 'runtime-legacy.js' | revision }}"></script>
     <script defer nomodule src="{{ 'main-legacy.js' | revision }}"></script>

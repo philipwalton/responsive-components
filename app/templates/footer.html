@@ -1,0 +1,24 @@
+<footer class=Footer>
+  <div class="Footer-social">
+    <iframe class="Footer-socialFrame"
+      src="https://ghbtns.com/github-btn.html?user=philipwalton&repo={{ repo }}&type=watch&count=true"
+      width="90"
+      height="30"></iframe>
+    <iframe class="Footer-socialFrame"
+      src="https://platform.twitter.com/widgets/follow_button.html?screen_name={{ shareInfo.via }}"
+      title="Follow @{{ shareInfo.via }}"
+      width="230"
+      height="30"></iframe>
+    <iframe class="Footer-socialFrame"
+      src="https://platform.twitter.com/widgets/tweet_button.html?{{ shareInfo | urlencode }}"
+      width="70"
+      height="30"
+      title="Twitter Tweet Button"></iframe>
+  </div>
+
+  <div class=Footer-credits>
+    <span class=Footer-credit>Created and maintained by <a href=https://philipwalton.com>Philip Walton</a>.</span>
+    <span class=Footer-credit>Source code and examples released under the <a href="{{ repo }}/blob/master/LICENSE">MIT</a> license.</span>
+    <span class=Footer-credit>Website and documentation licensed under <a href=https://creativecommons.org/licenses/by/4.0/ >CC BY 4.0</a>.</span>
+  </div>
+</footer>

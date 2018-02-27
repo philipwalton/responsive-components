@@ -7,7 +7,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const UglifyJS = require('uglify-es');
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const config = require('../config.json');
+const config = require('../config');
 const {generateRevisionedAsset, getManifest, addAsset} =
     require('./utils/assets');
 

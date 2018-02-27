@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const path = require('path');
 const sh = require('shelljs');
-const config = require('../config.json');
+const config = require('../config');
 
 // Ensure referenced tasks are registered.
 require('./build.js');
