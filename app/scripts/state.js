@@ -1,17 +1,17 @@
 import EventEmitter from 'autotrack/lib/event-emitter.js';
 
-// Set default state and enumerate valid keys.
+// Enumerate valid keys.
 let state = {
   selectedPage: null,
   pinnedDemo: null,
   sidebarWidth: null,
   isSidebarHidden: null,
-  isSidebarTransitioning: false,
-  isSidebarDragging: false,
+  isSidebarTransitioning: null,
+  isSidebarDragging: null,
   isNavInDrawerMode: null,
   isNavDrawerOpen: null,
-  isNavSidebarCollapsed: false,
-  isNavTransitioning: false,
+  isNavSidebarCollapsed: null,
+  isNavTransitioning: null,
 };
 
 export const stateListener = new EventEmitter();

@@ -32,7 +32,6 @@ const main = async () => {
     if (mql.matches) {
       const newState = {
         isNavInDrawerMode: false,
-        // isNavDrawerOpen: false,
       };
       if (state.isNavDrawerOpen) {
         newState.isNavSidebarCollapsed = false;

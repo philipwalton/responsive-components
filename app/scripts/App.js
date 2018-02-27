@@ -102,7 +102,10 @@ export default class App {
     }
 
     if (changedProps.has('sidebarWidth')) {
-      this.$sidebar.style.width = `${state.sidebarWidth}px`;
+      // Only set the sidebar width if the sidebar can be visible.
+      if (!state.isNavInDrawerMode) {
+        this.$sidebar.style.width = `${state.sidebarWidth}px`;
+      }
     }
   }
 
