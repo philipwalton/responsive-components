@@ -20,9 +20,9 @@ gulp.task('deploy', gulp.series('build', (done) => {
       config.repoName + '.git');
   sh.exec('git pull origin gh-pages');
 
-  // Delete all the existing files and add
-  // the new ones from the build directory.
-  sh.rm('-rf', './*');
+  // Delete all the static files and add the new ones from the build directory.
+  // NOTE: don't delete `responsive-components-demo.mp4`.
+  sh.rm('-rf', './static');
   sh.cp('-rf', path.join('..', config.publicDir, '/*'), './');
   sh.exec('git add -A');
 
