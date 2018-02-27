@@ -13,6 +13,11 @@ const {generateRevisionedAsset, getManifest, addAsset} =
 
 const configurePlugins = (opts = {}) => {
   const plugins = [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV':
+          JSON.stringify(process.env.NODE_ENV || 'development'),
+    }),
+
     // Give modules a deterministic name for better long-term caching:
     // https://github.com/webpack/webpack.js.org/issues/652#issuecomment-273023082
     new webpack.NamedModulesPlugin(),
