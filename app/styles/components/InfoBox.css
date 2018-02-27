@@ -1,0 +1,54 @@
+.InfoBox {
+  background: #fff;
+  border: 1px solid hsl(0, 0%, 90%);
+  padding: 1.5em 1.5em 0.5em;
+  margin: 0 0 1.5em;
+}
+
+.InfoBox-figure {
+  display: none;
+}
+
+.InfoBox-title {
+  font-size: 1.333em;
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
+.InfoBox-content p:first-child {
+  margin-top: 0;
+  padding-right: 2em;
+}
+
+.InfoBox-content ul > li {
+  margin-bottom: 0.5em;
+}
+
+/* -------------- */
+/* Breakpoint: SM */
+/* -------------- */
+
+.SM > .InfoBox {
+  display: flex;
+}
+
+.SM > .InfoBox > .InfoBox-content {
+  flex: 1 0 0%;
+}
+
+.SM > .InfoBox .InfoBox-title {
+  margin-bottom: 0.75em;
+  border-bottom: 1px solid hsl(0, 0%, 93%);
+  padding-bottom: .75em;
+}
+
+.SM > .InfoBox .InfoBox-figure {
+  color: hsl(0, 0%, 80%);
+  display: block;
+  font-size: 1.75em;
+  margin-right: calc(1.5em / 2);
+}
+
+.SM > .InfoBox .InfoBox-content ul {
+  max-width: 42em;
+}

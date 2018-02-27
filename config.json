@@ -1,8 +1,0 @@
-{
-  "repoName": "responsive-components",
-  "publicPath": "/responsive-components/",
-  "publicDir": "responsive-components",
-  "publicStaticDir": "responsive-components/static",
-  "publicStaticPath": "/responsive-components/static/",
-  "manifestFileName": "revisioned-asset-manifest.json"
-}

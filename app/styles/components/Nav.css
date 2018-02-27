@@ -1,0 +1,38 @@
+.Nav {
+  padding: .5rem 0;
+  min-width: 16em;
+}
+
+.Nav-item {
+  list-style: none;
+  margin: 0;
+}
+
+.Nav-link {
+  align-items: center;
+  background-color: transparent;
+  color: inherit;
+  contain: strict;
+  display: flex;
+  font-size: 0.9em;
+  height: 3.25rem;
+  padding: 0 var(--gutter);
+  text-decoration: none;
+  transition: background-color 0.2s var(--material-easing);
+}
+
+.Nav-link:hover {
+  background-color: hsla(0, 0%, 100%, 0.05);
+  text-decoration: none;
+}
+
+.Nav-link--selected {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  text-decoration: none;
+}
+
+.Nav-link--selected:hover,
+.Nav-link--selected:focus {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  cursor: default;
+}

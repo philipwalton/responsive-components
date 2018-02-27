@@ -1,17 +1,62 @@
-<section id="nested-components">
-  <h2 class="Heading">Nested components</h2>
+<section class="Section" data-section="nested-components">
+  <h2 class="Heading">
+    <span id="nested-components" data-section-anchor></span>
+    Nested components
+  </h2>
   <div data-demo-root data-observe-resizes>
-    {% include 'components/nested-components.html' %}
+    <ul class="Gallery">
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+      <li data-observe-resizes>
+        {% include 'components/card.html' %}
+      </li>
+    </ul>
   </div>
   {% include '_pin-action.html' %}
 
-  <h2>Go deeper</h2>
+  <h3>The code</h3>
+
+  <p>This demo shows the responsive <a href="#card">Card</a> component nested inside the responsive <a href="#gallery">Gallery</a> component. As the gallery's matching breakpoint changes, its layout will update and in turn cause a change in size to the card's container element.</p>
+
+  {% highlight 'html' %}
+  <!-- Outter container element -->
+  <div data-demo-root data-observe-resizes>
+      <!-- Outer component element -->
+      <ul class="Gallery">
+        <!-- Inner container element -->
+        <li data-observe-resizes>
+          <!-- Inner component element -->
+          <div class="Card">...</div>
+        </li>
+        <!-- Inner container element -->
+        <li data-observe-resizes>
+          <!-- Inner component element -->
+          <div class="Card">...</div>
+        </li>
+        ...
+      </ul>
+    </div>
+  {% endhighlight %}
+
   <ul>
-    <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/components/Card.css">
-    Card CSS source</a></li>
-    <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/components/Gallery.css">
-    Gallery CSS source</a></li>
-    <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/templates/components/custom-breakpoints.html">
+    <li><a href="{{ repoUrl }}/blob/master/app/components/Card.css">
+    Full card CSS source</a></li>
+    <li><a href="{{ repoUrl }}/blob/master/app/components/Gallery.css">
+    Full gallery CSS source</a></li>
+    <li><a href="{{ repoUrl }}/blob/master/app/templates/components/custom-breakpoints.html">
     Full demo HTML source</a></li>
   </ul>
 </section>

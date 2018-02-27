@@ -1,0 +1,126 @@
+*, *::before, *::after {
+  box-sizing: inherit;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  box-sizing: border-box;
+  color: hsl(0, 0%, 25%);
+
+	/* Ensure IE11 min-height works on .App */
+  display: flex;
+  flex-flow: column;
+
+  font: 1em/1.5 system-ui;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+@supports (contain: strict) {
+  body {
+    /* The IE11 hack above breaks containment, so unset it. */
+    display: block;
+  }
+}
+
+main, header, footer, nav, aside {
+  display: block;
+}
+
+h2 {
+  font-size: 1.4em;
+  font-weight: 500;
+  margin-bottom: 1em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid hsla(0,0%,0%,0.075);
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-bottom: 0.8em;
+}
+
+a {
+  color: var(--accentColorMuted);
+  text-decoration: underline;
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: 48em;
+}
+
+ul {
+  margin: 0 0 1em;
+  max-width: 48em;
+  padding-left: 1.2em;
+}
+
+li {
+  list-style: square;
+}
+
+strong {
+  font-weight: 600;
+}
+
+em {
+  font-style: italic;
+}
+
+code {
+  background: hsla(0, 0%, 0%, 0.05);
+  border-radius: 2px;
+  color: #000;
+  display: inline-block;
+  font-family: Monaco, monospace;
+  font-size: 0.8em;
+  padding: 2px 5px 1px;
+  text-decoration: inherit;
+}
+
+pre code {
+  background: inherit;
+  color: inherit;
+  display: block;
+  font-size: 0.875em;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 0 1em;
+  max-width: 100%;
+  width: 100%;
+}
+
+th {
+  font-weight: 700;
+  vertical-align: bottom;
+}
+
+td {
+  vertical-align: top;
+}
+
+th, td {
+  background-color: #fff;
+  border: 1px solid hsl(0, 0%, 92.5%);
+  padding: .5em 1em;
+  text-align: left;
+}
+
+[type="checkbox"] {
+  vertical-align: .1em;
+  margin-right: .333em;
+}
+
+[tabindex="-1"] {
+  outline: none;
+}

@@ -1,0 +1,17 @@
+.Icon {
+  contain: strict;
+  display: inherit;
+  fill: currentColor;
+  height: 1.5em;
+  min-width: 1.5em;
+  width: 1.5em;
+}
+
+.Icon--inline {
+  margin-right: 0.667em;
+}
+
+.Icon--inline:last-child {
+  margin-right: 0;
+  margin-left: 0.667em;
+}

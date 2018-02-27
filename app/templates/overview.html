@@ -1,59 +1,100 @@
-<section id="overview">
-  <h2 class="Heading">Overview</h2>
+<section class="Section" data-section="overview">
+  <h2 class="Heading">
+    <span id="overview" data-section-anchor></span>
+    Overview
+  </h2>
 
-  <p>This demo site is a working example of the <strong>Responsive Components</strong> strategy outlined in the article <a href="https://philipwalton.com/articles/responsive-components-a-solution-to-the-container-queries-problem/">Responsive Components: a Solution to the Container Queries Problem</a>.</p>
+  <p>This demo site is a working, cross-browser implementation of the strategy outlined in the article <a href="{{ articleUrl }}">Responsive Components: a Solution to the Container Queries Problem</a>.
 
-  <div class="ButtonGroup">
-    <a href="https://github.com/philipwalton/responsive-components" class="Button Button--action">View demo source</a>
-    <a href="#" class="Button">Spread the word</a>
-  </div>
-
-  <div data-observe-resizes>
-    <div class="InfoBox">
-      <div class="InfoBox-figure">
-        <svg class="Icon">
-          <use xlink:href="{{ 'icons.svg' | revision }}#star"></use>
-        </svg>
-      </div>
-      <div class="InfoBox-content">
-        <h3 class="InfoBox-title">To see the demos in action</h3>
-        <ul>
-          <li>Choose a demo from the left nav.</li>
-          <li>Drag to resize the "Pinned demo" sidebar on the right.</li>
-          <li>Collapse/expand the the "Pinned demo" sidebar and/or left navigation.</li>
-          <li>You can also "pin" any demo in the right sidebar to compare components side by side.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <p>Once you get a feel for the demos, check out <a href="https://philipwalton.com/articles/responsive-components-a-solution-to-the-container-queries-problem/">the article</a> for an in-depth explanation of the strategy and implementation.</p>
+  <p>The strategy is simple to implement, highly-performant, and embraces progressive enhancement, so <strong>you can actually use it today!</strong></p>
 
   <div data-observe-resizes>
     <div class="InfoBox">
       <div class="InfoBox-figure">
         <svg class="Icon">
-          <use xlink:href="{{ 'icons.svg' | revision }}#star"></use>
+          <use xlink:href="#star"></use>
         </svg>
       </div>
       <div class="InfoBox-content">
-        <h3 class="InfoBox-title">About the breakpoints</h3>
+        <noscript>
+          <aside class="Note">
+            <strong>It looks like you have JavaScript disabled.</strong> That's OK! All the content on the site is still viewable, but keep in mind most of the interactive features won't work.
+          </aside>
+        </noscript>
+
+        <h3 class="InfoBox-title">How to use the site</h3>
         <ul>
-          <li>Each component on this site defines a set of named breakpoints that coresponds to different container sizes (e.g. <strong>SM</strong>, <strong>MD</strong>, <strong>LG</strong>, etc.).</li>
-          <li>When the container changes size, the component's breakpoint <strong>automatically updates!</strong></li>
-          <li>To make is easier to visualize the active breakpoint, components display a badge with the breakpoint name in the top corner. Just like this one!</li>
+          <li>Browse through the demos listed in the left-hand navigation menu. For each of the demos, resize them to see how they respond.
+          <strong class="visible@MD">Note: the demos are best viewed on a large screen so you can resize them.</strong></li>
+          <li>You can resize demo by dragging the divider between this content area and the "Pinned demo" sidebar. You can also collapse both the right and left sidebars or resize the browser window.
+          <li>Lastly, you can click the "pin demo in sidebar" button from any demo page to compare different demos side by side.</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <h2>Next steps</h2>
+  <h3>How it works</h3>
 
-  <p><strong>Love the idea?</strong><br>Awesome! Go build something with it, and help spread the word.</p>
-  <p><strong>Want to go deeper?</strong><br>
-Read about the <a href="https://philipwalton.com/articles/responsive-components-a-solution-to-the-container-queries-problem/">implementation</a> and check out the <a href="https://github.com/philipwalton/responsive-components">source code</a>.</p>
-  <p><strong>Have an idea to improve the strategy?</strong><br>
-<a href="https://github.com/philipwalton/responsive-components/issues/new">Open an issue</a> on Github!</p>
-  <p><strong>Disagree with everything I've ever said?</strong><br>Cool, write a blog post and tell the world why your idea is better!</p>
+  <p>The key ingredient that makes this strategy work is the new <a href="https://developers.google.com/web/updates/2016/10/resizeobserver">ResizeObserver API</a>. With just <a href="{{ articleUrl }}#observing-container-resizes">one small snippet of code</a>, you can performantly observe size changes to as many components on your page as you want.</p>
+
+  <p>This demo site automatically observes all elements with the attribute <code>data-observe-resizes</code>. To make a component responsive to its container, just wrap it in an element with this attribute, and let your <a href="{{ repoUrl }}/tree/master/app/styles/demos">CSS do the rest!</a></p>
+
+  <p>Here's a live demo of the container markup. Resize the content area to see it change:</p>
+
+<!-- <pre> indentation is significant, so keep to the left -->
+<div data-observe-resizes>
+<pre class="LiveCodeDemo"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span><span class="LiveCodeDemo-spacer"> </span><span class="LiveCodeDemo-classAttr"><span class="hljs-attr">class</span>=<span class="hljs-string">"<span class="LiveCodeDemo-classAttrValue"></span>"</span></span> <span class="hljs-attr">data-observe-resizes</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Component goes here... --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+</div>
+
+  <p>The default breakpoint classes used on this site correspond to the following size definitions <em>(note that not all components defines styles for every breakpoint)</em>:</p>
+
+  <table>
+    <tr>
+      <th>Breakpoint class name</th>
+      <th>Container size</th>
+    </tr>
+    <tr>
+      <td>SM</td>
+      <td><code>min-width: 24em</code></td>
+    </tr>
+    <tr>
+      <td>MD</td>
+      <td><code>min-width: 36em</code></td>
+    </tr>
+    <tr>
+      <td>LG</td>
+      <td><code>min-width: 48em</code></td>
+    </tr>
+    <tr>
+      <td>XL</td>
+      <td><code>min-width: 60em</code></td>
+    </tr>
+  </table>
+
+  <aside class="Note">
+    <strong>Note:</strong> if you want to use custom breakpoints on a per-container basis, you can! See the <a href="#custom-breakpoints">custom breakpoints</a> demo for an example.
+  </aside>
+
+  <p>Once you get a feel for the demos, check out <a href="{{ articleUrl }}">the article</a> for an in-depth explanation of the strategy and implementation.</p>
+
+  <h3>Next steps</h3>
+
+  <ul>
+    <li>
+      <p><strong>Love the idea?</strong><br>
+        Awesome! Go build something with it, and help <a href="http://twitter.com/intent/tweet?{{ shareInfo | urlencode }}">spread the word</a>.</p>
+    </li>
+    <li>
+      <p><strong>Want to go deeper?</strong><br>
+        Read about the <a href="{{ articleUrl }}">implementation</a> and check out the <a href="{{ repoUrl }}">source code</a>.</p>
+    <li>
+      <p><strong>Have an idea to improve the strategy?</strong><br>
+        <a href="{{ repoUrl }}/issues/new">Open an issue</a> on Github!</p>
+    <li>
+      <p><strong>Disagree with everything I've ever said?</strong><br>
+        Cool, write a blog post and tell the world why your idea is better!</p>
+    </li>
   </ul>
 </section>

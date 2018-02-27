@@ -1,0 +1,18 @@
+:root {
+  --gutter: 1.5em;
+  --accentColor: hsl(300, 50%, 50%);
+  --accentColorMuted: hsl(300, 40%, 40%);
+  --material-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 23.97em) {
+  :root {
+    --gutter: 1.25rem;
+  }
+}
+
+@media (min-width: 72em) {
+  :root {
+    --gutter: 2rem;
+  }
+}

@@ -1,0 +1,9 @@
+/* This will get overridden by the visible section or the <noscript> */
+
+.Section {
+  display: none;
+}
+
+.Section--isSelected {
+  display: block;
+}

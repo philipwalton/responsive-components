@@ -1,7 +1,7 @@
 const connect = require('connect');
 const gulp = require('gulp');
 const serveStatic = require('serve-static');
-const config = require('../config.json');
+const config = require('../config');
 
 gulp.task('serve', gulp.series('build', () => {
   const port = 8080;

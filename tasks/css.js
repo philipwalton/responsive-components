@@ -9,26 +9,35 @@ const {generateRevisionedAsset} = require('./utils/assets');
 
 const compileCss = async (srcPath) => {
   const css = await fs.readFile(srcPath, 'utf-8');
-  const result = await postcss([
+
+  const plugins = [
     atImport(),
     cssnext({
-      browsers: '> 1%, last 1 versions, not ie <= 11',
-      features: {customProperties: false},
+      browsers: ['debug', 'production'].includes(process.env.NODE_ENV) ?
+          'defaults' : 'last 2 Chrome versions',
+      features: {
+        customProperties: {
+          warnings: true,
+          preserve: true,
+        },
+      },
     }),
-    cssnano({preset: [
+  ];
+  if (process.env.NODE_ENV === 'production') {
+    plugins.push(cssnano({preset: [
       'default',
       {discardComments: {removeAll: true}},
-    ]}),
-  ]).process(css, {
-    from: srcPath,
-  });
+    ]}));
+  }
+
+  const result = await postcss(plugins).process(css, {from: srcPath});
 
   return result.css;
 };
 
 gulp.task('css', async () => {
   try {
-    const srcPath = './app/main.css';
+    const srcPath = './app/styles/main.css';
     const css = await compileCss(srcPath);
     await generateRevisionedAsset(path.basename(srcPath), css);
   } catch (err) {

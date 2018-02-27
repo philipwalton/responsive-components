@@ -1,0 +1,85 @@
+/**
+ * .Footer
+ * ------------------------------------------------------------------------ \\
+ */
+.Footer {
+  background: hsl(0, 0%, 25%);
+  padding: 1.5rem var(--gutter);
+}
+@media (min-width: 48em) {
+  .Footer {
+    background: none;
+    border-top: 1px solid hsla(0, 0%, 0%, 0.075);
+  }
+}
+
+/**
+ * .Footer-credit
+ * ------------------------------------------------------------------------ \\
+ */
+.Footer-credit {
+  margin-top: 0.333em;
+}
+@media (min-width: 48em) {
+  .Footer-credit {
+    margin-right: 0.75em;
+  }
+}
+
+/**
+ * .Footer-credit > a
+ * ------------------------------------------------------------------------ \\
+ */
+@media (max-width: 47.97em) {
+  .Footer-credit > a {
+    color: hsl(0,0%,90%);
+  }
+}
+
+/**
+ * .Footer-credits
+ * ------------------------------------------------------------------------ \\
+ */
+.Footer-credits {
+  color: hsl(0,0%,60%);
+  display: flex;
+  font-size: 0.85em;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+@media (min-width: 48em) {
+  .Footer-credits {
+    color: inherit;
+    justify-content: start;
+  }
+}
+
+/**
+ * .Footer-social
+ * ------------------------------------------------------------------------ \\
+ */
+.Footer-social {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-bottom: 0.333em;
+}
+@media (min-width: 48em) {
+  .Footer-social {
+    justify-content: start;
+  }
+}
+
+/**
+ * .Footer-socialFrame
+ * ------------------------------------------------------------------------ \\
+ */
+.Footer-socialFrame {
+  border: 0;
+  overflow: hidden;
+}
+@media (min-width: 48em) {
+  .Footer-socialFrame {
+    margin-right: 0.5em;
+  }
+}

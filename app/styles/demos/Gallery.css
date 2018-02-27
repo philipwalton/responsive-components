@@ -1,0 +1,43 @@
+.Gallery {
+  background: #fff;
+  border: 1px solid hsla(0, 0%, 0%, 0.075);
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
+}
+
+.Gallery > li {
+  list-style: none;
+  margin: 1em;
+}
+
+@supports (display: grid) {
+  .Gallery {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 1fr;
+    padding: 1em;
+  }
+
+  .Gallery > li {
+    margin: 0;
+  }
+
+
+  /* -------------- */
+  /* Breakpoint: MD */
+  /* -------------- */
+
+  .MD > .Gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* -------------- */
+  /* Breakpoint: XL */
+  /* -------------- */
+
+  .XL > .Gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+

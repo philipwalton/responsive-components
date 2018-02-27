@@ -1,0 +1,50 @@
+.Card {
+  background: #fff;
+  border: 1px solid hsla(0, 0%, 0%, 0.1);
+  border-radius: 4px;
+  display: flex;
+  flex-flow: column;
+  min-width: 0;
+  overflow: hidden;
+  padding: 1em;
+  position: relative;
+  transition: flex-grow 0.5s;
+}
+
+.Card-figure {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 1em;
+}
+
+.Card-body :last-child {
+  margin-bottom: 0;
+}
+
+.Card-title {
+  font-weight: 600;
+  font-size: 1.4em;
+  margin-bottom: calc(.75em / 1.4);
+}
+
+/* -------------- */
+/* Breakpoint: SM */
+/* -------------- */
+
+.SM > .Card {
+  flex-flow: row;
+}
+
+.SM > .Card > .Card-figure {
+  border-right: 1px solid #eee;
+  flex: 2;
+  margin-right: 1em;
+  margin-bottom: 0;
+  min-width: 0;
+  padding-right: 1em;
+}
+
+.SM > .Card > .Card-body {
+  min-width: 0;
+  flex: 5;
+}

@@ -1,10 +1,20 @@
-<div class="PinAction">
-  <button class="Button Button--action" data-pin-action>
+<div class="PinAction hidden@MD" data-pin-action data-requires-js>
+  <button class="Button Button--action">
     <div class="Button-wrapper">
-      <div class="Button-text">Pin demo in sidebar</div>
-      <svg class="Icon Icon--inline">
-        <use xlink:href="{{ 'icons.svg' | revision }}#arrow_forward"></use>
-      </svg>
+      <div class="Button-text">
+        <span class="PinAction-inactiveText">Pin demo in sidebar</span>
+        <span class="PinAction-activeText">Demo pinned in sidebar</span>
+      </div>
+      <span class="PinAction-inactiveIcon">
+        <svg class="Icon">
+          <use xlink:href="#arrow_forward"></use>
+        </svg>
+      </span>
+      <span class="PinAction-activeIcon">
+        <svg class="Icon">
+          <use xlink:href="#check"></use>
+        </svg>
+      </span>
     </div>
   </button>
 </div>

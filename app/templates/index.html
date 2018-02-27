@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Responsive Components</title>
+  <title>{{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="{{ 'main.css' | revision }}">
-  <noscript>
-    <style>[data-observe-resizes] {opacity: 1!important}
-  </style>
   </noscript>
   <!-- Adds an event listener to capture uncaught errors. -->
   <script>addEventListener('error', window.__e=function f(e){f.q=f.q||[];f.q.push(e)});</script>
@@ -14,17 +11,25 @@
 
   <script defer type="module" src="{{ 'runtime.js' | revision }}"></script>
   <script defer type="module" src="{{ 'main.js' | revision }}"></script>
+
+  <link rel="canonical" href="{{ url }}">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@{{ shareInfo.via }}">
+  <meta property="og:url" content="{{ url }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ desc }}">
+  <meta property="og:image" content="{{ url }}responsive-components-demo.png">
 </head>
 <body>
   <div class="App">
-
     <div class="App-nav" tabindex="-1">
       <header class="App-navHeader">
         <span class="App-navHeaderTitle">Demos</span>
-        <span class="App-navHide">
+        <span class="App-navHide" data-requires-js>
           <button class="IconButton IconButton--dark">
             <svg class="Icon">
-              <use xlink:href="{{ 'icons.svg' | revision }}#arrow_back"></use>
+              <use xlink:href="#arrow_back"></use>
             </svg>
           </button>
         </span>
@@ -33,21 +38,19 @@
     </div>
 
     <div class="App-main">
-      <div class="App-mainHeader">
-        <span class="App-navShow" tabindex="-1">
+      <div class="App-mainHeader" tabindex="-1">
+        <span class="App-navShow" data-requires-js tabindex="-1">
           <button class="IconButton">
             <svg class="Icon">
-              <use xlink:href="{{ 'icons.svg' | revision }}#menu"></use>
+              <use xlink:href="#menu"></use>
             </svg>
           </button>
         </span>
-        <h1 class="App-mainHeaderTitle">
-          <em class="App-mainHeaderTitleEmphasis">Responsive</em> Components
-        </h1>
-        <span class="App-sidebarShow" tabindex="-1">
+        {% include 'header.html' %}
+        <span class="App-sidebarShow" data-requires-js tabindex="-1">
           <button class="IconButton">
             <svg class="Icon">
-              <use xlink:href="{{ 'icons.svg' | revision }}#chrome_reader_mode"></use>
+              <use xlink:href="#chrome_reader_mode"></use>
             </svg>
           </button>
         </span>
@@ -63,20 +66,30 @@
             {% include 'demos/gallery.html' %}
             {% include 'demos/nested-components.html' %}
             {% include 'demos/custom-breakpoints.html' %}
+            <script>
+              (function() {
+                // Show the chosen selection or the first one.
+                var $section = document.querySelector(
+                    '[data-section="' + location.hash.slice(1) + '"]') ||
+                        document.querySelector('.Section');
+
+                if ($section) {
+                  $section.classList.add('Section--isSelected');
+                } else {
+                  throw new Error('No section to display');
+                }
+              }());
+            </script>
           </main>
-          <script>
-            document.querySelector('.Content').dataset.visibleSection =
-                location.hash.slice(1) || 'overview';
-          </script>
         </div>
         <div class="App-sidebar" tabindex="-1">
-          <div class="App-sidebarGutter"></div>
+          <div class="App-sidebarGutter" data-requires-js></div>
           <header class="App-sidebarHeader">
             <span class="App-sidebarHeaderTitle">Pinned demo</span>
-            <span class="App-sidebarHide">
+            <span class="App-sidebarHide" data-requires-js>
               <button class="IconButton">
                 <svg class="Icon">
-                  <use xlink:href="{{ 'icons.svg' | revision }}#close"></use>
+                  <use xlink:href="#close"></use>
                 </svg>
               </button>
             </span>
@@ -89,34 +102,45 @@
         </div>
       </div>
       <div class="App-footer">
-        <footer class=Footer>
-          <!--
-          <span class=Footer-social>
-            <iframe class=github-btn src="https://ghbtns.com/github-btn.html?user=philipwalton&repo=solved-by-flexbox&type=watch&count=true" allowtransparency=true frameborder=0 scrolling=0 width=106px height=20px></iframe>
-
-            <a href=https://twitter.com/philwalton class=twitter-follow-button data-show-count=true data-lang=en>@philwalton</a> <a href=https://twitter.com/share class=twitter-share-button data-text="A showcase of traditionally hard CSS problems, easily solved using flexbox." data-url=https://philipwalton.github.io/solved-by-flexbox/ data-count=horizontal data-via=philwalton data-related="philwalton:Creator of Solved by Flexbox">Tweet</a>
-          </span>
-          -->
-
-          <div class=Footer-credits>
-            <span class=Footer-credit>Created and maintained by <a href=https://philipwalton.com>Philip Walton</a>.</span>
-            <span class=Footer-credit>Source code and examples released under the <a href=https://github.com/philipwalton/solved-by-flexbox/blob/master/LICENSE>MIT</a> license.</span>
-            <span class=Footer-credit>Website and documentation licensed under <a href=https://creativecommons.org/licenses/by/4.0/ >CC BY 4.0</a>.</span>
-          </div>
-        </footer>
-
-
+        {% include 'footer.html' %}
       </div>
     </div>
-
-    <div class="App-modalOverlay"></div>
+    <div class="App-modalOverlay" data-requires-js></div>
   </div>
+  {% include 'icons.svg' %}
 
-  {% if NODE_ENV == 'production' %}
+  {% if ENV === 'production' or ENV === 'debug' %}
     {% include '_nomodule-shim.html' %}
     <script defer nomodule src="{{ 'runtime-legacy.js' | revision }}"></script>
     <script defer nomodule src="{{ 'main-legacy.js' | revision }}"></script>
   {% endif %}
   {% include '_resize-observer.html' %}
+  <noscript>
+    <style>
+      .Section {
+        display: block!important;
+      }
+      [data-observe-resizes] {
+        opacity: 1!important;
+        animation: none!important;
+      }
+      [data-requires-js] {
+        display: none;
+      }
+      [data-section-anchor] {
+        position: static!important;
+        display: inline!important;
+      }
+      @media (max-width: 48em) {
+        .App-nav {
+          contain: content;
+          display: block;
+          overflow: hidden;
+          position: static!important;
+          width: 100%;
+        }
+      }
+    </style>
+  </noscript>
 </body>
 </html>

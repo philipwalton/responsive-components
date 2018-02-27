@@ -1,0 +1,57 @@
+.Form {
+  background: #fff;
+  border: 1px solid hsla(0, 0%, 0%, 0.075);
+  padding: 1.5em 1em 0;
+}
+
+.Form-field {
+  margin: 0 0 1em;
+}
+.Form-fieldLabel {
+  display: block;
+  font-weight: 600;
+  margin: 0 0 0.25em;
+}
+
+.Form-fieldInput {
+  width: 100%;
+}
+
+.Form-fieldSubText {
+  display: block;
+
+  color: #777;
+  font-size: 0.75em;
+  margin: 0.25em 0 0 1px;
+}
+
+/* -------------- */
+/* Breakpoint: MD */
+/* -------------- */
+
+@supports (display: grid) {
+  .MD > .Form .Form-field {
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 10em 1fr;
+    grid-template-areas:
+        "label input"
+        "label subText";
+    margin: 0 0 1.5em;
+  }
+
+  .MD > .Form .Form-fieldLabel {
+    grid-area: label;
+
+    margin-right: 1em;
+    text-align: right;
+  }
+
+  .MD > .Form .Form-fieldInput {
+    grid-area: input;
+  }
+
+  .MD > .Form .Form-fieldSubText {
+    grid-area: subText;
+  }
+}

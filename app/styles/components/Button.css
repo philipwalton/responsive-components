@@ -1,0 +1,56 @@
+.Button {
+  background: hsla(0, 0%, 0%, 0.1);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  max-width: 100%;
+  opacity: 1;
+  padding: .4em 1em;
+  text-decoration: none!important;
+  transition:
+    background 0.2s var(--material-easing),
+    opacity 0.2s var(--material-easing);
+  white-space: nowrap;
+}
+
+.Button-wrapper {
+  display: flex;
+}
+
+.Button-text {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Button:hover,
+.Button:focus {
+  background: hsla(0, 0%, 0%, 0.2);
+}
+
+.Button[disabled] {
+  cursor: default;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.Button--action {
+  background: var(--accentColor);
+  color: #fff;
+}
+
+.Button--action:hover,
+.Button--action:focus {
+  background: var(--accentColorMuted);
+}
+
+.Button--small {
+  font-size: 0.85em;
+}
+
+.Button--cozy {
+  padding: .333em .666em;
+}

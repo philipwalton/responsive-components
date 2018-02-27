@@ -1,0 +1,19 @@
+@import 'highlight.js/styles/github';
+
+pre {
+  border: 1px solid hsla(0, 0%, 0%, 0.075);
+  border-radius: .25em;
+  background: #fff;
+  margin: 1em 0;
+  overflow: auto;
+  padding: 1em 1.5em;
+  -webkit-text-size-adjust: none;
+  white-space: pre;
+}
+
+/* Allow for highlighting specific parts of a code block. */
+pre mark {
+  background-color: hsla(60, 100%, 50%, 0.4);
+  box-shadow: 0 0 0 .1em hsla(60, 100%, 50%, 0.4);
+  font-style: normal;
+}

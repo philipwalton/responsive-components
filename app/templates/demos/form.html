@@ -1,16 +1,28 @@
-<section id="form">
-  <h2 class="Heading">Form</h2>
+<section class="Section" data-section="form">
+  <h2 class="Heading">
+    <span id="form" data-section-anchor></span>
+    Form
+  </h2>
   <div data-demo-root data-observe-resizes>
-    {% include 'components/form.html' %}
+    {% include 'components/Form.html' %}
   </div>
   {% set component = 'Form' %}
   {% include '_pin-action.html' %}
 
-  <h2>Go deeper</h2>
+  <h3>Go deeper</h3>
+
+  {% highlight 'html' %}
+  <!-- Container element -->
+  <div data-observe-resizes>
+    <!-- Component element -->
+    <form class="Form">...</form>
+  </div>
+  {% endhighlight %}
+
   <ul>
-    <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/components/Form.css">
-    Form CSS source</a></li>
-    <li><a href="https://github.com/philipwalton/responsive-components/blob/master/app/templates/components/form.html">
-    Form HTML source</a></li>
+    <li><a href="{{ repoUrl }}/blob/master/app/components/Form.css">
+    Full form CSS source</a></li>
+    <li><a href="{{ repoUrl }}/blob/master/app/templates/components/form.html">
+    Full form HTML source</a></li>
   </ul>
 </section>

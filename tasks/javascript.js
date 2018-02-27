@@ -7,7 +7,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const UglifyJS = require('uglify-es');
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const config = require('../config.json');
+const config = require('../config');
 const {generateRevisionedAsset, getManifest, addAsset} =
     require('./utils/assets');
 
@@ -94,7 +94,7 @@ const baseConfig = {
 
 const getModernConfig = () => Object.assign({}, baseConfig, {
   entry: {
-    'main': './app/main.js',
+    'main': './app/scripts/main.js',
   },
   plugins: configurePlugins({runtimeName: 'runtime'}),
   module: {
@@ -114,7 +114,7 @@ const getModernConfig = () => Object.assign({}, baseConfig, {
 
 const getLegacyConfig = () => Object.assign({}, baseConfig, {
   entry: {
-    'main-legacy': './app/main.js',
+    'main-legacy': './app/scripts/main.js',
   },
   plugins: configurePlugins({runtimeName: 'runtime-legacy'}),
   module: {
@@ -154,7 +154,7 @@ gulp.task('javascript', async () => {
   generateRevisionedAsset('resize-observer.js',
         UglifyJS.minify(resizeObserverPolyfill).code);
 
-  if (process.env.NODE_ENV === 'production') {
+  if (['debug', 'production'].includes(process.env.NODE_ENV)) {
     // Generate the main-legacy bundle.
     const compileLegacyBundle = createCompiler(getLegacyConfig());
     await compileLegacyBundle();

@@ -1,0 +1,32 @@
+.PinAction {
+  margin: 0 0 1.5em;
+}
+
+.PinAction-activeIcon,
+.PinAction-inactiveIcon {
+  margin-left: 0.667em;
+}
+
+.PinAction-activeText {
+  display: none;
+}
+
+.PinAction-activeIcon {
+  display: none;
+}
+
+.PinAction--isActive .PinAction-activeText {
+  display: initial;
+}
+
+.PinAction--isActive .PinAction-activeIcon {
+  display: initial;
+}
+
+.PinAction--isActive .PinAction-inactiveText {
+  display: none;
+}
+
+.PinAction--isActive .PinAction-inactiveIcon {
+  display: none;
+}

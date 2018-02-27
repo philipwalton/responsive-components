@@ -1,0 +1,35 @@
+@media (max-width: 47.97em) {
+  .hidden\@MD {
+    display: none!important;
+  }
+}
+
+@media (min-width: 48em) {
+  .visible\@MD {
+    display: none!important;
+  }
+}
+
+@media (max-width: 59.97em) {
+  .hidden\@LG {
+    display: none!important;
+  }
+}
+
+@media (min-width: 60em) {
+  .visible\@LG {
+    display: none!important;
+  }
+}
+
+@media (max-width: 71.97em) {
+  .hidden\@XL {
+    display: none!important;
+  }
+}
+
+@media (min-width: 72em) {
+  .visible\@XL {
+    display: none!important;
+  }
+}

@@ -1,0 +1,4 @@
+.Sidebar {
+  padding: 0 var(--gutter) var(--gutter);
+  min-width: 16em;
+}

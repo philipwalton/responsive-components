@@ -4,7 +4,7 @@ const hljs = require('highlight.js');
 const htmlMinifier = require('html-minifier');
 const nunjucks = require('nunjucks');
 const path = require('path');
-const config = require('../config')
+const config = require('../config');
 
 const {getRevisionedAssetUrl} = require('./utils/assets');
 
@@ -92,9 +92,8 @@ const processHtml = (html) => {
 
 gulp.task('templates', async () => {
   try {
-    const html = nunjucks.render('index.html', {
-      NODE_ENV: process.env.NODE_ENV,
-    });
+    const data = Object.assign({ENV: process.env.NODE_ENV}, config);
+    const html = nunjucks.render('index.html', data);
     await fs.outputFile(
         path.join(config.publicDir, 'index.html'), processHtml(html));
   } catch (err) {
