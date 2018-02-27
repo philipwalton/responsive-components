@@ -23,8 +23,6 @@ export default class App {
     this.$sidebarShow = document.querySelector('.App-sidebarShow');
     this.$sidebarHide = document.querySelector('.App-sidebarHide');
     this.$sidebarGutter = document.querySelector('.App-sidebarGutter');
-    this.$sidebarResizeHandle =
-        document.querySelector('.App-sidebarResizeHandle');
 
     // Bind callbacks
     this.onStateChange = this.onStateChange.bind(this);
@@ -104,10 +102,7 @@ export default class App {
     }
 
     if (changedProps.has('sidebarWidth')) {
-      const sidebarWidthInPixels = `${state.sidebarWidth}px`;
-      this.$sidebar.style.width = sidebarWidthInPixels;
-      this.$sidebarResizeHandle.style.transform =
-        `translate3d(-${sidebarWidthInPixels}, 0, 0)`;
+      this.$sidebar.style.width = `${state.sidebarWidth}px`;
     }
   }
 

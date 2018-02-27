@@ -346,11 +346,6 @@
     display: none;
   }
 }
-@supports (contain: strict) {
-  .App--isSidebarTransitioning .App-sidebar {
-    contain: content;
-  }
-}
 
 /**
  * .App-sidebarGutter
@@ -373,34 +368,31 @@
  * .App-sidebarGutter::before
  * ------------------------------------------------------------------------ \\
  */
-.App-sidebarResizeHandle {
+.App-sidebarGutter::before {
   display: none;
 }
-@media(min-width: 48em) and (min-height: 14em) {
-  .App-sidebarResizeHandle {
-    background-image:
-        linear-gradient(90deg, #888, #888 1px, transparent 2px, transparent 5px);
+@media(min-width: 48em) {
+  .App-sidebarGutter::before {
+    background-image: linear-gradient(
+        90deg, #888, #888 1px, transparent 2px, transparent 5px);
     background-size: 4px;
+    content: '';
     display: block;
     height: 30px;
+    left: 0;
+    margin-left: 10px;
     opacity: 1;
     position: fixed;
+    position: sticky; /* Prefer sticky but fall back to fixed */
     pointer-events: none;
     top: 50vh;
-    right: -6px;
     width: 10px;
-    transform: translate3d(-24em, 0, 0);
   }
-  .App--isSidebarTransitioning .App-sidebarResizeHandle {
-    transition: opacity 0.3s var(--material-easing),
-        transform 0.3s var(--material-easing);
+  .App--isSidebarTransitioning .App-sidebarGutter::before {
+    transition: opacity 0.3s var(--material-easing);
   }
-  .App--isSidebarHidden .App-sidebarResizeHandle {
+  .App--isSidebarHidden .App-sidebarGutter::before {
     opacity: 0;
-    transform: translate3d(0, 0, 0)!important; /* to override inline styles */
-  }
-  .App--isSidebarHidden:not(.App--isSidebarTransitioning) .App-sidebarResizeHandle {
-    display: none;
   }
 }
 
