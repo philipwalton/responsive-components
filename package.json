@@ -17,7 +17,8 @@
   "scripts": {
     "build": "gulp build",
     "lint": "eslint app/**/*.js app/templates/_*.html tasks/**/*.js",
-    "start": "gulp serve"
+    "start": "gulp serve",
+    "deploy": "gulp deploy"
   },
   "devDependencies": {
     "autotrack": "^2.4.1",
