@@ -25,8 +25,12 @@ const compileCss = async (srcPath) => {
   ];
   if (process.env.NODE_ENV === 'production') {
     plugins.push(cssnano({preset: [
-      'default',
-      {discardComments: {removeAll: true}},
+      'default', {
+        discardComments: {removeAll: true},
+        // This must be disabled because it breaks postcss-custom-properties:
+        // https://github.com/ben-eb/cssnano/issues/448
+        mergeLonghand: false,
+      }
     ]}));
   }
 
