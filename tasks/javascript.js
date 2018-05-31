@@ -146,20 +146,42 @@ const createCompiler = (config) => {
   };
 };
 
+
+const getCustomElementsPolyfill = async () => {
+  const customElementsPolyfill = await fs.readFile(
+      'node_modules/@webcomponents/custom-elements/custom-elements.min.js',
+      'utf-8');
+
+  return customElementsPolyfill
+      .replace(/\/\/# sourceMappingURL=.*?\.map\n/, '');
+};
+
+const getResizeObserverPolyfill = async () => {
+  let resizeObserverPolyfill = await fs.readFile(
+      './node_modules/resize-observer-polyfill/dist/ResizeObserver.global.js',
+      'utf-8');
+
+  return UglifyJS.minify(resizeObserverPolyfill).code;
+};
+
+
+const bundlePolyfills = async () => {
+  const polyfills = await Promise.all([
+    getCustomElementsPolyfill(),
+    getResizeObserverPolyfill(),
+  ]);
+
+  generateRevisionedAsset('polyfills.js', polyfills.join('\n'));
+}
+
 gulp.task('javascript', async () => {
   // Generate the main bundle.
   const compileModernBundle = createCompiler(getModernConfig());
   await compileModernBundle();
 
-  // Generate the ResizeObserver polyfill
-  let resizeObserverPolyfill = await fs.readFile(
-      './node_modules/resize-observer-polyfill/dist/ResizeObserver.global.js',
-      'utf-8');
-
-  generateRevisionedAsset('resize-observer.js',
-        UglifyJS.minify(resizeObserverPolyfill).code);
-
   if (['debug', 'production'].includes(process.env.NODE_ENV)) {
+    await bundlePolyfills();
+
     // Generate the main-legacy bundle.
     const compileLegacyBundle = createCompiler(getLegacyConfig());
     await compileLegacyBundle();
