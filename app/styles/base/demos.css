@@ -12,36 +12,15 @@
   margin-bottom: 1.5em;
 }
 
-[data-observe-resizes] {
+[data-observe-resizes],
+responsive-container {
   contain: content;
-
-  opacity: 0;
   overflow: hidden;
   position: relative;
-  transition: opacity 0.5s var(--material-easing);
-
-  /*
-   * In the event of an error initializing ResizeObserver or loading the
-   * polyfill, make sure the content is shown no matter what.
-   */
-  animation: 0.5s var(--material-easing) 2s 1 forwards script-error-fallback;
 }
 
-@keyframes script-error-fallback {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-[data-observe-resizes][data-observing="true"] {
-  opacity: 1;
-
-  /*
-   * Remove the script-error-fallback animation since observation started.
-   */
-  animation: none;
-}
-
-[data-observe-resizes]::before {
+[data-observe-resizes]::before,
+responsive-container::before {
   background-color: #ccc;
   color: hsla(0, 100%, 100%, 0);
   content: "\00a0";
@@ -59,53 +38,62 @@
   z-index: 10;
 }
 
-[data-observe-resizes][data-observing="true"]::before {
+[data-observe-resizes][data-observing="true"]::before,
+responsive-container[observing]::before {
   transition: background-color 0.2s var(--material-easing) 0.05s,
     color 0.2s var(--material-easing) 0.05s;
 }
 
-[data-observe-resizes] [data-observe-resizes]::before {
+[data-observe-resizes] [data-observe-resizes]::before,
+responsive-container responsive-container::before {
   left: -1.2em;
   right: auto;
   top: 3.1em;
   transform: rotate(-45deg);
 }
 
-.SM[data-observe-resizes]::before {
+.SM[data-observe-resizes]::before,
+responsive-container.SM::before {
   background-color: #40bf80;
   color: hsla(0, 100%, 100%, 100);
   content: "SM";
 }
 
-.MD[data-observe-resizes]::before {
+.MD[data-observe-resizes]::before,
+responsive-container.MD::before {
   background-color: #33b2cc;
   content: "MD";
 }
 
-.LG[data-observe-resizes]::before {
+.LG[data-observe-resizes]::before,
+responsive-container.LG::before {
   background-color: #bc79ec;
   content: "LG";
 }
 
-.XL[data-observe-resizes]::before {
+.XL[data-observe-resizes]::before,
+responsive-container.XL::before {
   background-color: #f0427c;
   content: "XL";
 }
 
 /* Custom breakpoints */
 
-.C2[data-observe-resizes]::before {
+.C2[data-observe-resizes]::before,
+responsive-container.C2::before {
   background-color: #40bf80;
   color: hsla(0, 100%, 100%, 100);
   content: "C2";
 }
 
-.C3[data-observe-resizes]::before {
+.C3[data-observe-resizes]::before,
+responsive-container.C3::before {
   background-color: #33b2cc;
   content: "C3";
 }
 
-.C4[data-observe-resizes]::before {
+.C4[data-observe-resizes]::before,
+responsive-container.C4::before {
   background-color: #bc79ec;
   content: "C4";
 }
