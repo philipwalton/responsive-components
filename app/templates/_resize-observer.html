@@ -51,6 +51,8 @@ responsive-container[observing] {
     // as any time that element's size changes.
     var ro = new ResizeObserver(function(entries) {
       entries.forEach(function(entry) {
+        // If the target has an `updateBreakpoints` property then it's
+        // a <responsive-container> element.
         if (entry.target.updateBreakpoints) {
           entry.target.updateBreakpoints(entry.contentRect.width);
         } else {
