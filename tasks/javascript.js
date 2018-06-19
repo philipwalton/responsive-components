@@ -178,10 +178,9 @@ gulp.task('javascript', async () => {
   // Generate the main bundle.
   const compileModernBundle = createCompiler(getModernConfig());
   await compileModernBundle();
+  await bundlePolyfills();
 
   if (['debug', 'production'].includes(process.env.NODE_ENV)) {
-    await bundlePolyfills();
-
     // Generate the main-legacy bundle.
     const compileLegacyBundle = createCompiler(getLegacyConfig());
     await compileLegacyBundle();
