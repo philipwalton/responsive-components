@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import App from './App.js';
 import {SECTIONS} from './constants.js';
 import {getState, setState} from './state.js';
@@ -6,7 +5,6 @@ import {getState, setState} from './state.js';
 const main = async () => {
   const app = new App(document.querySelector('.App'));
   document.querySelector('.App').classList.add('App--isInteractive');
-
 
   // Listen for breakpoint changes that affect the nav drawer.
   const mql = window.matchMedia('(min-width: 48em)');
@@ -41,10 +39,6 @@ const main = async () => {
       setState({isNavInDrawerMode: true});
     }
   });
-
-  // Lazily load analytics
-  const analytics = await import('./analytics.js');
-  analytics.init();
 };
 
 main();

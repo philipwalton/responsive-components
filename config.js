@@ -20,7 +20,7 @@ const shareInfo = {
   via: `philwalton`,
 };
 
-module.exports = {
+export const config = {
   title,
   repo,
   url,
@@ -34,4 +34,5 @@ module.exports = {
   publicStaticPath,
   manifestFileName,
   shareInfo,
+  ENV: process.env.NODE_ENV || 'development',
 };

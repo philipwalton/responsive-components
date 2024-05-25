@@ -3,14 +3,9 @@
 <head>
   <title>{{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="{{ 'main.css' | revision }}">
+  <link rel="stylesheet" href="main.css">
 
-  <!-- Adds an event listener to capture uncaught errors. -->
-  <script>addEventListener('error', window.__e=function f(e){f.q=f.q||[];f.q.push(e)});</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
-
-  <script defer type="module" src="{{ 'runtime.js' | revision }}"></script>
-  <script defer type="module" src="{{ 'main.js' | revision }}"></script>
+  <script defer type="module" src="main.js"></script>
 
   <link rel="canonical" href="{{ url }}">
 
@@ -20,8 +15,6 @@
   <meta property="og:title" content="{{ title }}">
   <meta property="og:description" content="{{ desc }}">
   <meta property="og:image" content="{{ url }}responsive-components-demo.png">
-
-  <meta name="google-site-verification" content="q5KncOje-dNdD5uxqSOG1znSAo5Wsz5MlBcAmteQAJA">
 </head>
 <body>
   <div class="App">
@@ -112,11 +105,6 @@
   </div>
   {% include 'icons.svg' %}
 
-  {% if ENV === 'production' or ENV === 'debug' %}
-    {% include '_nomodule-shim.html' %}
-    <script defer nomodule src="{{ 'runtime-legacy.js' | revision }}"></script>
-    <script defer nomodule src="{{ 'main-legacy.js' | revision }}"></script>
-  {% endif %}
   {% include '_resize-observer.html' %}
   <noscript>
     <style>

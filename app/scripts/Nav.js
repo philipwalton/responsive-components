@@ -1,4 +1,3 @@
-import delegate from 'dom-utils/lib/delegate';
 import {getState, setState, stateListener} from './state.js';
 
 export default class Nav {
@@ -11,7 +10,14 @@ export default class Nav {
     this.onStateChange = this.onStateChange.bind(this);
 
     stateListener.on('change', this.onStateChange);
-    delegate(this.$root, 'click', '.Nav-link', this.onLinkClick);
+
+    // Add a delegated listener for all clicks on `.Nav-link` elements.
+    document.addEventListener('click', (event) => {
+      const targetElement = event.target.closest('.Nav-link');
+      if (targetElement) {
+        this.onLinkClick(event, targetElement);
+      }
+    });
   }
 
   onStateChange(oldState, newState) {

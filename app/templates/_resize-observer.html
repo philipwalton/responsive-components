@@ -38,7 +38,7 @@ responsive-container[observing] {
       matchMedia('(min-width: ' + defaultBreakpoints.MD + 'px)').matches) {
     // Browsers at larger breakpoints that don't support all
     // required features must load the polyfills first.
-    loadScript('{{ "polyfills.js" | revision }}', main);
+    loadScript('./polyfills.js', main);
   } else {
     // Browsers that don't need polyfills run `main()` immediately.
     main();

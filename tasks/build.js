@@ -1,12 +1,7 @@
-const gulp = require('gulp');
+import {compileCSS} from './styles.js';
+import {compileTemplates} from './templates.js';
 
-// Ensure referenced tasks are registered.
-require('./clean.js');
-require('./css.js');
-require('./javascript.js');
-require('./templates.js');
-
-gulp.task('build', gulp.series(
-    'clean',
-    gulp.parallel('css', 'javascript'),
-    'templates'));
+await Promise.all([
+  compileCSS(),
+  compileTemplates(),
+])

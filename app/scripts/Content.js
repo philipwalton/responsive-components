@@ -1,4 +1,3 @@
-import delegate from 'dom-utils/lib/delegate';
 import {getState, setState, stateListener} from './state.js';
 
 export default class Content {
@@ -11,8 +10,14 @@ export default class Content {
     this.onStateChange = this.onStateChange.bind(this);
 
     stateListener.on('change', this.onStateChange);
-    delegate(this.$root, 'click', '[data-pin-action]',
-        this.onPinDemoButtonClick);
+
+    // Add a delegated listener for all clicks on `[data-pin-action]` elements.
+    document.addEventListener('click', (event) => {
+      const targetElement = event.target.closest('[data-pin-action]');
+      if (targetElement) {
+        this.onPinDemoButtonClick(event);
+      }
+    });
   }
 
   onStateChange(oldState, newState) {
