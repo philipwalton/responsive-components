@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="main.css">
 
-  <script defer type="module" src="main.js"></script>
+  <script type="module" src="main.js"></script>
 
   <link rel="canonical" href="{{ url }}">
 
@@ -61,7 +61,6 @@
             {% include 'demos/gallery.html' %}
             {% include 'demos/nested-components.html' %}
             {% include 'demos/custom-breakpoints.html' %}
-            {% include 'demos/custom-elements.html' %}
             <script>
               (function() {
                 // Show the chosen selection or the first one.
@@ -91,9 +90,9 @@
             </span>
           </header>
           <aside class="Sidebar">
-            <div data-demo-root data-observe-resizes>
+            <responsive-container>
               {% include 'components/card.html' %}
-            </div>
+            </responsive-container>
           </aside>
         </div>
       </div>
@@ -105,9 +104,15 @@
   </div>
   {% include 'icons.svg' %}
 
-  {% include '_resize-observer.html' %}
   <noscript>
     <style>
+      responsive-container {
+        opacity: 1;
+        animation: none;
+      }
+      responsive-container > *::before {
+        display: none;
+      }
       .Section {
         display: block!important;
       }

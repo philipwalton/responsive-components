@@ -3,10 +3,13 @@
     <span id="gallery" data-section-anchor></span>
     Gallery
   </h2>
-  <div data-demo-root data-observe-resizes>
-    {% include 'components/Gallery.html' %}
-  </div>
-  {% set component = 'Gallery' %}
+
+  <responsive-container name="Gallery">
+    <div class="GalleryDemoWrapper">
+      {% include 'components/Gallery.html' %}
+    </div>
+  </responsive-container>
+
   {% include '_pin-action.html' %}
 
   <h3>The code</h3>

@@ -1,3 +1,5 @@
+@use '../base/breakpoint.scss' as *;
+
 .Form {
   background: #fff;
   border: 1px solid hsla(0, 0%, 0%, 0.075);
@@ -29,8 +31,8 @@
 /* Breakpoint: MD */
 /* -------------- */
 
-@supports (display: grid) {
-  .MD > .Form .Form-field {
+@include breakpoint('MD') {
+  .Form .Form-field {
     align-items: baseline;
     display: grid;
     grid-template-columns: 10em 1fr;
@@ -40,18 +42,18 @@
     margin: 0 0 1.5em;
   }
 
-  .MD > .Form .Form-fieldLabel {
+  .Form .Form-fieldLabel {
     grid-area: label;
 
     margin-right: 1em;
     text-align: right;
   }
 
-  .MD > .Form .Form-fieldInput {
+  .Form .Form-fieldInput {
     grid-area: input;
   }
 
-  .MD > .Form .Form-fieldSubText {
+  .Form .Form-fieldSubText {
     grid-area: subText;
   }
 }

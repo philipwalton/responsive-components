@@ -2,6 +2,12 @@ import App from './App.js';
 import {SECTIONS} from './constants.js';
 import {getState, setState} from './state.js';
 
+// Import the resize observer fallback iff the browser
+// doesn't support native container queries.
+if (!CSS.supports('container-type: inline-size')) {
+  import('./ResponsiveContainer.js');
+}
+
 const main = async () => {
   const app = new App(document.querySelector('.App'));
   document.querySelector('.App').classList.add('App--isInteractive');

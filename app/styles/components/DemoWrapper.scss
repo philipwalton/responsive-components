@@ -1,0 +1,108 @@
+@use '../base/breakpoint.scss' as *;
+
+.DemoWrapper::before,
+.GalleryDemoWrapper::before,
+.CustomDemoWrapper::before {
+  background-color: #ccc;
+  color: hsla(0, 100%, 100%, 100);
+  content: '\00a0';
+  font-size: 0.8em;
+  -webkit-font-smoothing: initial;
+  font-weight: 700;
+  letter-spacing: .1em;
+  position: absolute;
+  right: -3.1em;
+  text-align: center;
+  top: -1.2em;
+  transform: rotate(45deg);
+  transform-origin: 0 0;
+  width: 6em;
+  z-index: 10;
+}
+
+@include breakpoint('SM') {
+  .DemoWrapper::before {
+    background-color: #40bf80;
+    content: 'SM';
+  }
+}
+
+@include breakpoint('MD') {
+  .DemoWrapper::before {
+    background-color: #33b2cc;
+    content: 'MD';
+  }
+}
+
+@include breakpoint('LG') {
+  .DemoWrapper::before {
+    background-color: #bc79ec;
+    content: 'LG';
+  }
+}
+
+@include breakpoint('XL') {
+  .DemoWrapper::before {
+    background-color: #f0427c;
+    content: 'XL';
+  }
+}
+
+.GalleryDemoWrapper .DemoWrapper::before {
+  left: -1.2em;
+  right: auto;
+  top: 3.1em;
+  transform: rotate(-45deg);
+}
+
+@include breakpoint('SM', 'Gallery') {
+  .GalleryDemoWrapper::before {
+    background-color: #40bf80;
+    content: 'SM';
+  }
+}
+
+@include breakpoint('MD', 'Gallery') {
+  .GalleryDemoWrapper::before {
+    background-color: #33b2cc;
+    content: 'MD';
+  }
+}
+
+@include breakpoint('LG', 'Gallery') {
+  .GalleryDemoWrapper::before {
+    background-color: #bc79ec;
+    content: 'LG';
+  }
+}
+
+@include breakpoint('XL', 'Gallery') {
+  .GalleryDemoWrapper::before {
+    background-color: #f0427c;
+    content: 'XL';
+  }
+}
+
+/* Custom breakpoints */
+
+@include breakpoint('C2', 'Custom') {
+  .CustomDemoWrapper::before {
+    background-color: #40bf80;
+    color: hsla(0, 100%, 100%, 100);
+    content: 'C2';
+  }
+}
+
+@include breakpoint('C3', 'Custom') {
+  .CustomDemoWrapper::before {
+    background-color: #33b2cc;
+    content: 'C3';
+  }
+}
+
+@include breakpoint('C4', 'Custom') {
+  .CustomDemoWrapper::before {
+    background-color: #bc79ec;
+    content: 'C4';
+  }
+}

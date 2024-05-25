@@ -45,6 +45,9 @@ h3 {
   font-weight: 500;
   margin-bottom: 0.8em;
 }
+h3:where(:not([class])) {
+  margin-top: 1em;
+}
 
 a {
   color: var(--accentColorMuted);

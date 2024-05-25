@@ -13,7 +13,7 @@ export default class Sidebar {
 
   onStateChange(oldState, state, changedProps) {
     if (changedProps.has('pinnedDemo')) {
-      const $oldDemo = this.$root.querySelector('[data-demo-root]');
+      const $oldDemo = this.$root.querySelector('responsive-container');
       const $newDemo = this.app.content.cloneSelectedDemo(state.pinnedDemo);
       const $demoParent = $oldDemo.parentElement;
 

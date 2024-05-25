@@ -3,19 +3,23 @@
     <span id="calendar" data-section-anchor></span>
     Calendar
   </h2>
-  <div data-demo-root data-observe-resizes>
-    {% include 'components/Calendar.html' %}
-  </div>
+
+  <responsive-container>
+    <div class="DemoWrapper">
+      {% include 'components/Calendar.html' %}
+    </div>
+  </responsive-container>
+
   {% include '_pin-action.html' %}
 
   <h3>The code</h3>
 
   {% highlight 'html' %}
   <!-- Container element -->
-  <div data-observe-resizes>
+  <responsive-container>
     <!-- Component element -->
     <div class="Calendar">...</div>
-  </div>
+  </responsive-container>
   {% endhighlight %}
 
   <ul>

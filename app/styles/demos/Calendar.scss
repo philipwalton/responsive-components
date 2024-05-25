@@ -1,3 +1,5 @@
+@use '../base/breakpoint.scss' as *;
+
 .Calendar {
   background: hsl(0, 0%, 100%);
   border: 1px solid hsl(0, 0%, 93%);
@@ -67,57 +69,57 @@
   font-size: 0.9em;
 }
 
-
 /* -------------- */
 /* Breakpoint: SM */
 /* -------------- */
 
-.SM > .Calendar .Calendar-day {
-  display: flex;
-}
+@include breakpoint('SM') {
+  .Calendar .Calendar-day {
+    display: flex;
+  }
 
-.SM > .Calendar .Calendar-dateMo {
-  margin: 0;
-}
+  .Calendar .Calendar-dateMo {
+    margin: 0;
+  }
 
-.SM > .Calendar .Calendar-entries {
-  flex: 1 0 0%;
-}
+  .Calendar .Calendar-entries {
+    flex: 1 0 0%;
+  }
 
-.SM > .Calendar .Calendar-entry {
-  margin: 1em 0;
-}
+  .Calendar .Calendar-entry {
+    margin: 1em 0;
+  }
 
-.SM > .Calendar .Calendar-date {
-  align-items: stretch;
-  position: sticky;
-  top: 0em;
-  left: 0;
+  .Calendar .Calendar-date {
+    align-items: stretch;
+    position: sticky;
+    top: 0em;
+    left: 0;
 
-  flex-flow: column;
-  padding: 0.75em 0;
-  text-align: center;
-}
+    flex-flow: column;
+    padding: 0.75em 0;
+    text-align: center;
+  }
 
-.SM > .Calendar .Calendar-dateWk {
-  font-size: 0.8em;
-  text-transform: uppercase;
-  font-weight: 600;
-}
+  .Calendar .Calendar-dateWk {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
 
-.SM > .Calendar .Calendar-dateMo {
-  font-size: 2.5em;
-  font-weight: 300;
-  line-height: 1;
+  .Calendar .Calendar-dateMo {
+    font-size: 2.5em;
+    font-weight: 300;
+    line-height: 1;
+  }
 }
 
 /* -------------- */
 /* Breakpoint: LG  */
 /* -------------- */
 
-/* The LG breakpoint requires custom properties, so feature detect first */
-@supports (color: var(--custom)) {
-  .LG > .Calendar {
+@include breakpoint('LG') {
+  .Calendar {
     --Calendar-dateHeight: 4.5em;
     --Calendar-entryHeight: 3.333em;
 
@@ -125,13 +127,13 @@
     padding: 1.5em;
   }
 
-  .LG > .Calendar .Calendar-times {
+  .Calendar .Calendar-times {
     display: block;
     margin-top: var(--Calendar-dateHeight);
     min-width: 4em;
   }
 
-  .LG > .Calendar .Calendar-time {
+  .Calendar .Calendar-time {
     --Calendar-timeSize: 0.8;
 
     border-top: 1px solid #eee;
@@ -141,7 +143,7 @@
     padding-top: 0.25em;
   }
 
-  .LG > .Calendar .Calendar-day {
+  .Calendar .Calendar-day {
     flex: 1 0 0%;
     min-width: 0;
 
@@ -151,15 +153,15 @@
     padding: 0 1em;
   }
 
-  .LG > .Calendar .Calendar-day:last-child {
+  .Calendar .Calendar-day:last-child {
     padding-right: 0;
   }
 
-  .LG > .Calendar .Calendar-dayHeader {
+  .Calendar .Calendar-dayHeader {
     position: static;
   }
 
-  .LG > .Calendar .Calendar-date {
+  .Calendar .Calendar-date {
     padding: 0;
     position: static;
     text-align: left;
@@ -167,11 +169,11 @@
     overflow: hidden;
   }
 
-  .LG > .Calendar .Calendar-entries {
+  .Calendar .Calendar-entries {
     position: relative;
   }
 
-  .LG > .Calendar .Calendar-entry {
+  .Calendar .Calendar-entry {
     --Calendar-entryOffset: calc(9 * var(--Calendar-entryHeight));
 
     height: calc(var(--Calender-entryDur) * var(--Calendar-entryHeight));
@@ -182,7 +184,7 @@
     width: 100%;
   }
 
-  .LG > .Calendar .Calendar-entryDesc {
+  .Calendar .Calendar-entryDesc {
     font-size: 0.8em;
   }
 }

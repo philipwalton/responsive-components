@@ -1,0 +1,43 @@
+@use 'sass:map';
+
+$breakpoints: (
+  // Default breakpoints
+  'SM': 384px,
+  'MD': 576px,
+  'LG': 768px,
+  'XL': 960px,
+
+  // Custom breakpoints
+  'C2': 400px,
+  'C3': 800px,
+  'C4': 1200px,
+);
+
+$support-condition: 'container-type: inline-size';
+
+@mixin breakpoint($breakpoint, $name: false) {
+  // Use native container queries if the browser supports it.
+  @supports (#{$support-condition}) {
+    @if $name {
+      @container #{$name} (min-width: #{map.get($breakpoints, $breakpoint)}) {
+        @content();
+      }
+    } @else {
+      @container (min-width: #{map.get($breakpoints, $breakpoint)}) {
+        @content();
+      }
+    }
+  }
+  // Otherwise fall back to using resize observer with breakpoint classes.
+  @supports not (#{$support-condition}) {
+    @if $name {
+      .#{$name}-#{$breakpoint} {
+        @content();
+      }
+    } @else {
+      .#{$breakpoint} {
+        @content();
+      }
+    }
+  }
+}

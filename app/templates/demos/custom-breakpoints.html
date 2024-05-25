@@ -3,20 +3,22 @@
     <span id="custom-breakpoints" data-section-anchor></span>
     Custom breakpoints
   </h2>
-  <div id="custom" data-demo-root data-observe-resizes
-       data-breakpoints='{"C2":400,"C3":800,"C4":1200}'>
-    {% include 'components/MultiColBox.html' %}
-  </div>
+  <responsive-container name="Custom" breakpoints='{"C2":400,"C3":800,"C4":1200}'>
+    <div class="CustomDemoWrapper">
+      {% include 'components/MultiColBox.html' %}
+    </div>
+  </responsive-container>
+
   {% include '_pin-action.html' %}
 
   <h3>The code</h3>
 
   {% highlight 'html' %}
   <!-- Container element -->
-  <div **data-breakpoints='{"C2":400,"C3":800,"C4":1200}'** data-observe-resizes>
+  <responsive-container **breakpoints='{"C2":400,"C3":800,"C4":1200}'**>
     <!-- Component element -->
     <div class="MultiColBox">...</div>
-  </div>
+  </responsive-container>
   {% endhighlight %}
 
   <ul>

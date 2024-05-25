@@ -3,20 +3,23 @@
     <span id="form" data-section-anchor></span>
     Form
   </h2>
-  <div data-demo-root data-observe-resizes>
-    {% include 'components/Form.html' %}
-  </div>
-  {% set component = 'Form' %}
+
+  <responsive-container>
+    <div class="DemoWrapper">
+      {% include 'components/Form.html' %}
+    </div>
+  </responsive-container>
+
   {% include '_pin-action.html' %}
 
   <h3>Go deeper</h3>
 
   {% highlight 'html' %}
   <!-- Container element -->
-  <div data-observe-resizes>
+  <responsive-container>
     <!-- Component element -->
     <form class="Form">...</form>
-  </div>
+  </responsive-container>
   {% endhighlight %}
 
   <ul>

@@ -1,0 +1,24 @@
+/**
+ * Ensures anchor links are fixed to the top of the page when JS is enabled,
+ * so new page loads referencing an anchor always display the header.
+ * (this is unset in a <noscript> tag)
+ */
+[data-section-anchor] {
+  position: fixed;
+  top: 0;
+}
+
+responsive-container {
+  container-type: inline-size;
+  overflow: hidden;
+  position: relative;
+  display: block;
+}
+
+responsive-container[name="Gallery"] {
+  container-name: Gallery;
+}
+
+responsive-container[name="Custom"] {
+  container-name: Custom;
+}

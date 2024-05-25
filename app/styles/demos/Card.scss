@@ -1,3 +1,5 @@
+@use '../base/breakpoint.scss' as *;
+
 .Card {
   background: #fff;
   border: 1px solid hsla(0, 0%, 0%, 0.1);
@@ -31,20 +33,22 @@
 /* Breakpoint: SM */
 /* -------------- */
 
-.SM > .Card {
-  flex-flow: row;
-}
+@include breakpoint('SM') {
+  .Card {
+    flex-flow: row;
+  }
 
-.SM > .Card > .Card-figure {
-  border-right: 1px solid #eee;
-  flex: 2;
-  margin-right: 1em;
-  margin-bottom: 0;
-  min-width: 0;
-  padding-right: 1em;
-}
+  .Card > .Card-figure {
+    border-right: 1px solid #eee;
+    flex: 2;
+    margin-right: 1em;
+    margin-bottom: 0;
+    min-width: 0;
+    padding-right: 1em;
+  }
 
-.SM > .Card > .Card-body {
-  min-width: 0;
-  flex: 5;
+  .Card > .Card-body {
+    min-width: 0;
+    flex: 5;
+  }
 }

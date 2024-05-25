@@ -3,28 +3,43 @@
     <span id="nested-components" data-section-anchor></span>
     Nested components
   </h2>
-  <div data-demo-root data-observe-resizes>
-    <ul class="Gallery">
-      <li data-observe-resizes>
-        {% include 'components/card.html' %}
-      </li>
-      <li data-observe-resizes>
-        {% include 'components/card.html' %}
-      </li>
-      <li data-observe-resizes>
-        {% include 'components/card.html' %}
-      </li>
-      <li data-observe-resizes>
-        {% include 'components/card.html' %}
-      </li>
-      <li data-observe-resizes>
-        {% include 'components/card.html' %}
-      </li>
-      <li data-observe-resizes>
-        {% include 'components/card.html' %}
-      </li>
-    </ul>
-  </div>
+
+  <responsive-container name="Gallery">
+    <div class="GalleryDemoWrapper">
+      <div class="Gallery">
+        <responsive-container>
+          <div class="DemoWrapper">
+            {% include 'components/card.html' %}
+          </div>
+        </responsive-container>
+        <responsive-container>
+          <div class="DemoWrapper">
+            {% include 'components/card.html' %}
+          </div>
+        </responsive-container>
+        <responsive-container>
+          <div class="DemoWrapper">
+            {% include 'components/card.html' %}
+          </div>
+        </responsive-container>
+        <responsive-container>
+          <div class="DemoWrapper">
+            {% include 'components/card.html' %}
+          </div>
+        </responsive-container>
+        <responsive-container>
+          <div class="DemoWrapper">
+            {% include 'components/card.html' %}
+          </div>
+        </responsive-container>
+        <responsive-container>
+          <div class="DemoWrapper">
+            {% include 'components/card.html' %}
+          </div>
+        </responsive-container>
+    </div>
+  </responsive-container>
+
   {% include '_pin-action.html' %}
 
   <h3>The code</h3>
@@ -32,7 +47,7 @@
   <p>This demo shows the responsive <a href="#card">Card</a> component nested inside the responsive <a href="#gallery">Gallery</a> component. As the gallery's matching breakpoint changes, its layout will update and in turn cause a change in size to the card's container element.</p>
 
   {% highlight 'html' %}
-  <!-- Outter container element -->
+  <!-- Outer container element -->
   <div data-demo-root data-observe-resizes>
       <!-- Outer component element -->
       <ul class="Gallery">

@@ -53,7 +53,9 @@ export default class Content {
   }
 
   getSectionDemo(id) {
-    return this.$root.querySelector(`[data-section="${id}"] [data-demo-root]`);
+    return this.$root.querySelector(
+      `[data-section="${id}"] responsive-container`
+    );
   }
 
   getSectionPinDemoBtn(id) {

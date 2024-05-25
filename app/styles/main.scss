@@ -1,11 +1,12 @@
 @use "./base/variables.scss";
 @use "./base/reset.scss";
-@use "./base/demos.scss";
+@use "./base/elements.scss";
 @use "./base/media.scss";
 
 @use "./components/App.scss";
 @use "./components/Button.scss";
 @use "./components/Checkbox.scss";
+@use "./components/DemoWrapper.scss";
 @use "./components/Footer.scss";
 @use "./components/Icon.scss";
 @use "./components/IconActions.scss";

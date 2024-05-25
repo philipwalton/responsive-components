@@ -1,3 +1,5 @@
+@use '../base/breakpoint.scss' as *;
+
 .MultiColBox {
   background: #fff;
   border: 1px solid hsla(0, 0%, 0%, 0.075);
@@ -25,22 +27,28 @@
 /* Breakpoint: C2 */
 /* -------------- */
 
-.C2 > .MultiColBox .MultiColBox-content {
-  column-count: 2;
+@include breakpoint('C2', 'custom') {
+  .MultiColBox .MultiColBox-content {
+    column-count: 2;
+  }
 }
 
 /* -------------- */
 /* Breakpoint: C3 */
 /* -------------- */
 
-.C3 > .MultiColBox .MultiColBox-content {
-  column-count: 3;
+@include breakpoint('C3', 'custom') {
+  .MultiColBox .MultiColBox-content {
+    column-count: 3;
+  }
 }
 
 /* -------------- */
 /* Breakpoint: C4 */
 /* -------------- */
 
-.C4 > .MultiColBox .MultiColBox-content {
-  column-count: 4;
+@include breakpoint('C4', 'custom') {
+  .MultiColBox .MultiColBox-content {
+    column-count: 4;
+  }
 }

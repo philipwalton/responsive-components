@@ -6,5 +6,4 @@ export const SECTIONS = new Set([
   'gallery',
   'nested-components',
   'custom-breakpoints',
-  'custom-elements',
 ]);
